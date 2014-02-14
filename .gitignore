@@ -4,4 +4,8 @@
 *.jar
 *.war
 *.ear
+<<<<<<< HEAD
 /bin/
+=======
+/bin
+>>>>>>> parent of 5eafb36... Revert "Initialisation projet"
