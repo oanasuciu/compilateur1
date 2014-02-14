@@ -15,10 +15,13 @@ options{
 
 PARSER_BEGIN(Yaka)
 
-
+package Yaka;
 
 public class Yaka {
-
+  public static Declaration declaration;
+  public static TabIdent tabIdent;
+  public static Expression expression;
+  public static YVM yvm;
 
   public static void main(String args[]) { 
     Yaka analyseur;
