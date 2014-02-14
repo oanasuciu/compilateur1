@@ -9,14 +9,14 @@ public class TabIdent {
 	}
 	
 	public Ident chercheIdent(String clef){
-		return new Ident();
+		return table.get(clef);
 	}
 	
 	public boolean existeIdent(String clef){
-		return false;
+		return table.containsKey(clef);
 	}
 	
 	public void rangeIdent(String clef, Ident id){
-		
+		table.put(clef, id);
 	}
 }
