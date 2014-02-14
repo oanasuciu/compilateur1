@@ -22,6 +22,7 @@ public class Yaka {
   public static TabIdent tabIdent;
   public static Expression expression;
   public static YVM yvm;
+  public static Constante constante;
 
   public static void main(String args[]) { 
     Yaka analyseur;
@@ -184,8 +185,8 @@ void declVar() : {}
 
 void type() :{}
 {
-   <ENTIER> 			
- | <BOOLEEN>	
+   (<ENTIER> { Yaka.Declaration.metAJourType(Yaka.constante.ENTIER); })			
+ | (<BOOLEEN> { Yaka.Declaration.metAJourType(Yaka.constante.BOOLEEN); })
 }
 /*
  * Syntaxe des instructions.
