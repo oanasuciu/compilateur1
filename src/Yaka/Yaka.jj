@@ -198,7 +198,32 @@ void type() :{}
 void suiteExpr() : {}
 { (expression() (";" (expression())? )*)? }
 
+/* void suiteInstr() : {}
+{
+instruction()
+(";" (instruction)? )*
+}  
+*/
 
+void instruction() : {}
+{
+affectation() | lecture() | ecriture()
+}
+
+void affectation() : {}
+{
+<ident> "=" expression()
+}
+
+void lecture : {}
+{
+<lire> "(" <ident> ")"
+}
+
+void ecriture : {}
+{
+<ecrire> "(" expression() | <chaine> ")" | <alaligne>
+}
 
 /*
  * Expression .
