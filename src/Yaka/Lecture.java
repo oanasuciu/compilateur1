@@ -1,3 +1,5 @@
+package Yaka;
+
 //package utilitaires;
 
 import java.io.*;
@@ -6,7 +8,7 @@ import java.io.*;
 
 public class Lecture {   
     public static InputStream ouvrir(String nomFich) {
- //délivre un pointeur sur le fichier de nom nomFich (null si erreur)
+ //dï¿½livre un pointeur sur le fichier de nom nomFich (null si erreur)
  InputStream f;
  try {f=new DataInputStream(new FileInputStream(nomFich));}
  catch (IOException e) {f=null;}
@@ -14,7 +16,7 @@ public class Lecture {
     }
 
     public static boolean finFichier(InputStream f) {
- //détermine si la fin de fichier est atteinte
+ //dï¿½termine si la fin de fichier est atteinte
  try {return (f!=System.in && f.available()==0);}
         catch(IOException e) {System.out.println("pb test finFichier");
                        System.exit(1);
@@ -29,12 +31,12 @@ public class Lecture {
     }
 
 
-    //lecture d'un octet dans la chaîne d'entrée (avec capture de l'exception)
+    //lecture d'un octet dans la chaï¿½ne d'entrï¿½e (avec capture de l'exception)
 
     public static char lireChar(InputStream f) {
  char carSuiv=' ';
         try {int x=f.read();
-      if (x==-1) {System.out.println("lecture après fin de fichier");
+      if (x==-1) {System.out.println("lecture aprï¿½s fin de fichier");
                   System.exit(2);}
       carSuiv=(char)x;
  }
