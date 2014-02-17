@@ -2,7 +2,7 @@
  *
  *       Auteur: Pedrono Marie-Jo
  *
- * 	cr�ation : 13 f�vrier 2002
+ * 	création : 13 février 2002
  *
  *     nature : projet etudiant
  *
@@ -87,7 +87,7 @@ SKIP :
 }
 
 
-/* Mots r�serv�s*/
+/* Mots réservés*/
 
 TOKEN :
 {
