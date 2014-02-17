@@ -11,22 +11,24 @@ public class Declaration {
 	}
 	
 	/**
-	 * Met à jour le dernier type lu dans la grammaire
+	 * Met Ã  jour le dernier type lu dans la grammaire
 	 * 
-	 * @param type Une constante représentant le type (entier ou booléen)
+	 * @param type Une constante reprÃ©sentant le type (entier ou boolÃ©en)
 	 */
 	public void metAJourType(int type) {
 		this.typeCourant = type;
+		System.out.println(Yaka.tabIdent.toString());
 	}
 	
 	/**
-	 * Déclaration d'une nouvelle variable
+	 * DÃ©claration d'une nouvelle variable
 	 * 
 	 * @param nom Nom de la variable
 	 */
 	public void nouvelleVariable(String nom) {
 		Ident id = new IdVar(nom, this.typeCourant);
 		Yaka.tabIdent.rangeIdent(nom, id);
+		System.out.println(Yaka.tabIdent.toString());
 	}
 	
 	/**
@@ -35,6 +37,5 @@ public class Declaration {
 	 * @param valeur
 	 */
 	public void nouvelleConstante(String nom, String valeur) {
-		
 	}
 }

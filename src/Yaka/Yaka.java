@@ -6,9 +6,14 @@ public class Yaka implements YakaConstants {
   public static TabIdent tabIdent;
   public static Expression expression;
   public static YVM yvm;
+  public static Constante constante;
 
   public static void main(String args[]) {
     Yaka analyseur;
+    Yaka.declaration = new Declaration();
+    Yaka.tabIdent = new TabIdent(2);
+    Yaka.yvm = new YVM();
+    Yaka.constante = new Constante();
     java.io.InputStream input;
 
     if (args.length==1) {
@@ -125,6 +130,7 @@ public class Yaka implements YakaConstants {
     jj_consume_token(VAR);
     type();
     jj_consume_token(ident);
+             Yaka.declaration.nouvelleVariable(YakaTokenManager.identLu);
     label_4:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -137,6 +143,7 @@ public class Yaka implements YakaConstants {
       }
       jj_consume_token(40);
       jj_consume_token(ident);
+                 Yaka.declaration.nouvelleVariable(YakaTokenManager.identLu);
     }
     jj_consume_token(41);
   }
@@ -145,9 +152,11 @@ public class Yaka implements YakaConstants {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ENTIER:
       jj_consume_token(ENTIER);
+               Yaka.declaration.metAJourType(Yaka.constante.ENTIER);
       break;
     case BOOLEEN:
       jj_consume_token(BOOLEEN);
+                Yaka.declaration.metAJourType(Yaka.constante.BOOLEEN);
       break;
     default:
       jj_la1[5] = jj_gen;

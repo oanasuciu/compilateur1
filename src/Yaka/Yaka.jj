@@ -2,7 +2,7 @@
  *
  *       Auteur: Pedrono Marie-Jo
  *
- * 	création : 13 février 2002
+ * 	crï¿½ation : 13 fï¿½vrier 2002
  *
  *     nature : projet etudiant
  *
@@ -26,6 +26,10 @@ public class Yaka {
 
   public static void main(String args[]) { 
     Yaka analyseur;
+    Yaka.declaration = new Declaration();
+    Yaka.tabIdent = new TabIdent(2);
+    Yaka.yvm = new YVM();
+    Yaka.constante = new Constante();
     java.io.InputStream input;
 
     if (args.length==1) {
@@ -83,7 +87,7 @@ SKIP :
 }
 
 
-/* Mots réservés*/
+/* Mots rï¿½servï¿½s*/
 
 TOKEN :
 {
@@ -176,17 +180,17 @@ void valConst() : {}{
 void declVar() : {}
 {
   <VAR> type()	
-  <ident>		
+  (<ident> { Yaka.declaration.nouvelleVariable(YakaTokenManager.identLu); })
   ("," 
-      <ident>  
+      (<ident> { Yaka.declaration.nouvelleVariable(YakaTokenManager.identLu); }) 
   )* ";"
 	
 }
 
 void type() :{}
 {
-   (<ENTIER> { Yaka.Declaration.metAJourType(Yaka.constante.ENTIER); })			
- | (<BOOLEEN> { Yaka.Declaration.metAJourType(Yaka.constante.BOOLEEN); })
+   (<ENTIER> { Yaka.declaration.metAJourType(Yaka.constante.ENTIER); })			
+ | (<BOOLEEN> { Yaka.declaration.metAJourType(Yaka.constante.BOOLEEN); })
 }
 /*
  * Syntaxe des instructions.

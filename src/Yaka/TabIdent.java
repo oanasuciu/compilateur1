@@ -19,4 +19,9 @@ public class TabIdent {
 	public void rangeIdent(String clef, Ident id){
 		table.put(clef, id);
 	}
+
+	@Override
+	public String toString() {
+		return "TabIdent [table=" + table + "]";
+	}
 }
