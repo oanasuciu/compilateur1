@@ -5,6 +5,7 @@ public class Declaration {
 	 * Le dernier type lu dans la grammaire
 	 */
 	private int typeCourant;
+	private Ident constanteCourante;
 	
 	public Declaration() {
 		
@@ -17,7 +18,6 @@ public class Declaration {
 	 */
 	public void metAJourType(int type) {
 		this.typeCourant = type;
-		System.out.println(Yaka.tabIdent.toString());
 	}
 	
 	/**
@@ -28,7 +28,6 @@ public class Declaration {
 	public void nouvelleVariable(String nom) {
 		Ident id = new IdVar(nom, this.typeCourant);
 		Yaka.tabIdent.rangeIdent(nom, id);
-		System.out.println(Yaka.tabIdent.toString());
 	}
 	
 	/**
@@ -36,6 +35,13 @@ public class Declaration {
 	 * @param nom
 	 * @param valeur
 	 */
-	public void nouvelleConstante(String nom, String valeur) {
+	public void nouvelleConstante(String nom) {
+		Ident id = new IdConst(nom);
+		Yaka.tabIdent.rangeIdent(nom, id);
+		this.constanteCourante = id;
+	}
+	
+	public void majConstante(int valeur) {
+		//this.constanteCourante.
 	}
 }

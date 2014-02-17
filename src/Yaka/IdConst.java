@@ -7,6 +7,10 @@ public class IdConst extends Ident {
 		super(nom, type);
 		this.valeur=valeur;
 	}
+	
+	public IdConst(String nom){
+		super(nom);
+	}
 
 	@Override
 	public String toString() {

@@ -164,13 +164,13 @@ void declConst() : {}
 void defConst() : {}
 {
 	
-  <ident>  	  	
+  (<ident> { Yaka.declaration.nouvelleConstante(YakaTokenManager.identLu); })
    "=" valConst()
     
 }
 
 void valConst() : {}{
-  <entier> 		
+  (<entier> { Yaka.declaration.majConstante(YakaTokenManager.entierLu); })
  | <ident>		
  | <VRAI> 		
  | <FAUX> 		
