@@ -170,10 +170,10 @@ void defConst() : {}
 }
 
 void valConst() : {}{
-  (<entier> { Yaka.declaration.majConstante(YakaTokenManager.entierLu); })
- | <ident>		
- | <VRAI> 		
- | <FAUX> 		
+  (<entier> { Yaka.declaration.majValeur(YakaTokenManager.entierLu); })
+ | (<ident>	{ Yaka.declaration.majValeur(YakaTokenManager.identLu); })
+ | (<VRAI>  { Yaka.declaration.majValeur(true); })
+ | (<FAUX>  { Yaka.declaration.majValeur(false); })
 }
 
 
@@ -189,8 +189,8 @@ void declVar() : {}
 
 void type() :{}
 {
-   (<ENTIER> { Yaka.declaration.metAJourType(Yaka.constante.ENTIER); })			
- | (<BOOLEEN> { Yaka.declaration.metAJourType(Yaka.constante.BOOLEEN); })
+   (<ENTIER> { Yaka.declaration.majType(Yaka.constante.ENTIER); })			
+ | (<BOOLEEN> { Yaka.declaration.majType(Yaka.constante.BOOLEEN); })
 }
 /*
  * Syntaxe des instructions.
@@ -207,22 +207,22 @@ instruction()
 
 void instruction() : {}
 {
-affectation() | lecture() | ecriture()
+	affectation() | lecture() | ecriture()
 }
 
 void affectation() : {}
 {
-<ident> "=" expression()
+	<ident> "=" expression()
 }
 
-void lecture : {}
+void lecture() : {}
 {
-<lire> "(" <ident> ")"
+	<LIRE> "(" <ident> ")"
 }
 
-void ecriture : {}
+void ecriture() : {}
 {
-<ecrire> "(" expression() | <chaine> ")" | <alaligne>
+	(<ECRIRE> "(" (expression() | <chaine>) ")") | <ALALIGNE>
 }
 
 /*

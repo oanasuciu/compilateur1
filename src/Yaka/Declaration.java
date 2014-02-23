@@ -5,21 +5,7 @@ public class Declaration {
 	 * Le dernier type lu dans la grammaire
 	 */
 	private int typeCourant;
-	private Ident constanteCourante;
-
-	public Declaration() {
-
-	}
-
-	/**
-	 * Met à jour le dernier type lu dans la grammaire
-	 * 
-	 * @param type
-	 *            Une constante représentant le type (entier ou booléen)
-	 */
-	public void metAJourType(int type) {
-		this.typeCourant = type;
-	}
+	private Ident identCourante;
 
 	/**
 	 * Déclaration d'une nouvelle variable
@@ -40,10 +26,54 @@ public class Declaration {
 	public void nouvelleConstante(String nom) {
 		Ident id = new IdConst(nom);
 		Yaka.tabIdent.rangeIdent(nom, id);
-		this.constanteCourante = id;
+		this.identCourante = id;
 	}
 
-	public void majConstante(int valeur) {
-		// this.constanteCourante.
+	/**
+	 * Met à jour le dernier type lu dans la grammaire
+	 * 
+	 * @param type
+	 *            Une constante représentant le type (entier ou booléen)
+	 */
+	public void majType(int type) {
+		this.typeCourant = type;
+		System.out.println(Yaka.tabIdent);
+	}
+
+	/**
+	 * Met à jour la valeur de l'Ident courante
+	 * 
+	 * @param valeur la nouvelle valeur
+	 */
+	public void majValeur(int valeur) {
+		System.out.println("maj valeur int");
+		this.identCourante.setType(Yaka.constante.ENTIER);
+		this.identCourante.setValeur(valeur);
+	}
+	
+	/**
+	 * Met à jour la valeur de l'Ident courante
+	 * 
+	 * @param valeur la nouvelle valeur
+	 */
+	public void majValeur(boolean valeur) {
+		System.out.println("maj valeur bool");
+		this.identCourante.setType(Yaka.constante.BOOLEEN);
+		this.identCourante.setValeur(valeur);
+	}
+	
+	/**
+	 * Met à jour la valeur de l'Ident courante
+	 * 
+	 * @param ident l'identificateur de l'ident dont il faut prendre la valeur
+	 */
+	public void majValeur(String ident) {
+		System.out.println("maj valeur ident");
+		Ident id = Yaka.tabIdent.chercheIdent(ident);
+		if(id == null) {
+			// TODO: cas d'erreur, ident inconnue
+		}
+		this.identCourante.setType(id.type);
+		this.identCourante.setValeur(id.valeur);
 	}
 }

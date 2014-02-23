@@ -2,6 +2,9 @@ package Yaka;
 
 import java.util.HashMap;
 
+/*
+ * TODO: Documenter cette fonction, notamment : qu'est-ce qu'elle renvoie quand pas d'élément trouvé ?
+ */
 public class TabIdent {
 	private HashMap<String, Ident> table;
 

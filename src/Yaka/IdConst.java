@@ -1,11 +1,9 @@
 package Yaka;
 
 public class IdConst extends Ident {
-	private int valeur;
 
 	public IdConst(String nom, int type, int valeur) {
-		super(nom, type);
-		this.valeur = valeur;
+		super(nom, type, valeur);
 	}
 
 	public IdConst(String nom) {
