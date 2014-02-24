@@ -1,4 +1,4 @@
-package Yaka;
+package yaka;
 
 import java.util.HashMap;
 

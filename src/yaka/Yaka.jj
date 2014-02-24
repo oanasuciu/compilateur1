@@ -15,7 +15,9 @@ options{
 
 PARSER_BEGIN(Yaka)
 
-package Yaka;
+package yaka;
+
+import operation.*;
 
 public class Yaka {
   public static Declaration declaration;
@@ -27,6 +29,7 @@ public class Yaka {
   public static void main(String args[]) { 
     Yaka analyseur;
     Yaka.declaration = new Declaration();
+    Yaka.expression = new Expression();
     Yaka.tabIdent = new TabIdent(2);
     Yaka.yvm = new YVM();
     Yaka.constante = new Constante();
@@ -226,13 +229,13 @@ void ecriture() : {}
 }
 
 /*
- * Expression .
+ * Expression.
  */
 void expression() : {}
 {
   simpleExpr() 
   (opRel() 
-  simpleExpr() 
+  simpleExpr() { Yaka.expression.faireOperation(); }
   )?
 }
 
@@ -242,19 +245,19 @@ void simpleExpr() : {}
 {
    terme() 
    (opAdd() 
-   terme()	
+   terme() { Yaka.expression.faireOperation(); }
    )*
 } 
 void terme() : {}
 {
   facteur() 
   (opMul() 
-  facteur()	
+  facteur() { Yaka.expression.faireOperation(); }
   )*
 }
 void facteur() : {}
 {   primaire() 
-  |  opNeg() primaire() 
+  |  (opNeg() primaire() { Yaka.expression.faireOperation(); })
 }
 
 void primaire (): {}
@@ -265,40 +268,41 @@ void primaire (): {}
 }
 
 void valeur () : {}
-{ <entier> 		
- | <ident> 		
- | <VRAI> 		
- | <FAUX> 		
- 
+{
+    (<entier> { Yaka.expression.ajouteValeur(YakaTokenManager.entierLu); })
+  | (<ident> { Yaka.expression.ajouteValeur(YakaTokenManager.identLu); })
+  | (<VRAI> { Yaka.expression.ajouteValeur(true); })
+  | (<FAUX> { Yaka.expression.ajouteValeur(false); })
 }
 
 void opRel() : {}
 {
-   "=" 		
- | "<>" 	
- | "<" 		
- | "<=" 	
- | ">" 		
- | ">=" 	
+    ("=" { Yaka.expression.ajouteOperation(new Egal()); })
+  | ("<>" { Yaka.expression.ajouteOperation(new Diff()); })
+  | ("<" { Yaka.expression.ajouteOperation(new Inf()); })	
+  | ("<=" { Yaka.expression.ajouteOperation(new InfEgal()); })
+  | (">" { Yaka.expression.ajouteOperation(new Sup()); })
+  | (">=" { Yaka.expression.ajouteOperation(new SupEgal()); })
 } 
 
 void opAdd() : {}
 {
-    "+"		
-  |  "-"  
-  | <OU> 	
+    ("+" { Yaka.expression.ajouteOperation(new Add()); })
+  | ("-" { Yaka.expression.ajouteOperation(new Sub()); })
+  | (<OU> { Yaka.expression.ajouteOperation(new Or()); })
 }
 
 void opMul() : {}
 {
-  "*"		
-  | "/"		
-  | <ET>	
+  	("*" { Yaka.expression.ajouteOperation(new Mul()); })
+  | ("/" { Yaka.expression.ajouteOperation(new Div()); })
+  | (<ET> { Yaka.expression.ajouteOperation(new And()); })
 } 
 
 void opNeg() : {}
-{ "-" 		
- | <NON>	
+{
+	("-" { Yaka.expression.ajouteOperation(new Moins()); })
+  | (<NON> { Yaka.expression.ajouteOperation(new Non()); })
 }
 
 

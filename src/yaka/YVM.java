@@ -1,4 +1,4 @@
-package Yaka;
+package yaka;
 
 public class YVM {
 

@@ -1,4 +1,4 @@
-package Yaka;
+package yaka;
 
 abstract class Ident {
 	protected String nom;
@@ -7,6 +7,10 @@ abstract class Ident {
 
 	public Ident(String nom) {
 		this.nom = nom;
+	}
+
+	public Ident(int type) {
+		this.type = type;
 	}
 
 	public Ident(String nom, int type) {
@@ -23,6 +27,15 @@ abstract class Ident {
 	public void setType(int type) {
 		this.type = type;
 	}
+	
+	/**
+	 * Getter pour l'attribut valeur
+	 * 
+	 * @return valeur de l'identificateur courant
+	 */
+	public int getValeur() {
+		return this.valeur;
+	}
 
 	public void setValeur(int valeur) {
 		this.valeur = valeur;
@@ -31,4 +44,11 @@ abstract class Ident {
 	public void setValeur(boolean valeur) {
 		this.valeur = (valeur) ? -1 : 0;
 	}
+	
+	/**
+	 * Renvoie le texte pour le chargement de l'identité dans la YVM selon le type de l'identificateur (variable/constante)
+	 * 
+	 * @return le texte correspondant au type de l'identificateur
+	 */
+	abstract public String getYVMText();
 }
