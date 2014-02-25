@@ -1,6 +1,8 @@
 package operation;
 
-public class SupEgal extends Operation {
+import yaka.Constante;
+
+public class SupEgal extends OperateurBinaire {
 
 	@Override
 	public String getYVMText() {
@@ -10,6 +12,16 @@ public class SupEgal extends Operation {
 	@Override
 	public String toString() {
 		return "SupEgal";
+	}
+
+	@Override
+	public boolean accepteType(int typeATester) {
+		return typeATester == Constante.ENTIER;
+	}
+
+	@Override
+	public int typeResultat() {
+		return Constante.BOOLEEN;
 	}
 
 }

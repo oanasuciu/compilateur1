@@ -46,8 +46,7 @@ public class Declaration {
 	 * @param valeur la nouvelle valeur
 	 */
 	public void majValeur(int valeur) {
-		System.out.println("maj valeur int");
-		this.identCourante.setType(Yaka.constante.ENTIER);
+		this.identCourante.setType(Constante.ENTIER);
 		this.identCourante.setValeur(valeur);
 	}
 	
@@ -57,8 +56,7 @@ public class Declaration {
 	 * @param valeur la nouvelle valeur
 	 */
 	public void majValeur(boolean valeur) {
-		System.out.println("maj valeur bool");
-		this.identCourante.setType(Yaka.constante.BOOLEEN);
+		this.identCourante.setType(Constante.BOOLEEN);
 		this.identCourante.setValeur(valeur);
 	}
 	
@@ -68,7 +66,6 @@ public class Declaration {
 	 * @param ident l'identificateur de l'ident dont il faut prendre la valeur
 	 */
 	public void majValeur(String ident) {
-		System.out.println("maj valeur ident");
 		Ident id = Yaka.tabIdent.chercheIdent(ident);
 		if(id == null) {
 			// TODO: cas d'erreur, ident inconnue

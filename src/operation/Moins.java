@@ -1,6 +1,8 @@
 package operation;
 
-public class Moins extends Operation {
+import yaka.Constante;
+
+public class Moins extends OperateurUnaire {
 
 	@Override
 	public String getYVMText() {
@@ -11,6 +13,16 @@ public class Moins extends Operation {
 	@Override
 	public String toString() {
 		return "Moins";
+	}
+
+	@Override
+	public boolean accepteType(int typeATester) {
+		return typeATester == Constante.ENTIER;
+	}
+
+	@Override
+	public int typeResultat() {
+		return Constante.ENTIER;
 	}
 
 }

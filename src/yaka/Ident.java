@@ -1,6 +1,6 @@
 package yaka;
 
-abstract class Ident {
+public abstract class Ident {
 	protected String nom;
 	protected int type;
 	protected int valeur;
@@ -22,6 +22,10 @@ abstract class Ident {
 		this.nom = nom;
 		this.type = type;
 		this.valeur = valeur;
+	}
+
+	public int getType() {
+		return type;
 	}
 
 	public void setType(int type) {

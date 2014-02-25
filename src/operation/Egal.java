@@ -1,6 +1,8 @@
 package operation;
 
-public class Egal extends Operation {
+import yaka.Constante;
+
+public class Egal extends OperateurBinaire {
 
 	@Override
 	public String getYVMText() {
@@ -10,6 +12,16 @@ public class Egal extends Operation {
 	@Override
 	public String toString() {
 		return "Egal";
+	}
+
+	@Override
+	public boolean accepteType(int typeATester) {
+		return (typeATester == Constante.BOOLEEN || typeATester == Constante.ENTIER);
+	}
+
+	@Override
+	public int typeResultat() {
+		return Constante.BOOLEEN;
 	}
 	
 }

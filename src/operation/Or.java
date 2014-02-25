@@ -1,6 +1,8 @@
 package operation;
 
-public class Or extends Operation {
+import yaka.Constante;
+
+public class Or extends OperateurBinaire {
 
 	@Override
 	public String getYVMText() {
@@ -10,5 +12,15 @@ public class Or extends Operation {
 	@Override
 	public String toString() {
 		return "Or";
+	}
+
+	@Override
+	public boolean accepteType(int typeATester) {
+		return typeATester == Constante.BOOLEEN;
+	}
+
+	@Override
+	public int typeResultat() {
+		return Constante.BOOLEEN;
 	}
 }

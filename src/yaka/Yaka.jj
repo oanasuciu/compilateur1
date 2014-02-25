@@ -17,6 +17,7 @@ PARSER_BEGIN(Yaka)
 
 package yaka;
 
+import yaka.Constante;
 import operation.*;
 
 public class Yaka {
@@ -24,7 +25,6 @@ public class Yaka {
   public static TabIdent tabIdent;
   public static Expression expression;
   public static YVM yvm;
-  public static Constante constante;
 
   public static void main(String args[]) { 
     Yaka analyseur;
@@ -32,7 +32,6 @@ public class Yaka {
     Yaka.expression = new Expression();
     Yaka.tabIdent = new TabIdent(2);
     Yaka.yvm = new YVM();
-    Yaka.constante = new Constante();
     java.io.InputStream input;
 
     if (args.length==1) {
@@ -192,8 +191,8 @@ void declVar() : {}
 
 void type() :{}
 {
-   (<ENTIER> { Yaka.declaration.majType(Yaka.constante.ENTIER); })			
- | (<BOOLEEN> { Yaka.declaration.majType(Yaka.constante.BOOLEEN); })
+   (<ENTIER> { Yaka.declaration.majType(Constante.ENTIER); })			
+ | (<BOOLEEN> { Yaka.declaration.majType(Constante.BOOLEEN); })
 }
 /*
  * Syntaxe des instructions.

@@ -4,6 +4,7 @@ public class Constante {
 	/*
 	 * Types pour les variables/constantes
 	 */
-	int ENTIER = 0;
-	int BOOLEEN = 1;
+	public static int ENTIER = 0;
+	public static int BOOLEEN = 1;
+	public static int ERREUR = 2;
 }

@@ -1,6 +1,8 @@
 package operation;
 
-public class Div extends Operation {
+import yaka.Constante;
+
+public class Div extends OperateurBinaire {
 
 	@Override
 	public String getYVMText() {
@@ -10,6 +12,16 @@ public class Div extends Operation {
 	@Override
 	public String toString() {
 		return "Div";
+	}
+
+	@Override
+	public boolean accepteType(int typeATester) {
+		return typeATester == Constante.ENTIER;
+	}
+
+	@Override
+	public int typeResultat() {
+		return Constante.ENTIER;
 	}
 
 }

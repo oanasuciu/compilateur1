@@ -2,14 +2,14 @@ package yaka;
 
 import java.util.Stack;
 
-import operation.Operation;
+import operation.Operateur;
 
 public class Expression {
 	/**
 	 * Pile des opérations.
 	 * Chaque opération est représentée par une constante => type int
 	 */
-	Stack<Operation> pileOperation;
+	Stack<Operateur> pileOperation;
 	/**
 	 * Pile des valeurs.
 	 * Au final, une valeur est soit une variable, soit une constante => type Ident
@@ -17,7 +17,7 @@ public class Expression {
 	Stack<Ident> pileValeur;
 
 	public Expression() {
-		pileOperation = new Stack<Operation>();
+		pileOperation = new Stack<Operateur>();
 		pileValeur = new Stack<Ident>();
 	}
 
@@ -32,27 +32,26 @@ public class Expression {
 	}
 	
 	public void ajouteValeur(boolean b) {
-		Ident cst = new IdConst(Yaka.constante.BOOLEEN);
+		Ident cst = new IdConst(Constante.BOOLEEN);
 		cst.setValeur(b);
 		pileValeur.add(cst);
 		System.out.println("iconst "+cst.getValeur());
 	}
 	
 	public void ajouteValeur(int nb) {
-		Ident cst = new IdConst(Yaka.constante.ENTIER);
+		Ident cst = new IdConst(Constante.ENTIER);
 		cst.setValeur(nb);
 		pileValeur.add(cst);
 		System.out.println("iconst "+nb);
 	}
 
-	public void ajouteOperation(Operation op) {
+	public void ajouteOperation(Operateur op) {
 		pileOperation.add(op);
 	}
 
 	public void faireOperation() {
-		System.out.println(pileOperation);
-		Operation op = pileOperation.pop();
-		pileValeur.pop();
+		Operateur op = pileOperation.pop();
+		op.consume(pileValeur);
 		System.out.println(op.getYVMText());
 		/*if(op != Yaka.constante.MOINS) {
 			pileValeur.pop();
