@@ -1,6 +1,7 @@
 package yaka;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /*
  * TODO: Documenter cette fonction, notamment : qu'est-ce qu'elle renvoie quand pas d'élément trouvé ?
@@ -22,6 +23,18 @@ public class TabIdent {
 
 	public void rangeIdent(String clef, Ident id) {
 		table.put(clef, id);
+	}
+	
+	public int nbVar(){
+		int cpt=0;
+		Iterator<Ident> i = table.values().iterator();
+		while (i.hasNext()){
+			Ident id = i.next();
+			if(id.getType()==0) {
+				cpt++;
+			}
+		}
+		return cpt;
 	}
 
 	@Override

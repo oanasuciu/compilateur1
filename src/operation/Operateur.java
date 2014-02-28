@@ -2,6 +2,7 @@ package operation;
 
 import java.util.Stack;
 
+import type.Type;
 import yaka.Ident;
 
 public abstract class Operateur {
@@ -19,19 +20,26 @@ public abstract class Operateur {
 	 * 
 	 * @return vrai si le type est autorisé avec cet opérateur, faux sinon
 	 */
-	abstract public boolean accepteType(int typeATester);
+	abstract public boolean accepteType(Type typeATester);
 	
 	/**
 	 * Renvoie le type du résultat de l'opération
 	 * 
 	 * @return le type du résultat de l'opération
 	 */
-	abstract public int typeResultat();
+	abstract public Type typeResultat();
 
 	@Override
 	public String toString() {
 		return "Operation";
 	}
-
+	
+	/**
+	 * A partir de la pile, fait l'opération liée à l'opérateur.
+	 * Par exemple, pour une addition, dépile les deux derniers éléments et ré-empile le résultat (sans vraiment faire le calcul)
+	 * 
+	 * @param pileValeur
+	 * 	La pile des valeurs utilisé pour éxécuter l'opération.
+	 */
 	abstract public void consume(Stack<Ident> pileValeur);
 }

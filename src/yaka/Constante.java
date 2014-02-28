@@ -1,10 +1,12 @@
 package yaka;
 
+import type.Type;
+
 public class Constante {
 	/*
 	 * Types pour les variables/constantes
 	 */
-	public static int ENTIER = 0;
-	public static int BOOLEEN = 1;
-	public static int ERREUR = 2;
+	public static Type ENTIER = new Type("Entier");
+	public static Type BOOLEEN = new Type("Booléen");
+	public static Type ERREUR = new Type("Erreur");
 }

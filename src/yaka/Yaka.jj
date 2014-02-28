@@ -25,6 +25,7 @@ public class Yaka {
   public static TabIdent tabIdent;
   public static Expression expression;
   public static YVM yvm;
+  public static ErreurManager em;
 
   public static void main(String args[]) { 
     Yaka analyseur;
@@ -32,6 +33,7 @@ public class Yaka {
     Yaka.expression = new Expression();
     Yaka.tabIdent = new TabIdent(2);
     Yaka.yvm = new YVM();
+    Yaka.em = new ErreurManager();
     java.io.InputStream input;
 
     if (args.length==1) {
@@ -154,7 +156,7 @@ void analyse() : {}
 
 void bloc() : {}{
  (declConst())*
- (declVar())*		
+ (declVar())* {YVM.ajoutEntete();}		
    suiteExpr() 
 }
 
