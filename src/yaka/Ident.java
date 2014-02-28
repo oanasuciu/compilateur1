@@ -57,4 +57,5 @@ public abstract class Ident {
 	 * @return le texte correspondant au type de l'identificateur
 	 */
 	abstract public String getYVMText();
+	abstract public boolean isVar();
 }

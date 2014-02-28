@@ -19,4 +19,9 @@ public class IdVar extends Ident {
 	public String getYVMText() {
 		return "iload";
 	}
+
+	@Override
+	public boolean isVar() {
+		return true;
+	}
 }

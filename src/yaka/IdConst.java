@@ -26,4 +26,9 @@ public class IdConst extends Ident {
 	public String getYVMText() {
 		return "iconst";
 	}
+
+	@Override
+	public boolean isVar() {
+		return false;
+	}
 }

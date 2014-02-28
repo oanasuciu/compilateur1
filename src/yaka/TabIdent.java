@@ -30,7 +30,7 @@ public class TabIdent {
 		Iterator<Ident> i = table.values().iterator();
 		while (i.hasNext()){
 			Ident id = i.next();
-			if(id.getType()==0) {
+			if(id.isVar()) {
 				cpt++;
 			}
 		}

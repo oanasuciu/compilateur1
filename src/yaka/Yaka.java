@@ -51,6 +51,7 @@ public class Yaka implements YakaConstants {
 /**************************************/
   static final public void analyse() throws ParseException {
     jj_consume_token(PROGRAMME);
+                 Yaka.yvm.ecrireEntete();
     jj_consume_token(ident);
     bloc();
     jj_consume_token(FPROGRAMME);
@@ -81,7 +82,7 @@ public class Yaka implements YakaConstants {
       }
       declVar();
     }
-               YVM.ajoutEntete();
+               Yaka.yvm.ecrireOuvrePrinc();
     suiteExpr();
   }
 

@@ -1,9 +1,18 @@
 package yaka;
 
+import java.io.OutputStream;
+
 public class YVM {
-	public static void ajoutEntete(){
-		System.out.println("entete");
-		
-		System.out.println("ouvrePrinc "+IdVar.g());
+	private static OutputStream ficYVM;
+	
+	public YVM(){
+		ficYVM = Ecriture.ouvrir("Coucou_maman");
+	}
+	public static void ecrireEntete(){
+		Ecriture.ecrireStringln(ficYVM,"entete");
+	}
+	
+	public static void ecrireOuvrePrinc(){
+		Ecriture.ecrireStringln(ficYVM,"ouvrePrinc "+Yaka.tabIdent.nbVar()*2);
 	}
 }

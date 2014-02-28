@@ -149,14 +149,14 @@ TOKEN  :
 /**************************************/
 void analyse() : {}
 {
-   <PROGRAMME> <ident>	
+   (<PROGRAMME> {Yaka.yvm.ecrireEntete();}) <ident>	
    bloc()
    <FPROGRAMME> 
 }
 
 void bloc() : {}{
  (declConst())*
- (declVar())* {YVM.ajoutEntete();}		
+ (declVar())* {Yaka.yvm.ecrireOuvrePrinc();}		
    suiteExpr() 
 }
 
