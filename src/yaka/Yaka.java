@@ -81,6 +81,7 @@ public class Yaka implements YakaConstants {
       }
       declVar();
     }
+               YVM.ajoutEntete();
     suiteExpr();
   }
 

@@ -9,7 +9,7 @@ public class IdVar extends Ident {
 		super(nom, type, sharedOffset);
 		sharedOffset -= 2;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "IdVar [nom=" + nom + ", type=" + type + "]";

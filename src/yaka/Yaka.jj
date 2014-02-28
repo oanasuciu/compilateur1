@@ -156,7 +156,7 @@ void analyse() : {}
 
 void bloc() : {}{
  (declConst())*
- (declVar())*		
+ (declVar())* {YVM.ajoutEntete();}		
    suiteExpr() 
 }
 
