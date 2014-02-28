@@ -30,6 +30,7 @@ public class Expression {
 		}
 		pileValeur.add(id);
 		System.out.println(id.getYVMText()+" "+id.getValeur());
+		Yaka.yvm.ecrireIdent(id.getYVMText(), id.getValeur());
 	}
 	
 	public void ajouteValeur(boolean b) {
@@ -37,6 +38,7 @@ public class Expression {
 		cst.setValeur(b);
 		pileValeur.add(cst);
 		System.out.println("iconst "+cst.getValeur());
+		Yaka.yvm.ecrireIdent(cst.getValeur());
 	}
 	
 	public void ajouteValeur(int nb) {
@@ -44,6 +46,7 @@ public class Expression {
 		cst.setValeur(nb);
 		pileValeur.add(cst);
 		System.out.println("iconst "+nb);
+		Yaka.yvm.ecrireIdent(nb);
 	}
 
 	public void ajouteOperation(Operateur op) {
@@ -54,5 +57,6 @@ public class Expression {
 		Operateur op = pileOperation.pop();
 		op.consume(pileValeur);
 		System.out.println(op.getYVMText());
+		Yaka.yvm.ecrireOp(op.getYVMText());
 	}
 }

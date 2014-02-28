@@ -272,7 +272,7 @@ void valeur () : {}
 {
     (<entier> { Yaka.expression.ajouteValeur(YakaTokenManager.entierLu); })
   | (<ident> { Yaka.expression.ajouteValeur(YakaTokenManager.identLu); })
-  | (<VRAI> { Yaka.expression.ajouteValeur(true); })
+  | (<VRAI> { Yaka.expression.ajouteValeur(true);})
   | (<FAUX> { Yaka.expression.ajouteValeur(false); })
 }
 
