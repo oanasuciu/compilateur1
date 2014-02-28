@@ -1,10 +1,12 @@
 package yaka;
 
+import type.Type;
+
 public class Declaration {
 	/**
 	 * Le dernier type lu dans la grammaire
 	 */
-	private int typeCourant;
+	private Type typeCourant;
 	private Ident identCourante;
 
 	/**
@@ -35,7 +37,7 @@ public class Declaration {
 	 * @param type
 	 *            Une constante représentant le type (entier ou booléen)
 	 */
-	public void majType(int type) {
+	public void majType(Type type) {
 		this.typeCourant = type;
 		System.out.println(Yaka.tabIdent);
 	}

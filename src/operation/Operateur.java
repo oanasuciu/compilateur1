@@ -2,6 +2,7 @@ package operation;
 
 import java.util.Stack;
 
+import type.Type;
 import yaka.Ident;
 
 public abstract class Operateur {
@@ -19,14 +20,14 @@ public abstract class Operateur {
 	 * 
 	 * @return vrai si le type est autorisé avec cet opérateur, faux sinon
 	 */
-	abstract public boolean accepteType(int typeATester);
+	abstract public boolean accepteType(Type typeATester);
 	
 	/**
 	 * Renvoie le type du résultat de l'opération
 	 * 
 	 * @return le type du résultat de l'opération
 	 */
-	abstract public int typeResultat();
+	abstract public Type typeResultat();
 
 	@Override
 	public String toString() {

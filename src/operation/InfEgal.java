@@ -1,5 +1,6 @@
 package operation;
 
+import type.Type;
 import yaka.Constante;
 
 public class InfEgal extends OperateurBinaire {
@@ -15,12 +16,12 @@ public class InfEgal extends OperateurBinaire {
 	}
 
 	@Override
-	public boolean accepteType(int typeATester) {
+	public boolean accepteType(Type typeATester) {
 		return typeATester == Constante.ENTIER;
 	}
 
 	@Override
-	public int typeResultat() {
+	public Type typeResultat() {
 		return Constante.BOOLEEN;
 	}
 	

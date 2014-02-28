@@ -1,12 +1,14 @@
 package yaka;
 
+import type.Type;
+
 public class IdConst extends Ident {
 
-	public IdConst(String nom, int type, int valeur) {
+	public IdConst(String nom, Type type, int valeur) {
 		super(nom, type, valeur);
 	}
 	
-	public IdConst(int type) {
+	public IdConst(Type type) {
 		super(type);
 	}
 

@@ -5,6 +5,7 @@ import java.util.Stack;
 import yaka.Constante;
 import yaka.IdConst;
 import yaka.Ident;
+import yaka.Yaka;
 
 public abstract class OperateurUnaire extends Operateur {
 
@@ -12,10 +13,14 @@ public abstract class OperateurUnaire extends Operateur {
 	public void consume(Stack<Ident> pileValeur) {
 		// l'élément que l'on va étudier est le dernier sur la pile
 		Ident id = pileValeur.pop();
-		if(id.getType() == Constante.ERREUR || !this.accepteType(id.getType())) {
-			// TODO: générer erreur de type
+		if(id.getType() == Constante.ERREUR) {
+			// on se contente de propager l'erreur
 			pileValeur.add(new IdConst(Constante.ERREUR));
-			System.out.println("Erreur de type");
+		}
+		else if(!this.accepteType(id.getType())) {
+			// c'est une nouvelle erreur de type
+			Yaka.em.mauvaisType(this, id);
+			pileValeur.add(new IdConst(Constante.ERREUR));
 		}
 		else {
 			// les opérateurs unaires ne changent pas le type : on ré-empile donc l'ancienne Ident

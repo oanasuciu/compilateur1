@@ -1,5 +1,6 @@
 package operation;
 
+import type.Type;
 import yaka.Constante;
 
 public class Non extends OperateurUnaire {
@@ -15,12 +16,12 @@ public class Non extends OperateurUnaire {
 	}
 
 	@Override
-	public boolean accepteType(int typeATester) {
+	public boolean accepteType(Type typeATester) {
 		return typeATester == Constante.BOOLEEN;
 	}
 
 	@Override
-	public int typeResultat() {
+	public Type typeResultat() {
 		return Constante.BOOLEEN;
 	}
 	

@@ -5,6 +5,7 @@ import java.util.Stack;
 import yaka.Constante;
 import yaka.IdConst;
 import yaka.Ident;
+import yaka.Yaka;
 
 public abstract class OperateurBinaire extends Operateur {
 
@@ -18,16 +19,14 @@ public abstract class OperateurBinaire extends Operateur {
 			pileValeur.add(new IdConst(Constante.ERREUR));
 		} else if (id1.getType() != id2.getType()) {
 			// si une des 2 opérandes n'est pas de même type, on génère une erreur (p. 11, 2è parag)
-			// TODO: générer erreur de type
-			System.out.println("Erreur de type");
+			Yaka.em.mauvaisType(this, id1, id2);
 			pileValeur.add(new IdConst(Constante.ERREUR));
 		} else if (this.accepteType(id1.getType())) {
 			// pas d'erreur, on empile le résultat
 			pileValeur.add(new IdConst(this.typeResultat()));
 		} else {
 			// si l'opérateur n'est pas compatible avec le type des opérandes, on génère une erreur (p. 11)
-			// TODO: générer erreur de type
-			System.out.println("Erreur de type");
+			Yaka.em.mauvaisType(this, id1, id2);
 			pileValeur.add(new IdConst(Constante.ERREUR));
 		}
 	}
