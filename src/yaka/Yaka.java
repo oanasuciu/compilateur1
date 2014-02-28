@@ -9,6 +9,7 @@ public class Yaka implements YakaConstants {
   public static TabIdent tabIdent;
   public static Expression expression;
   public static YVM yvm;
+  public static ErreurManager em;
 
   public static void main(String args[]) {
     Yaka analyseur;
@@ -16,6 +17,7 @@ public class Yaka implements YakaConstants {
     Yaka.expression = new Expression();
     Yaka.tabIdent = new TabIdent(2);
     Yaka.yvm = new YVM();
+    Yaka.em = new ErreurManager();
     java.io.InputStream input;
 
     if (args.length==1) {

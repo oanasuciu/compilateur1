@@ -24,8 +24,9 @@ public class Expression {
 	public void ajouteValeur(String ident) {
 		Ident id = Yaka.tabIdent.chercheIdent(ident);
 		if(id == null) {
-			// TODO: gestion erreur identificateur inexistant
-			return;
+			// identificateur inexistant : gestion de l'erreur
+			Yaka.em.identificateurInexistant(ident);
+			id = new IdConst(Constante.ERREUR);
 		}
 		pileValeur.add(id);
 		System.out.println(id.getYVMText()+" "+id.getValeur());
@@ -53,23 +54,5 @@ public class Expression {
 		Operateur op = pileOperation.pop();
 		op.consume(pileValeur);
 		System.out.println(op.getYVMText());
-		/*if(op != Yaka.constante.MOINS) {
-			pileValeur.pop();
-			pileValeur.add("ignore");/
-		}*
-		/*switch (op) {
-			case '-':
-				Ecriture.ecrireStringln(flot, "isub");
-				break;
-			case '+':
-				Ecriture.ecrireStringln(flot, "iadd");
-				break;
-			case '*':
-				Ecriture.ecrireStringln(flot, "imul");
-				break;
-			case '/':
-				Ecriture.ecrireStringln(flot, "idiv");
-				break;
-		}*/
 	}
 }
