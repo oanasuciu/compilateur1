@@ -33,6 +33,13 @@ public abstract class Operateur {
 	public String toString() {
 		return "Operation";
 	}
-
+	
+	/**
+	 * A partir de la pile, fait l'opération liée à l'opérateur.
+	 * Par exemple, pour une addition, dépile les deux derniers éléments et ré-empile le résultat (sans vraiment faire le calcul)
+	 * 
+	 * @param pileValeur
+	 * 	La pile des valeurs utilisé pour éxécuter l'opération.
+	 */
 	abstract public void consume(Stack<Ident> pileValeur);
 }
