@@ -24,4 +24,8 @@ public class IdVar extends Ident {
 	public boolean isVar() {
 		return true;
 	}
+	
+	public static int getOffset(){
+		return sharedOffset;
+	}
 }

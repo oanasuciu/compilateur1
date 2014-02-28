@@ -55,6 +55,7 @@ public class Yaka implements YakaConstants {
     jj_consume_token(ident);
     bloc();
     jj_consume_token(FPROGRAMME);
+                  Yaka.yvm.ecrireQueue();
   }
 
   static final public void bloc() throws ParseException {
@@ -232,6 +233,7 @@ instruction()
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ident:
       affectation();
+                        Yaka.yvm.ecrireIstore();
       break;
     case LIRE:
       lecture();

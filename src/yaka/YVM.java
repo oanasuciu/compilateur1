@@ -27,4 +27,12 @@ public class YVM {
 	public static void ecrireOp(String s){
 		Ecriture.ecrireStringln(ficYVM, s);
 	}
+	
+	public static void ecrireQueue(){
+		Ecriture.ecrireStringln(ficYVM, "queue");
+	}
+	
+	public static void ecrireIstore(){
+		Ecriture.ecrireStringln(ficYVM, "istore "+IdVar.getOffset());
+	}
 }

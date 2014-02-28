@@ -151,7 +151,7 @@ void analyse() : {}
 {
    (<PROGRAMME> {Yaka.yvm.ecrireEntete();}) <ident>	
    bloc()
-   <FPROGRAMME> 
+   (<FPROGRAMME> {Yaka.yvm.ecrireQueue();})
 }
 
 void bloc() : {}{
@@ -216,7 +216,7 @@ void instruction() : {}
 
 void affectation() : {}
 {
-	<ident> "=" expression()
+	<ident> ("=" {Yaka.yvm.ecrireIstore();}) expression()
 }
 
 void lecture() : {}
