@@ -16,16 +16,16 @@ public class IdVar extends Ident {
 	}
 
 	@Override
-	public String getYVMText() {
-		return "iload";
-	}
-
-	@Override
 	public boolean isVar() {
 		return true;
 	}
 	
 	public static int getOffset(){
 		return sharedOffset;
+	}
+
+	@Override
+	public void visiteYVM(YVM yvm) {
+		yvm.iload(this.valeur);
 	}
 }

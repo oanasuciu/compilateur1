@@ -16,7 +16,7 @@ iconst 10
 isub
 iconst -1
 iconst -1
-inon
+inot
 ior
 iload -2
 iload -4

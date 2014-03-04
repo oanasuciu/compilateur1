@@ -2,13 +2,9 @@ package operation;
 
 import type.Type;
 import yaka.Constante;
+import yaka.YVM;
 
 public class SupEgal extends OperateurBinaire {
-
-	@Override
-	public String getYVMText() {
-		return "isupegal";
-	}
 
 	@Override
 	public String toString() {
@@ -23,6 +19,11 @@ public class SupEgal extends OperateurBinaire {
 	@Override
 	public Type typeResultat() {
 		return Constante.BOOLEEN;
+	}
+
+	@Override
+	public void visiteYVM(YVM yvm) {
+		yvm.isupegal();
 	}
 
 }

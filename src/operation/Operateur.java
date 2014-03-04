@@ -4,14 +4,9 @@ import java.util.Stack;
 
 import type.Type;
 import yaka.Ident;
+import yaka.YVM;
 
 public abstract class Operateur {
-	/**
-	 * Renvoie le texte utilisé dans la YVM selon le type de l'opération (plus/moins/div/...)
-	 * 
-	 * @return le texte correspondant à l'opération
-	 */
-	abstract public String getYVMText();
 	
 	/**
 	 * Indique si un type est accepté par un opérateur
@@ -42,4 +37,12 @@ public abstract class Operateur {
 	 * 	La pile des valeurs utilisé pour éxécuter l'opération.
 	 */
 	abstract public void consume(Stack<Ident> pileValeur);
+	
+	/**
+	 * A partir d'une instance de YVM, appelle la bonne opération (iadd, isub, idiv, ...)
+	 * 
+	 * @param yvm
+	 * 			L'instance de la YVM sur laquelle appeler l'opération
+	 */
+	abstract public void visiteYVM(YVM yvm);
 }

@@ -21,21 +21,25 @@ import yaka.Constante;
 import operation.*;
 
 public class Yaka {
+  public static Affectation affectation;
   public static Declaration declaration;
-  public static TabIdent tabIdent;
-  public static Expression expression;
-  public static YVM yvm;
+  public static Entree entree;
   public static ErreurManager em;
+  public static Expression expression;
+  public static Sortie sortie;
+  public static TabIdent tabIdent;
+  public static YVM yvm;
 
   public static void main(String args[]) { 
     Yaka analyseur;
+    Yaka.affectation = new Affectation();
     Yaka.declaration = new Declaration();
-    Yaka.expression = new Expression();
-    Yaka.tabIdent = new TabIdent(2);
-    Yaka.yvm = new YVM();
+    Yaka.entree = new Entree();
     Yaka.em = new ErreurManager();
+    Yaka.expression = new Expression();
+    Yaka.sortie = new Sortie();
+    Yaka.tabIdent = new TabIdent(2);
     java.io.InputStream input;
-
     if (args.length==1) {
       System.out.print(args[args.length-1] + ": ");
       try {
@@ -44,7 +48,9 @@ public class Yaka {
         System.out.println("Fichier introuvable.");
         return;
       }
+      Yaka.yvm = new YVM(args[args.length-1]+".yak");
     } else if (args.length==0) {
+      Yaka.yvm = new YVM();
       System.out.println("Lecture sur l'entree standard...");
       input = System.in;
     } else {
@@ -149,15 +155,15 @@ TOKEN  :
 /**************************************/
 void analyse() : {}
 {
-   (<PROGRAMME> {Yaka.yvm.ecrireEntete();}) <ident>	
+   (<PROGRAMME> {Yaka.yvm.entete();}) <ident>	
    bloc()
-   (<FPROGRAMME> {Yaka.yvm.ecrireQueue();})
+   (<FPROGRAMME> {Yaka.yvm.queue();})
 }
 
 void bloc() : {}{
  (declConst())*
- (declVar())* {Yaka.yvm.ecrireOuvrePrinc();}		
-   suiteExpr() 
+ (declVar())* {Yaka.yvm.ouvrePrinc();}		
+   suiteInstr() 
 }
 
 void declConst() : {}
@@ -199,15 +205,13 @@ void type() :{}
 /*
  * Syntaxe des instructions.
  */
-void suiteExpr() : {}
-{ (expression() (";" (expression())? )*)? }
 
-/* void suiteInstr() : {}
+void suiteInstr() : {}
 {
-instruction()
-(";" (instruction)? )*
+	instruction()
+	(";" (instruction())? )*
 }  
-*/
+
 
 void instruction() : {}
 {
@@ -216,17 +220,17 @@ void instruction() : {}
 
 void affectation() : {}
 {
-	<ident> ("=" {Yaka.yvm.ecrireIstore();}) expression()
+	(<ident> { Yaka.affectation.setAffecterDans(YakaTokenManager.identLu); }) "=" (expression() { Yaka.affectation.faitAffectation(); })
 }
 
 void lecture() : {}
 {
-	<LIRE> "(" <ident> ")"
+	<LIRE> "(" (<ident> { Yaka.entree.lireIdent(YakaTokenManager.identLu); }) ")"
 }
 
 void ecriture() : {}
 {
-	(<ECRIRE> "(" (expression() | <chaine>) ")") | <ALALIGNE>
+	(<ECRIRE> "(" ((expression() { Yaka.sortie.ecrireTete(); }) | (<chaine> { Yaka.yvm.ecrireChaine(YakaTokenManager.chaineLue); })) ")") | (<ALALIGNE> { Yaka.yvm.aLaLigne(); })
 }
 
 /*

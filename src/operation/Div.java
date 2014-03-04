@@ -2,13 +2,9 @@ package operation;
 
 import type.Type;
 import yaka.Constante;
+import yaka.YVM;
 
 public class Div extends OperateurBinaire {
-
-	@Override
-	public String getYVMText() {
-		return "idiv";
-	}
 
 	@Override
 	public String toString() {
@@ -23,6 +19,11 @@ public class Div extends OperateurBinaire {
 	@Override
 	public Type typeResultat() {
 		return Constante.ENTIER;
+	}
+
+	@Override
+	public void visiteYVM(YVM yvm) {
+		yvm.idiv();
 	}
 
 }

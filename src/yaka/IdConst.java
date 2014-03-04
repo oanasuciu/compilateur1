@@ -23,12 +23,12 @@ public class IdConst extends Ident {
 	}
 
 	@Override
-	public String getYVMText() {
-		return "iconst";
+	public boolean isVar() {
+		return false;
 	}
 
 	@Override
-	public boolean isVar() {
-		return false;
+	public void visiteYVM(YVM yvm) {
+		yvm.iconst(this.valeur);
 	}
 }

@@ -2,13 +2,9 @@ package operation;
 
 import type.Type;
 import yaka.Constante;
+import yaka.YVM;
 
 public class Sub extends OperateurBinaire {
-
-	@Override
-	public String getYVMText() {
-		return "isub";
-	}
 
 	@Override
 	public String toString() {
@@ -23,5 +19,10 @@ public class Sub extends OperateurBinaire {
 	@Override
 	public Type typeResultat() {
 		return Constante.ENTIER;
+	}
+
+	@Override
+	public void visiteYVM(YVM yvm) {
+		yvm.isub();
 	}
 }

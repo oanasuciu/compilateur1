@@ -2,14 +2,9 @@ package operation;
 
 import type.Type;
 import yaka.Constante;
+import yaka.YVM;
 
 public class Moins extends OperateurUnaire {
-
-	@Override
-	public String getYVMText() {
-		// ou isub ? Contradiction entre page 4 (exemple) et page 5
-		return "ineg";
-	}
 
 	@Override
 	public String toString() {
@@ -24,6 +19,11 @@ public class Moins extends OperateurUnaire {
 	@Override
 	public Type typeResultat() {
 		return Constante.ENTIER;
+	}
+
+	@Override
+	public void visiteYVM(YVM yvm) {
+		yvm.ineg();
 	}
 
 }

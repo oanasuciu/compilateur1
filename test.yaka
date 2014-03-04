@@ -5,8 +5,8 @@ CONST
 	cc=aa;
 VAR ENTIER c1,c2,c3,c4,c5;
 VAR BOOLEEN b1,b2;
-	(aa+cc/2)/5;
-	c1+3*c1-aa;
-	ba OU NON VRAI;
-	(c1<=(c2+4));
+	c1 = (aa+cc/2)/5;
+	c2 = c1+3*c1-aa;
+	b1 = ba OU VRAI;
+	b2 = (c1<=(c2+4));
 FPROGRAMME
