@@ -48,7 +48,7 @@ public class Yaka {
         System.out.println("Fichier introuvable.");
         return;
       }
-      Yaka.yvm = new YVM(args[args.length-1]+".yak");
+      Yaka.yvm = new YVM(args[args.length-1]+".asm");
     } else if (args.length==0) {
       Yaka.yvm = new YVM();
       System.out.println("Lecture sur l'entree standard...");
@@ -162,7 +162,7 @@ void analyse() : {}
 
 void bloc() : {}{
  (declConst())*
- (declVar())* {Yaka.yvm.ouvrePrinc();}		
+ (declVar())* {Yaka.tabIdent.ouvrePrinc();}		
    suiteInstr() 
 }
 

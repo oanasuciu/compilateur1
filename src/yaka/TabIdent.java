@@ -36,6 +36,10 @@ public class TabIdent {
 		}
 		return cpt;
 	}
+	
+	public void ouvrePrinc() {
+		Yaka.yvm.ouvrePrinc(Yaka.tabIdent.nbVar() * 2);
+	}
 
 	@Override
 	public String toString() {

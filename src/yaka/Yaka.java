@@ -32,7 +32,7 @@ public class Yaka implements YakaConstants {
         System.out.println("Fichier introuvable.");
         return;
       }
-      Yaka.yvm = new YVM(args[args.length-1]+".yak");
+      Yaka.yvm = new YVM(args[args.length-1]+".asm");
     } else if (args.length==0) {
       Yaka.yvm = new YVM();
       System.out.println("Lecture sur l'entree standard...");
@@ -89,7 +89,7 @@ public class Yaka implements YakaConstants {
       }
       declVar();
     }
-               Yaka.yvm.ouvrePrinc();
+               Yaka.tabIdent.ouvrePrinc();
     suiteInstr();
   }
 

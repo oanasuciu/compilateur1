@@ -1,6 +1,10 @@
 package tests;
 import java.io.*;
 
+/*
+ * TODO: Tests approfondis sur inot, ineg et toutes les opérations non documentées & non traduites en assembleur dans le poly
+ */
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

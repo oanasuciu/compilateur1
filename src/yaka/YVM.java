@@ -55,8 +55,8 @@ public class YVM {
 	 * Les instructions pour les fonctions
 	 */
 
-	public void ouvrePrinc() {
-		Ecriture.ecrireStringln(ficYVM, "ouvrePrinc " + Yaka.tabIdent.nbVar() * 2);
+	public void ouvrePrinc(int nbVar) {
+		Ecriture.ecrireStringln(ficYVM, "ouvrePrinc " + nbVar);
 	}
 
 	/*
