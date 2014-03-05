@@ -6,16 +6,16 @@ import java.io.OutputStream;
 import operation.Operateur;
 
 public class YVM {
-	private String nomFichier;
-	private OutputStream ficYVM;
-
-	public YVM() {
-		ficYVM = Ecriture.ouvrir("out.yak");
-	}
+	protected String nomFichier;
+	protected OutputStream ficYVM;
 
 	public YVM(String nomFichier) {
 		this.nomFichier = nomFichier;
-		ficYVM = Ecriture.ouvrir(this.nomFichier);
+		ficYVM = Ecriture.ouvrir(this.nomFichier + this.getExtension());
+	}
+	
+	public String getExtension() {
+		return ".yak";
 	}
 
 	/*
@@ -46,7 +46,7 @@ public class YVM {
 		// on ne laisse pas l'utilisateur utiliser un tel fichier qui est
 		// incomplet sur plusieurs points
 		if (Yaka.em.hasErreur()) {
-			File f = new File(this.nomFichier);
+			File f = new File(this.nomFichier + this.getExtension());
 			f.delete();
 		}
 	}

@@ -1,26 +1,53 @@
 package yaka;
 
 import java.io.File;
-import java.io.OutputStream;
+import java.io.IOException;
 
 public class YVMasm extends YVM {
-	private String nomFichier;
-	private OutputStream ficYVM;
 	/**
 	 * Variable contenant l'indice du prochain message à écrire Utilisé lors de
 	 * l'écriture de chaînes (mess0, mess1, etc.)
 	 */
 	private int numMsg;
 
-	public YVMasm() {
-		ficYVM = Ecriture.ouvrir("out.asm");
+	public YVMasm(String nomFichier) {
+		super(nomFichier);
 		this.numMsg = 0;
 	}
+	
+	public String getExtension() {
+		return ".asm";
+	}
 
-	public YVMasm(String nomFichier) {
-		this.nomFichier = nomFichier;
-		ficYVM = Ecriture.ouvrir(this.nomFichier);
-		this.numMsg = 0;
+	public String getCheminAbsolu() {
+		File currentDirectory = new File(new File(".").getAbsolutePath());
+		try {
+			return currentDirectory.getCanonicalPath();
+		} catch (IOException e) {
+			System.out.println("N'a pas pu trouver le chemin vers le fichier");
+			e.printStackTrace();
+		}
+		return "";
+	}
+
+	public void compile() {
+		String[] commandes = {
+				"mount C C:\\TASM",// monte le dossier C:\TASM dans le disque C:
+				"mount H " + this.getCheminAbsolu(),// monte le dossier contenant le fichier .asm
+				"C:\\tasm H:\\" + nomFichier + this.getExtension() + " H:\\" + nomFichier + ".obj",// on compile le fichier
+				"C:\\tlink H:\\" + nomFichier + ".obj H:\\biblio.obj, H:\\" + nomFichier + ".exe",// on link le fichier
+				//"exit"
+		};
+		String commandesEnLigne = "";
+		for (String cmd : commandes) {
+			commandesEnLigne += "-c \"" + cmd + "\"";
+		}
+		try {
+			Runtime.getRuntime().exec("dosbox " + commandesEnLigne + " -noconsole -noautoexec ");
+		} catch (IOException e) {
+			System.out.println("N'a pas pu compiler");
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -51,9 +78,10 @@ public class YVMasm extends YVM {
 		// on ne laisse pas l'utilisateur utiliser un tel fichier qui est
 		// incomplet sur plusieurs points
 		if (Yaka.em.hasErreur()) {
-			File f = new File(this.nomFichier);
+			File f = new File(this.nomFichier + this.getExtension());
 			f.delete();
-		}
+		} else
+			this.compile();
 	}
 
 	/*

@@ -4,6 +4,10 @@ import type.Type;
 
 public class IdVar extends Ident {
 	private static int sharedOffset = -2;
+	
+	public static void reInit() {
+		sharedOffset = -2;
+	}
 
 	public IdVar(String nom, Type type) {
 		super(nom, type, sharedOffset);

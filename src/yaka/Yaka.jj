@@ -31,7 +31,6 @@ public class Yaka {
   public static YVM yvm;
 
   public static void main(String args[]) { 
-    Yaka analyseur;
     Yaka.affectation = new Affectation();
     Yaka.declaration = new Declaration();
     Yaka.entree = new Entree();
@@ -48,25 +47,40 @@ public class Yaka {
         System.out.println("Fichier introuvable.");
         return;
       }
-      Yaka.yvm = new YVM(args[args.length-1]+".asm");
-    } else if (args.length==0) {
-      Yaka.yvm = new YVM();
-      System.out.println("Lecture sur l'entree standard...");
-      input = System.in;
+      Yaka.yvm = new YVM(args[args.length-1]);
     } else {
-      System.out.println("Usage: java Gram [fichier]");
+      System.out.println("Usage: java Yaka fichier");
       return;
     }
+    new Yaka(input);
     try {
-      analyseur = new Yaka(input);
-      analyseur.analyse();
+      Yaka.analyse();
       System.out.println("analyse syntaxique reussie!");
     } catch (ParseException e) {
       String msg = e.getMessage();
-      msg = msg.substring(0,msg.indexOf("\n"));
+      msg = msg.substring(0,msg.indexOf("\u005cn"));
       System.out.println("Erreur de syntaxe : "+msg);
     }
-  } 
+    // si aucune erreur, on passe à la génération du code assembleur
+    if(!Yaka.em.hasErreur()) {
+    	// il fat réouvrir le fichier...
+        try {
+			input.close();
+			input = new java.io.FileInputStream(args[args.length-1]+".yaka");
+        } catch (java.io.IOException e1) {
+        	System.out.println("N'a pas pu reouvrir le fichier pour la seconde passe");
+        	return;
+		}
+		IdVar.reInit();
+		Yaka.ReInit(input);
+        Yaka.yvm = new YVMasm(args[args.length-1]);
+        try {
+              Yaka.analyse();
+            } catch (ParseException e) {
+              System.out.println(e);
+            }
+    }
+    }
 }
 
 PARSER_END(Yaka)
