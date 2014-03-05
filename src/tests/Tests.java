@@ -20,8 +20,8 @@ public class Tests {
 		BufferedReader fichierReference = new BufferedReader(new FileReader(nomFichierReference));
 		BufferedReader fichierCompilation = new BufferedReader(new FileReader(nomFichierCompilation));
 		
-		String l1;   //variable pour contenir la ligne
-		String l2;
+		String l1;   //variable pour contenir la ligne l1
+		String l2;   //variable pour contenir la ligne l2
 		while(true){
 			while((l1 = fichierReference.readLine()) != null) {
 				if(l1.charAt(0) != ';')
@@ -37,6 +37,12 @@ public class Tests {
 				break;
 			compareLignes(l1, l2);
 		}
+	}
+	
+	@Test
+	public void testCompare(){
+		compare("fichierReference.yvm","fichierCompilation.yvm");
+		assertEquals();
 	}
 
 	public boolean erreurs(){
