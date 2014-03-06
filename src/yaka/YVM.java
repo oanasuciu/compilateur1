@@ -15,7 +15,7 @@ public class YVM {
 	}
 	
 	public String getExtension() {
-		return ".yak";
+		return ".yvm";
 	}
 
 	/*
