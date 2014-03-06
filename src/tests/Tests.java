@@ -35,14 +35,13 @@ public class Tests {
 			}
 			if(l2 == null)
 				break;
-			compareLignes(l1, l2);
+			assertEquals(l1,l2);
 		}
 	}
 	
 	@Test
-	public void testCompare(){
+	public void testCompare() throws IOException {
 		compare("fichierReference.yvm","fichierCompilation.yvm");
-		assertEquals();
 	}
 
 	public boolean erreurs(){
