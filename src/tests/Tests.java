@@ -20,12 +20,16 @@ public class Tests {
 		String l2;   //variable pour contenir la ligne l2
 		while(true){
 			while((l1 = fichierReference.readLine()) != null) {
-				if(l1.charAt(0) != ';')
+				if(l1.charAt(0) != ';') {
+					l1 = l1.trim();
 					break;
+				}
 			}
 			while((l2 = fichierCompilation.readLine()) != null) {
-				if(l2.charAt(0) != ';')
+				if(l2.charAt(0) != ';') {
+					l2 = l2.trim();
 					break;
+				}
 			}
 			// on est arrivé à la fin des 2 fichiers
 			if(l1 == null && l2 == null)
@@ -38,10 +42,12 @@ public class Tests {
 	
 	@Test
 	public void test1() throws IOException {
-		Yaka.main(new String[] {"donneesPourTests/test1_source"});
+		Yaka.main(new String[] {"dataTst\\test1s"});
 		// comparaison YVM
-		compare("donneesPourTests/test1_yvm.yvm", "donneesPourTests/test1_source.yvm");
+		compare("dataTst\\test1r.yvm", "dataTst\\test1s.yvm");
 		// comparaison ASM
-		compare("donneesPourTests/test1_asm.asm", "donneesPourTests/test1_source.asm");
+		compare("dataTst\\test1r.asm", "dataTst\\test1s.asm");
+		// comparaison sortie EXE
+		compare("dataTst\\test1r.out", "dataTst\\test1s.out");
 	}
 }

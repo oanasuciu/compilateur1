@@ -36,15 +36,23 @@ public class YVMasm extends YVM {
 				"mount H " + this.getCheminAbsolu(),// monte le dossier contenant le fichier .asm
 				"C:\\tasm H:\\" + nomFichier + this.getExtension() + " H:\\" + nomFichier + ".obj",// on compile le fichier
 				"C:\\tlink H:\\" + nomFichier + ".obj H:\\biblio.obj, H:\\" + nomFichier + ".exe",// on link le fichier
-				//"exit"
+				"H:\\" + nomFichier + ".exe>H:\\" + nomFichier + ".out", // on éxécute le fichier fraichement compilé
+				"exit"
 		};
 		String commandesEnLigne = "";
 		for (String cmd : commandes) {
-			commandesEnLigne += "-c \"" + cmd + "\"";
+			commandesEnLigne += " -c \"" + cmd + "\"";
 		}
+		System.out.println("dosbox " + commandesEnLigne + " -noconsole -noautoexec");
 		try {
-			Runtime.getRuntime().exec("dosbox " + commandesEnLigne + " -noconsole -noautoexec ");
+			// on lance dosbox et la liste des commandes pour compiler
+			Process proc = Runtime.getRuntime().exec("dosbox" + commandesEnLigne + " -noconsole -noautoexec");
+			// on attend la fin du processus
+			proc.waitFor();
 		} catch (IOException e) {
+			System.out.println("N'a pas pu compiler");
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			System.out.println("N'a pas pu compiler");
 			e.printStackTrace();
 		}

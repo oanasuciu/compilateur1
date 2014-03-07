@@ -11,6 +11,7 @@ public class YVM {
 
 	public YVM(String nomFichier) {
 		this.nomFichier = nomFichier;
+		System.out.println(this.nomFichier + this.getExtension());
 		ficYVM = Ecriture.ouvrir(this.nomFichier + this.getExtension());
 	}
 	
