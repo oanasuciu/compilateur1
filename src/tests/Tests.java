@@ -42,12 +42,23 @@ public class Tests {
 	
 	@Test
 	public void test1() throws IOException {
-		Yaka.main(new String[] {"dataTst\\test1s"});
+		Yaka.main(new String[] {"dataTst\\test1\\test1s"});
 		// comparaison YVM
-		compare("dataTst\\test1r.yvm", "dataTst\\test1s.yvm");
+		compare("dataTst\\test1\\test1r.yvm", "dataTst\\test1\\test1s.yvm");
 		// comparaison ASM
-		compare("dataTst\\test1r.asm", "dataTst\\test1s.asm");
+		compare("dataTst\\test1\\test1r.asm", "dataTst\\test1\\test1s.asm");
 		// comparaison sortie EXE
-		compare("dataTst\\test1r.out", "dataTst\\test1s.out");
+		compare("dataTst\\test1\\test1r.out", "dataTst\\test1\\test1s.out");
+	}
+	
+	@Test
+	public void test2() throws IOException {
+		Yaka.main(new String[] {"dataTst\\test2\\test2s"});
+		// comparaison YVM
+		compare("dataTst\\test2\\test2r.yvm", "dataTst\\test2\\test2s.yvm");
+		// comparaison ASM
+		compare("dataTst\\test2\\test2r.asm", "dataTst\\test2\\test2s.asm");
+		// comparaison sortie EXE
+		compare("dataTst\\test2\\test2r.out", "dataTst\\test2\\test2s.out");
 	}
 }
