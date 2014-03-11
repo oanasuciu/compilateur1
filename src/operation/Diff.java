@@ -2,14 +2,10 @@ package operation;
 
 import type.Type;
 import yaka.Constante;
+import yaka.YVM;
 
 public class Diff extends OperateurBinaire {
-
-	@Override
-	public String getYVMText() {
-		return "idiff";
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Diff";
@@ -24,5 +20,9 @@ public class Diff extends OperateurBinaire {
 	public Type typeResultat() {
 		return Constante.BOOLEEN;
 	}
-	
+
+	@Override
+	public void visiteYVM(YVM yvm) {
+		yvm.idiff();
+	}
 }

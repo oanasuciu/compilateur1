@@ -29,24 +29,21 @@ public class Expression {
 			id = new IdConst(Constante.ERREUR);
 		}
 		pileValeur.add(id);
-		System.out.println(id.getYVMText()+" "+id.getValeur());
-		Yaka.yvm.ecrireIdent(id.getYVMText(), id.getValeur());
+		Yaka.yvm.ident(id);
 	}
 	
 	public void ajouteValeur(boolean b) {
 		Ident cst = new IdConst(Constante.BOOLEEN);
 		cst.setValeur(b);
 		pileValeur.add(cst);
-		System.out.println("iconst "+cst.getValeur());
-		Yaka.yvm.ecrireIdent(cst.getValeur());
+		Yaka.yvm.iconst(cst.getValeur());
 	}
 	
 	public void ajouteValeur(int nb) {
 		Ident cst = new IdConst(Constante.ENTIER);
 		cst.setValeur(nb);
 		pileValeur.add(cst);
-		System.out.println("iconst "+nb);
-		Yaka.yvm.ecrireIdent(nb);
+		Yaka.yvm.iconst(cst.getValeur());
 	}
 
 	public void ajouteOperation(Operateur op) {
@@ -56,7 +53,18 @@ public class Expression {
 	public void faireOperation() {
 		Operateur op = pileOperation.pop();
 		op.consume(pileValeur);
-		System.out.println(op.getYVMText());
-		Yaka.yvm.ecrireOp(op.getYVMText());
+		Yaka.yvm.operation(op);
+	}
+	
+	/**
+	 * Renvoie la tête de la pile des valeurs, ou null si aucune trouvée
+	 * 
+	 * @return l'Ident
+	 */
+	public Ident recupereTete() {
+		if(this.pileValeur.size() > 0)
+			return this.pileValeur.pop();
+		else
+			return null;
 	}
 }

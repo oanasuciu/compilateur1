@@ -1,0 +1,1 @@
+Taper ici le contenu du fichier ASM (fichier de référence)

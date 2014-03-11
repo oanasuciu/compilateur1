@@ -34,6 +34,10 @@ public abstract class Ident {
 		this.type = type;
 	}
 	
+	public String getNom() {
+		return nom;
+	}
+
 	/**
 	 * Getter pour l'attribut valeur
 	 * 
@@ -51,11 +55,14 @@ public abstract class Ident {
 		this.valeur = (valeur) ? -1 : 0;
 	}
 	
-	/**
-	 * Renvoie le texte pour le chargement de l'identité dans la YVM selon le type de l'identificateur (variable/constante)
-	 * 
-	 * @return le texte correspondant au type de l'identificateur
-	 */
-	abstract public String getYVMText();
 	abstract public boolean isVar();
+	
+	/**
+	 * A partir d'une instance de YVM, appelle la bonne opération (iconst, iload)
+	 * 
+	 * @param yvm
+	 * 			L'instance de la YVM sur laquelle appeler l'opération
+	 * 
+	 */
+	abstract public void visiteYVM(YVM yvm);
 }

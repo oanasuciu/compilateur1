@@ -2,13 +2,9 @@ package operation;
 
 import type.Type;
 import yaka.Constante;
+import yaka.YVM;
 
 public class Non extends OperateurUnaire {
-
-	@Override
-	public String getYVMText() {
-		return "inon";
-	}
 
 	@Override
 	public String toString() {
@@ -23,6 +19,11 @@ public class Non extends OperateurUnaire {
 	@Override
 	public Type typeResultat() {
 		return Constante.BOOLEEN;
+	}
+
+	@Override
+	public void visiteYVM(YVM yvm) {
+		yvm.inot();
 	}
 	
 }

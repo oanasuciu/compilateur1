@@ -1,6 +1,8 @@
 package type;
 
-public class Type {
+import yaka.Sortie;
+
+abstract public class Type {
 	private String nom;
 
 	public Type(String nom) {
@@ -10,4 +12,6 @@ public class Type {
 	public String getNom() {
 		return nom;
 	}
+	
+	abstract public void visiteEcriture(Sortie s);
 }
