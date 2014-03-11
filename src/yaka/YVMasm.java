@@ -31,22 +31,32 @@ public class YVMasm extends YVM {
 	}
 
 	public void compile() {
+		String path;
+		if (System.getProperty("os.name").startsWith("Windows")) {
+	        path = "C:\\TASM";
+	    } else {
+	    	path = "/usr/tasm/";
+	    } 
 		String[] commandes = {
-				"mount C C:\\TASM",// monte le dossier C:\TASM dans le disque C:
+				"dosbox",
+				"-c",
+				"mount C "+path,// monte le dossier C:\TASM dans le disque C:
+				"-c",
 				"mount H " + this.getCheminAbsolu(),// monte le dossier contenant le fichier .asm
+				"-c",
 				"C:\\tasm H:\\" + nomFichier + this.getExtension() + " H:\\" + nomFichier + ".obj",// on compile le fichier
+				"-c",
 				"C:\\tlink H:\\" + nomFichier + ".obj H:\\biblio.obj, H:\\" + nomFichier + ".exe",// on link le fichier
+				"-c",
 				"H:\\" + nomFichier + ".exe>H:\\" + nomFichier + ".out", // on éxécute le fichier fraichement compilé
-				"exit"
+				"-c",
+				"exit",
+				"-noconsole",
+				"-noautoexec"
 		};
-		String commandesEnLigne = "";
-		for (String cmd : commandes) {
-			commandesEnLigne += " -c \"" + cmd + "\"";
-		}
-		System.out.println("dosbox " + commandesEnLigne + " -noconsole -noautoexec");
 		try {
 			// on lance dosbox et la liste des commandes pour compiler
-			Process proc = Runtime.getRuntime().exec("dosbox" + commandesEnLigne + " -noconsole -noautoexec");
+			Process proc = Runtime.getRuntime().exec(commandes);
 			// on attend la fin du processus
 			proc.waitFor();
 		} catch (IOException e) {
