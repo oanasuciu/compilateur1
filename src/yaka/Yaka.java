@@ -13,6 +13,7 @@ public class Yaka implements YakaConstants {
   public static Sortie sortie;
   public static TabIdent tabIdent;
   public static YVM yvm;
+  public static boolean init = false;
 
   public static void main(String args[]) {
     Yaka.affectation = new Affectation();
@@ -36,7 +37,12 @@ public class Yaka implements YakaConstants {
       System.out.println("Usage: java Yaka fichier");
       return;
     }
-    new Yaka(input);
+    if(!init) {
+        new Yaka(input);
+        init = true;
+    }
+    else
+        Yaka.ReInit(input);
     try {
       Yaka.analyse();
       System.out.println("analyse syntaxique reussie!");
