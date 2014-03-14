@@ -11,12 +11,14 @@
 .project
 *.map
 *.exe
+*.MAP
+*.EXE
 stderr.txt
 stdout.txt
-dataTst/test[0-9]+/test[0-9]+s.map
 dataTst/test[0-9]+/test[0-9]+s.obj
-dataTst/test[0-9]+/test[0-9]+s.exe
+dataTst/test[0-9]+/test[0-9]+s.OBJ
 dataTst/test[0-9]+/test[0-9]+s.out
+dataTst/test[0-9]+/test[0-9]+s.OUT
 dataTst/test[0-9]+/test[0-9]+s.yvm
 dataTst/test[0-9]+/test[0-9]+s.asm
 *~
