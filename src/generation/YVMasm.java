@@ -53,9 +53,9 @@ public class YVMasm extends YVM {
 				"-c",
 				"C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
 				"-c",
-				"H:\\" + cheminNormalise + ".exe", // on éxécute le fichier fraichement compilé
-				//"-c",
-				//"exit",
+				"H:\\" + cheminNormalise + ".exe>H:\\" + cheminNormalise + ".out", // on éxécute le fichier fraichement compilé
+				"-c",
+				"exit",
 				"-noconsole",
 				"-noautoexec"
 		};
