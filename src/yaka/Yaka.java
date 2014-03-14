@@ -34,16 +34,16 @@ public class Yaka implements YakaConstants {
     Yaka.sortie = new Sortie();
     Yaka.tabIdent = new TabIdent(2);
     java.io.InputStream input;
-    if (args.length==1) {
-      args[args.length-1] = FilenameUtils.separatorsToSystem(args[args.length-1]);
-      System.out.print(args[args.length-1] + ": ");
+    if (args.length==1 || args.length==2) {
+      args[0] = FilenameUtils.separatorsToSystem(args[0]);
+      System.out.print(args[0] + ": ");
       try {
-        input = new java.io.FileInputStream(args[args.length-1]+".yaka");
+        input = new java.io.FileInputStream(args[0]+".yaka");
       } catch (java.io.FileNotFoundException e) {
         System.out.println("Fichier introuvable.");
         return;
       }
-      Yaka.yvm = new YVM(args[args.length-1]);
+      Yaka.yvm = new YVM(args[0], !(args.length==2 && args[1] == "1"));
     } else {
       System.out.println("Usage: java Yaka fichier");
       return;
@@ -70,7 +70,7 @@ public class Yaka implements YakaConstants {
         // il fat réouvrir le fichier...
         try {
                         input.close();
-                        input = new java.io.FileInputStream(args[args.length-1]+".yaka");
+                        input = new java.io.FileInputStream(args[0]+".yaka");
         } catch (java.io.IOException e1) {
                 System.out.println("N'a pas pu reouvrir le fichier pour la seconde passe");
                 return;
@@ -78,7 +78,7 @@ public class Yaka implements YakaConstants {
                 IdVar.reInit();
                 Yaka.ReInit(input);
         Yaka.tabIdent.reInit();
-        Yaka.yvm = new YVMasm(args[args.length-1]);
+        Yaka.yvm = new YVMasm(args[0], !(args.length==2 && args[1] == "1"));
         try {
               Yaka.analyse();
             } catch (ParseException e) {

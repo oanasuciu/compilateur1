@@ -11,9 +11,11 @@ import yaka.Yaka;
 public class YVM {
 	protected String nomFichier;
 	protected OutputStream ficYVM;
+	protected boolean interactif;
 
-	public YVM(String nomFichier) {
+	public YVM(String nomFichier, boolean interactif) {
 		this.nomFichier = nomFichier;
+		this.interactif = interactif;
 		System.out.println(this.nomFichier + this.getExtension());
 		ficYVM = Ecriture.ouvrir(this.nomFichier + this.getExtension());
 	}

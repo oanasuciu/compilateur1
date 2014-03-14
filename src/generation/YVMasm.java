@@ -14,8 +14,8 @@ public class YVMasm extends YVM {
 	 */
 	private int numMsg;
 
-	public YVMasm(String nomFichier) {
-		super(nomFichier);
+	public YVMasm(String nomFichier, boolean interactif) {
+		super(nomFichier, interactif);
 		this.numMsg = 0;
 	}
 
@@ -53,9 +53,9 @@ public class YVMasm extends YVM {
 				"-c",
 				"C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
 				"-c",
-				"H:\\" + cheminNormalise + ".exe>H:\\" + cheminNormalise + ".out", // on éxécute le fichier fraichement compilé
+				"H:\\" + cheminNormalise + ".exe"+((!this.interactif) ? ">H:\\" + cheminNormalise + ".out" : ""), // on éxécute le fichier fraichement compilé
 				"-c",
-				"exit",
+				((!this.interactif) ? "exit" : ""),
 				"-noconsole",
 				"-noautoexec"
 		};
