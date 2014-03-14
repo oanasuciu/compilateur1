@@ -20,13 +20,13 @@ public class Tests {
 		String l2;   //variable pour contenir la ligne l2
 		while(true){
 			while((l1 = fichierReference.readLine()) != null) {
-				if(l1.charAt(0) != ';') {
+				if(l1.length() > 0 && l1.charAt(0) != ';') {
 					l1 = l1.trim();
 					break;
 				}
 			}
 			while((l2 = fichierCompilation.readLine()) != null) {
-				if(l2.charAt(0) != ';') {
+				if(l2.length() > 0 && l2.charAt(0) != ';') {
 					l2 = l2.trim();
 					break;
 				}

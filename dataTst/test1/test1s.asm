@@ -126,42 +126,6 @@ push 0
 pop ax
 mov word ptr [bp-14],ax
 
-; iload -2
-push word ptr [bp-2]
-
-; ecrireEnt
-call ecrent
-
-; aLaLigne
-call ligsuiv
-
-; iload -4
-push word ptr [bp-4]
-
-; ecrireEnt
-call ecrent
-
-; aLaLigne
-call ligsuiv
-
-; iload -12
-push word ptr [bp-12]
-
-; ecrireBool
-call ecrbool
-
-; aLaLigne
-call ligsuiv
-
-; iload -14
-push word ptr [bp-14]
-
-; ecrireBool
-call ecrbool
-
-; aLaLigne
-call ligsuiv
-
 ; queue
 nop
 EXITCODE

@@ -12,9 +12,9 @@ STARTUPCODE
 mov bp,sp
 sub sp,6
 
-; ecrireChaine "x="
+; ecrireChaine "" x= ""
 .DATA
-mess0 DB "x=$"
+mess0 DB "" x= ""
 .CODE
 lea dx,mess0
 push dx
@@ -28,9 +28,9 @@ call lirent
 ; aLaLigne
 call ligsuiv
 
-; ecrireChaine "y="
+; ecrireChaine "" y= ""
 .DATA
-mess1 DB "y=$"
+mess1 DB "" y= ""
 .CODE
 lea dx,mess1
 push dx
@@ -44,9 +44,9 @@ call lirent
 ; aLaLigne
 call ligsuiv
 
-; ecrireChaine "x+y="
+; ecrireChaine "" x+y= ""
 .DATA
-mess2 DB "x+y=$"
+mess2 DB "" x+y= ""
 .CODE
 lea dx,mess2
 push dx

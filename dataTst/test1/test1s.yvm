@@ -26,16 +26,4 @@ iconst 4
 iadd
 iinfegal
 istore -14
-iload -2
-ecrireEnt
-aLaLigne
-iload -4
-ecrireEnt
-aLaLigne
-iload -12
-ecrireBool
-aLaLigne
-iload -14
-ecrireBool
-aLaLigne
 queue
