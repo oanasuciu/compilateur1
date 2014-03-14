@@ -70,6 +70,7 @@ public class Yaka {
     }
     else {
     	IdVar.reInit();
+    	Yaka.tabIdent.reInit();
     	Yaka.ReInit(input);
     }
     try {
@@ -92,6 +93,7 @@ public class Yaka {
 		}
 		IdVar.reInit();
 		Yaka.ReInit(input);
+    	Yaka.tabIdent.reInit();
         Yaka.yvm = new YVMasm(args[args.length-1]);
         try {
               Yaka.analyse();
@@ -161,9 +163,6 @@ TOKEN :
 | <ECRIRE : "ECRIRE">
 | <LIRE : "LIRE">
 | <ALALIGNE : "ALALIGNE">
-| <TANTQUE : "TANTQUE">
-| <FAIRE : "FAIRE">
-| <FAIT : "FAIT">
 
 }
 

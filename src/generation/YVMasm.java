@@ -45,9 +45,9 @@ public class YVMasm extends YVM {
 		String[] commandes = {
 				"dosbox",
 				"-c",
-				"mount C '"+path+"'",// monte le dossier C:\TASM dans le disque C:
+				"mount C \""+path+"\"",// monte le dossier C:\TASM dans le disque C:
 				"-c",
-				"mount H '" + FilenameUtils.normalize(this.getCheminAbsolu())+"'",// monte le dossier contenant le fichier .asm
+				"mount H \"" + FilenameUtils.normalize(this.getCheminAbsolu())+"\"",// monte le dossier contenant le fichier .asm
 				"-c",
 				"C:\\tasm H:\\" + cheminNormalise + this.getExtension() + " H:\\" + cheminNormalise + ".obj",// on compile le fichier
 				"-c",
@@ -137,10 +137,12 @@ public class YVMasm extends YVM {
 	}
 
 	public void ecrireChaine(String str) {
+		// la chaîne reçue inclut aussi les doubles ou simples quote : on les enlève
+		str = str.substring(1,str.length()-1);
 		Ecriture.ecrireStringln(ficYVM, "");
 		Ecriture.ecrireStringln(ficYVM, "; ecrireChaine " + str + "");
 		Ecriture.ecrireStringln(ficYVM, ".DATA");
-		Ecriture.ecrireStringln(ficYVM, "mess" + this.numMsg + " DB " + str.substring(0, str.length()-1) + "$\"");
+		Ecriture.ecrireStringln(ficYVM, "mess" + this.numMsg + " DB \"" + str + "$\"");
 		Ecriture.ecrireStringln(ficYVM, ".CODE");
 		Ecriture.ecrireStringln(ficYVM, "lea dx,mess" + this.numMsg++);
 		Ecriture.ecrireStringln(ficYVM, "push dx");

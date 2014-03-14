@@ -44,7 +44,6 @@ public class Declaration {
 	 */
 	public void majType(Type type) {
 		this.typeCourant = type;
-		System.out.println(Yaka.tabIdent);
 	}
 
 	/**

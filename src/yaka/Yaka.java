@@ -52,8 +52,11 @@ public class Yaka implements YakaConstants {
         new Yaka(input);
         init = true;
     }
-    else
+    else {
+        IdVar.reInit();
+        Yaka.tabIdent.reInit();
         Yaka.ReInit(input);
+    }
     try {
       Yaka.analyse();
       System.out.println("analyse syntaxique reussie!");
@@ -74,6 +77,7 @@ public class Yaka implements YakaConstants {
                 }
                 IdVar.reInit();
                 Yaka.ReInit(input);
+        Yaka.tabIdent.reInit();
         Yaka.yvm = new YVMasm(args[args.length-1]);
         try {
               Yaka.analyse();
