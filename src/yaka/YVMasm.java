@@ -43,7 +43,7 @@ public class YVMasm extends YVM {
 				"-c",
 				"mount C "+path,// monte le dossier C:\TASM dans le disque C:
 				"-c",
-				"mount H " + FilenameUtils.separatorsToWindows(this.getCheminAbsolu()),// monte le dossier contenant le fichier .asm
+				"mount H " + FilenameUtils.normalize(this.getCheminAbsolu()),// monte le dossier contenant le fichier .asm
 				"-c",
 				"C:\\tasm H:\\" + cheminNormalise + this.getExtension() + " H:\\" + cheminNormalise + ".obj",// on compile le fichier
 				"-c",
