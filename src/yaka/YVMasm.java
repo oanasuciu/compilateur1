@@ -31,12 +31,13 @@ public class YVMasm extends YVM {
 	}
 
 	public void compile() {
+		String cheminNormalise = FilenameUtils.separatorsToWindows(nomFichier);
 		String[] commandes = {
 				"mount C C:\\TASM",// monte le dossier C:\TASM dans le disque C:
-				"mount H " + this.getCheminAbsolu(),// monte le dossier contenant le fichier .asm
-				"C:\\tasm H:\\" + nomFichier + this.getExtension() + " H:\\" + nomFichier + ".obj",// on compile le fichier
-				"C:\\tlink H:\\" + nomFichier + ".obj H:\\biblio.obj, H:\\" + nomFichier + ".exe",// on link le fichier
-				"H:\\" + nomFichier + ".exe>H:\\" + nomFichier + ".out", // on éxécute le fichier fraichement compilé
+				"mount H " + FilenameUtils.separatorsToWindows(this.getCheminAbsolu()),// monte le dossier contenant le fichier .asm
+				"C:\\tasm H:\\" + cheminNormalise + this.getExtension() + " H:\\" + cheminNormalise + ".obj",// on compile le fichier
+				"C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
+				"H:\\" + cheminNormalise + ".exe>H:\\" + cheminNormalise + ".out", // on éxécute le fichier fraichement compilé
 				"exit"
 		};
 		String commandesEnLigne = "";
