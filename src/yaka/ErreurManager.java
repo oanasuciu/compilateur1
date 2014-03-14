@@ -1,10 +1,13 @@
 package yaka;
+import java.io.OutputStream;
 
+import utils.Ecriture;
 import concept.expression.operation.Operateur;
 import concept.ident.Ident;
 
 public class ErreurManager {
 	private boolean hasErreur = false;
+	public static OutputStream fichierErreurs = Ecriture.ouvrir("errorLog.txt")  ;
 
 	public int getNumLigne() {
 		return SimpleCharStream.getBeginLine();
@@ -25,11 +28,13 @@ public class ErreurManager {
 	public void identificateurInexistant(String ident) {
 		this.ecritInfoBase();
 		System.out.println("Identificateur \"" + ident + "\" inexistant.");
+		Ecriture.ecrireStringln(fichierErreurs, "Identificateur \"" + ident + "\" inexistant.");
 	}
 	
 	public void aucuneValeurAAffecter() {
 		this.ecritInfoBase();
 		System.out.println("Aucune valeur trouvée pour l'affectation.");
+		Ecriture.ecrireStringln(fichierErreurs, "Aucune valeur trouvée pour l'affectation." );
 	}
 	
 	public void aucuneValeurAEcrire() {
@@ -55,5 +60,9 @@ public class ErreurManager {
 	public void affectationDansConstante(Ident id) {
 		this.ecritInfoBase();
 		System.out.println("Tentative d'affectation dans une constante (" + id.getNom() + ").");
+	}
+	
+	public void stockerErreurs(){
+		if(hasErreur);
 	}
 }
