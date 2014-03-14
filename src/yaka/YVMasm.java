@@ -1,4 +1,4 @@
-package yaka;
+﻿package yaka;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,15 +49,9 @@ public class YVMasm extends YVM {
 				"-c",
 				"C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
 				"-c",
-<<<<<<< HEAD
-				"H:\\" + nomFichier + ".exe>H:\\" + nomFichier + ".out", // on éxécute le fichier fraichement compilé
-				//"-c",
-				//"exit",
-=======
 				"H:\\" + cheminNormalise + ".exe>H:\\" + cheminNormalise + ".out", // on éxécute le fichier fraichement compilé
 				"-c",
 				"exit",
->>>>>>> 2527a4b817cf8eaf249002e5013dba6f742c7943
 				"-noconsole",
 				"-noautoexec"
 		};
