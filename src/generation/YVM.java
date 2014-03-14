@@ -76,7 +76,7 @@ public class YVM {
 	}
 
 	public void ecrireChaine(String str) {
-		Ecriture.ecrireStringln(ficYVM, "ecrireChaine \"" + str + "\"");
+		Ecriture.ecrireStringln(ficYVM, "ecrireChaine " + str + "");
 	}
 
 	public void ecrireEnt() {

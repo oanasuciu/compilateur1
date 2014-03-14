@@ -45,17 +45,17 @@ public class YVMasm extends YVM {
 		String[] commandes = {
 				"dosbox",
 				"-c",
-				"mount C "+path,// monte le dossier C:\TASM dans le disque C:
+				"mount C '"+path+"'",// monte le dossier C:\TASM dans le disque C:
 				"-c",
-				"mount H " + FilenameUtils.normalize(this.getCheminAbsolu()),// monte le dossier contenant le fichier .asm
+				"mount H '" + FilenameUtils.normalize(this.getCheminAbsolu())+"'",// monte le dossier contenant le fichier .asm
 				"-c",
 				"C:\\tasm H:\\" + cheminNormalise + this.getExtension() + " H:\\" + cheminNormalise + ".obj",// on compile le fichier
 				"-c",
 				"C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
 				"-c",
-				"H:\\" + cheminNormalise + ".exe>H:\\" + cheminNormalise + ".out", // on éxécute le fichier fraichement compilé
-				"-c",
-				"exit",
+				"H:\\" + cheminNormalise + ".exe", // on éxécute le fichier fraichement compilé
+				//"-c",
+				//"exit",
 				"-noconsole",
 				"-noautoexec"
 		};
@@ -138,9 +138,9 @@ public class YVMasm extends YVM {
 
 	public void ecrireChaine(String str) {
 		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; ecrireChaine \"" + str + "\"");
+		Ecriture.ecrireStringln(ficYVM, "; ecrireChaine " + str + "");
 		Ecriture.ecrireStringln(ficYVM, ".DATA");
-		Ecriture.ecrireStringln(ficYVM, "mess" + this.numMsg + " DB \"" + str + "\"");
+		Ecriture.ecrireStringln(ficYVM, "mess" + this.numMsg + " DB " + str.substring(0, str.length()-1) + "$\"");
 		Ecriture.ecrireStringln(ficYVM, ".CODE");
 		Ecriture.ecrireStringln(ficYVM, "lea dx,mess" + this.numMsg++);
 		Ecriture.ecrireStringln(ficYVM, "push dx");

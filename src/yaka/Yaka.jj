@@ -68,8 +68,10 @@ public class Yaka {
     	new Yaka(input);
     	init = true;
     }
-    else
+    else {
+    	IdVar.reInit();
     	Yaka.ReInit(input);
+    }
     try {
       Yaka.analyse();
       System.out.println("analyse syntaxique reussie!");
@@ -159,6 +161,9 @@ TOKEN :
 | <ECRIRE : "ECRIRE">
 | <LIRE : "LIRE">
 | <ALALIGNE : "ALALIGNE">
+| <TANTQUE : "TANTQUE">
+| <FAIRE : "FAIRE">
+| <FAIT : "FAIT">
 
 }
 
