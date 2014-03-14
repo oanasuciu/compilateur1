@@ -1,6 +1,6 @@
 package type;
 
-import yaka.Sortie;
+import concept.es.Sortie;
 
 abstract public class Type {
 	private String nom;

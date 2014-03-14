@@ -1,6 +1,6 @@
 package type;
 
-import yaka.Sortie;
+import concept.es.Sortie;
 
 public class TypeErreur extends Type {
 

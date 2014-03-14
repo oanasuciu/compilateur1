@@ -1,6 +1,7 @@
 package yaka;
 
-import operation.Operateur;
+import concept.expression.operation.Operateur;
+import concept.ident.Ident;
 
 public class ErreurManager {
 	private boolean hasErreur = false;

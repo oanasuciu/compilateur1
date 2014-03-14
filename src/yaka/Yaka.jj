@@ -17,8 +17,18 @@ PARSER_BEGIN(Yaka)
 
 package yaka;
 
+import generation.YVM;
+import generation.YVMasm;
+import concept.es.Entree;
+import concept.es.Sortie;
+import concept.expression.Expression;
+import concept.expression.operation.*;
+import concept.ident.IdVar;
+import concept.ident.TabIdent;
+import concept.affectation.Affectation;
+import concept.declaration.Declaration;
+import utils.FilenameUtils;
 import yaka.Constante;
-import operation.*;
 
 public class Yaka {
   public static Affectation affectation;
