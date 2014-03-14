@@ -75,7 +75,9 @@ public class Declaration {
 	public void majValeur(String ident) {
 		Ident id = Yaka.tabIdent.chercheIdent(ident);
 		if(id == null) {
-			// TODO: cas d'erreur, ident inconnue
+			Yaka.em.identificateurInexistant(ident);
+			this.identCourante.setType(Constante.ERREUR);
+			return;
 		}
 		this.identCourante.setType(id.type);
 		this.identCourante.setValeur(id.valeur);

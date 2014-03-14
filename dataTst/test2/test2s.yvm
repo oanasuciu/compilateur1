@@ -1,2 +1,31 @@
 entete
 ouvrePrinc 6
+ecrireChaine "" x= ""
+lireEnt -16
+aLaLigne
+ecrireChaine "" y= ""
+lireEnt -18
+aLaLigne
+ecrireChaine "" x+y= ""
+iload -16
+iload -18
+iadd
+ecrireEnt
+aLaLigne
+iload -16
+iload -18
+iconst 2
+idiv
+iadd
+iconst 5
+idiv
+istore -20
+iload -18
+iconst 3
+iload -18
+imul
+iadd
+iconst 4
+isub
+istore -16
+queue
