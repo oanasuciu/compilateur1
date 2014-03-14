@@ -25,6 +25,7 @@ public class Yaka implements YakaConstants {
     Yaka.tabIdent = new TabIdent(2);
     java.io.InputStream input;
     if (args.length==1) {
+      args[args.length-1] = FilenameUtils.separatorsToSystem(args[args.length-1]);
       System.out.print(args[args.length-1] + ": ");
       try {
         input = new java.io.FileInputStream(args[args.length-1]+".yaka");

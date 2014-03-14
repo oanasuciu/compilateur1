@@ -14,7 +14,7 @@ public class YVMasm extends YVM {
 		super(nomFichier);
 		this.numMsg = 0;
 	}
-	
+
 	public String getExtension() {
 		return ".asm";
 	}
@@ -36,21 +36,28 @@ public class YVMasm extends YVM {
 	        path = "C:\\TASM";
 	    } else {
 	    	path = "/usr/tasm/";
-	    } 
+	    }
+	    String cheminNormalise = FilenameUtils.separatorsToWindows(nomFichier);
 		String[] commandes = {
 				"dosbox",
 				"-c",
 				"mount C "+path,// monte le dossier C:\TASM dans le disque C:
 				"-c",
-				"mount H " + this.getCheminAbsolu(),// monte le dossier contenant le fichier .asm
+				"mount H " + FilenameUtils.normalize(this.getCheminAbsolu()),// monte le dossier contenant le fichier .asm
 				"-c",
-				"C:\\tasm H:\\" + nomFichier + this.getExtension() + " H:\\" + nomFichier + ".obj",// on compile le fichier
+				"C:\\tasm H:\\" + cheminNormalise + this.getExtension() + " H:\\" + cheminNormalise + ".obj",// on compile le fichier
 				"-c",
-				"C:\\tlink H:\\" + nomFichier + ".obj H:\\biblio.obj, H:\\" + nomFichier + ".exe",// on link le fichier
+				"C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
 				"-c",
+<<<<<<< HEAD
 				"H:\\" + nomFichier + ".exe>H:\\" + nomFichier + ".out", // on éxécute le fichier fraichement compilé
 				//"-c",
 				//"exit",
+=======
+				"H:\\" + cheminNormalise + ".exe>H:\\" + cheminNormalise + ".out", // on éxécute le fichier fraichement compilé
+				"-c",
+				"exit",
+>>>>>>> 2527a4b817cf8eaf249002e5013dba6f742c7943
 				"-noconsole",
 				"-noautoexec"
 		};
