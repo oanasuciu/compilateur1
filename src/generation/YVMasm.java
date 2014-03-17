@@ -332,4 +332,21 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(ficYVM, "jmp $+4");
 		Ecriture.ecrireStringln(ficYVM, "push 0");
 	}
+	
+	public void tantque(){
+		numerotationIteration[profondeurIteration]++;
+		profondeurIteration++;
+		Ecriture.ecrireStringln(ficYVM, "FAIRE"+stringNumerotation()+":");
+	}
+	
+	public void faire(){
+		Ecriture.ecrireStringln(ficYVM, "pop ax");
+		Ecriture.ecrireStringln(ficYVM, "cmp ax, 0");
+		Ecriture.ecrireStringln(ficYVM, "je FAIT"+stringNumerotation());
+	}
+	
+	public void fait(){
+		Ecriture.ecrireStringln(ficYVM, "jmp FAIRE"+stringNumerotation()+"\nFAIT"+stringNumerotation()+":");
+		numerotationIteration[profondeurIteration--]=0;
+	}
 }
