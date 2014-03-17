@@ -2,11 +2,11 @@ package tests;
 import java.io.*;
 
 import org.junit.Test;
-
+  
 import yaka.Yaka;
 import static org.junit.Assert.*;
 
-public class Tests {
+public class TestsDeclarations {
 	
 	public void compareLignes(String l1, String l2){
 		assertEquals(l1, l2);
@@ -49,16 +49,5 @@ public class Tests {
 		compare("dataTst\\test1\\test1r.asm", "dataTst\\test1\\test1s.asm");
 		// comparaison sortie EXE
 		compare("dataTst\\test1\\test1r.out", "dataTst\\test1\\test1s.out");
-	}
-	
-	@Test
-	public void test2() throws IOException {
-		Yaka.main(new String[] {"dataTst\\test2\\test2s"});
-		// comparaison YVM
-		compare("dataTst\\test2\\test2r.yvm", "dataTst\\test2\\test2s.yvm");
-		// comparaison ASM
-		compare("dataTst\\test2\\test2r.asm", "dataTst\\test2\\test2s.asm");
-		// comparaison sortie EXE
-		compare("dataTst\\test2\\test2r.out", "dataTst\\test2\\test2s.out");
 	}
 }

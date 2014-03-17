@@ -1,0 +1,19 @@
+entete
+; truc truc
+ouvrePrinc 2
+ecrireChaine "x="
+iconst 2
+ecrireEnt
+aLaLigne
+ecrireChaine "y="
+iconst 3
+ecrireEnt
+aLaLigne
+ecrireChaine "somme="
+iconst 2
+iconst 3
+iadd
+istore -2
+ecrireEnt
+aLaLigne
+queue
