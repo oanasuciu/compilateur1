@@ -83,7 +83,7 @@ public class Yaka {
     }
     // si aucune erreur, on passe à la génération du code assembleur
     if(!Yaka.em.hasErreur()) {
-    	// il fat réouvrir le fichier...
+    	// il faut réouvrir le fichier...
         try {
 			input.close();
 			input = new java.io.FileInputStream(args[0]+".yaka");
@@ -250,7 +250,7 @@ void suiteInstr() : {}
 
 void instruction() : {}
 {
-	affectation() | lecture() | ecriture()
+	affectation() | lecture() | ecriture() | iteration()
 }
 
 void affectation() : {}
@@ -266,6 +266,15 @@ void lecture() : {}
 void ecriture() : {}
 {
 	(<ECRIRE> "(" ((expression() { Yaka.sortie.ecrireTete(); }) | (<chaine> { Yaka.yvm.ecrireChaine(YakaTokenManager.chaineLue); })) ")") | (<ALALIGNE> { Yaka.yvm.aLaLigne(); })
+}
+
+void iteration() : {}
+{
+	(<TANTQUE> { Yaka.yvm.tantque(); })
+	expression()
+	(<FAIRE> { Yaka.yvm.faire(); })
+	instruction()
+	(<FAIT> { Yaka.yvm.fait(); })
 }
 
 /*

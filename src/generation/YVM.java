@@ -12,12 +12,15 @@ public class YVM {
 	protected String nomFichier;
 	protected OutputStream ficYVM;
 	protected boolean interactif;
+	protected static int[] numerotationIteration;
+	protected static int profondeurIteration = 0;
 
 	public YVM(String nomFichier, boolean interactif) {
 		this.nomFichier = nomFichier;
 		this.interactif = interactif;
 		System.out.println(this.nomFichier + this.getExtension());
 		ficYVM = Ecriture.ouvrir(this.nomFichier + this.getExtension());
+		numerotationIteration = new int[10];
 	}
 	
 	public String getExtension() {
@@ -163,5 +166,27 @@ public class YVM {
 
 	public void isupegal() {
 		Ecriture.ecrireStringln(ficYVM, "isupegal");
+	}
+	
+	public String stringNumerotation(){
+		String res = "";
+		for(int i=0;i<profondeurIteration-2;i++) res+=numerotationIteration[i]+".";
+		res+=numerotationIteration[profondeurIteration-2];
+		return res;
+	}
+	
+	public void tantque(){
+		numerotationIteration[profondeurIteration]++;
+		profondeurIteration++;
+		Ecriture.ecrireStringln(ficYVM, "FAIRE"+stringNumerotation()+":");
+	}
+	
+	public void faire(){
+		Ecriture.ecrireStringln(ficYVM, "iffaux FAIT"+stringNumerotation());
+	}
+	
+	public void fait(){
+		Ecriture.ecrireStringln(ficYVM, "goto FAIRE"+stringNumerotation()+"\nFAIT"+stringNumerotation());
+		numerotationIteration[profondeurIteration--]=0;
 	}
 }
