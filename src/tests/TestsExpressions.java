@@ -6,24 +6,24 @@ import org.junit.Test;
 
 import yaka.*;
 
-public class TestsExpressions extends TestsDeclarations {
+public class TestsExpressions {
 
 	@Test
 	public void test2() throws IOException {
-		Yaka.main(new String[] {"dataTst\\test2\\test2s"});
+		Yaka.main(new String[] {"dataTst\\test2\\test2s", "1"});
 		// comparaison YVM
-		compare("dataTst\\test2\\test2r.yvm", "dataTst\\test2\\test2s.yvm");
+		CompareUtils.compare("dataTst\\test2\\test2r.yvm", "dataTst\\test2\\test2s.yvm");
 		// comparaison ASM
-		compare("dataTst\\test2\\test2r.asm", "dataTst\\test2\\test2s.asm");
+		CompareUtils.compare("dataTst\\test2\\test2r.asm", "dataTst\\test2\\test2s.asm");
 		// comparaison sortie EXE
-		compare("dataTst\\test2\\test2r.out", "dataTst\\test2\\test2s.out");
+		CompareUtils.compare("dataTst\\test2\\test2r.out", "dataTst\\test2\\test2s.out");
 	}
 	
 	@Test
 	public void test2Erreurs() throws IOException {
-		Yaka.main(new String[] {"dataTst\\test2\\test2sErreurs"});
+		Yaka.main(new String[] {"dataTst\\test2\\test2es", "1"});
 		// comparaison fichiers erreurs
-		compare("dataTst\\test2\\erreurs.txt", "errorLog.txt");
+		CompareUtils.compare("dataTst\\test2\\test2er.err", "dataTst\\test2\\test2es.err");
 
 	}
 }

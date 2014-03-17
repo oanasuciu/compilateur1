@@ -45,7 +45,6 @@ public class Yaka {
     Yaka.affectation = new Affectation();
     Yaka.declaration = new Declaration();
     Yaka.entree = new Entree();
-    Yaka.em = new ErreurManager();
     Yaka.expression = new Expression();
     Yaka.sortie = new Sortie();
     Yaka.tabIdent = new TabIdent(2);
@@ -53,6 +52,7 @@ public class Yaka {
     if (args.length==1 || args.length==2) {
       args[0] = FilenameUtils.separatorsToSystem(args[0]);
       System.out.print(args[0] + ": ");
+ 	  Yaka.em = new ErreurManager(args[0]);
       try {
         input = new java.io.FileInputStream(args[0]+".yaka");
       } catch (java.io.FileNotFoundException e) {

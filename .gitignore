@@ -20,7 +20,9 @@ stdout.txt
 *s.OUT
 *s.out
 *s.obj
+*s.err
 *s.OBJ
+*S.MAP
 *~
 tests/
 errorLog.txt

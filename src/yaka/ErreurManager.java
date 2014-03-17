@@ -8,7 +8,11 @@ import concept.ident.Ident;
 
 public class ErreurManager {
 	private boolean hasErreur = false;
-	public static OutputStream fichierErreurs = Ecriture.ouvrir("errorLog.txt");
+	public OutputStream fichierErreur;
+
+	public ErreurManager(String nomFichier) {
+		this.fichierErreur = Ecriture.ouvrir(nomFichier+".err");
+	}
 
 	public int getNumLigne() {
 		return SimpleCharStream.getBeginLine();
@@ -26,30 +30,31 @@ public class ErreurManager {
 		if(!isWarning)
 			hasErreur = true;
 		System.out.print("Ligne " + this.getNumLigne() + " : ");
+		Ecriture.ecrireString(this.fichierErreur, "Ligne " + this.getNumLigne() + " : ");
 	}
 
 	public void ecraseIdentificateur(String ident) {
 		this.ecritInfoBase(true);
 		System.out.println("WARNING: L'identificateur \"" + ident + "\" a été re-déclaré.");
-		Ecriture.ecrireStringln(fichierErreurs, "WARNING: L'identificateur \"" + ident + "\" a été re-déclaré.");
+		Ecriture.ecrireStringln(this.fichierErreur, "WARNING: L'identificateur \"" + ident + "\" a été re-déclaré.");
 	}
 
 	public void identificateurInexistant(String ident) {
 		this.ecritInfoBase(false);
 		System.out.println("Identificateur \"" + ident + "\" inexistant.");
-		Ecriture.ecrireStringln(fichierErreurs, "Identificateur \"" + ident + "\" inexistant.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Identificateur \"" + ident + "\" inexistant.");
 	}
 
 	public void aucuneValeurAAffecter() {
 		this.ecritInfoBase(false);
 		System.out.println("Aucune valeur trouvée pour l'affectation.");
-		Ecriture.ecrireStringln(fichierErreurs, "Aucune valeur trouvée pour l'affectation.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Aucune valeur trouvée pour l'affectation.");
 	}
 
 	public void aucuneValeurAEcrire() {
 		this.ecritInfoBase(false);
 		System.out.println("Aucune valeur à écrire.");
-		Ecriture.ecrireStringln(fichierErreurs, "Aucune valeur à écrire.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Aucune valeur à écrire.");
 	}
 
 	public void mauvaisType(Operateur op, Ident id1, Ident id2) {
@@ -71,9 +76,9 @@ public class ErreurManager {
 		System.out.println("Opération " + op + " non définie avec ces types :");
 		System.out.println("         Membre gauche : "+membreGauche+" de type " + id1.getType().getNom());
 		System.out.println("         Membre droit : "+membreDroit+" de type " + id2.getType().getNom());
-		Ecriture.ecrireStringln(fichierErreurs, "Opération " + op + " non définie avec ces types :");
-		Ecriture.ecrireStringln(fichierErreurs, "         Membre gauche : "+membreGauche+" de type " + id1.getType().getNom());
-		Ecriture.ecrireStringln(fichierErreurs, "         Membre droit : "+membreDroit+" de type " + id2.getType().getNom());
+		Ecriture.ecrireStringln(this.fichierErreur, "Opération " + op + " non définie avec ces types :");
+		Ecriture.ecrireStringln(this.fichierErreur, "         Membre gauche : "+membreGauche+" de type " + id1.getType().getNom());
+		Ecriture.ecrireStringln(this.fichierErreur, "         Membre droit : "+membreDroit+" de type " + id2.getType().getNom());
 	}
 
 	public void mauvaisType(Operateur op, Ident id) {
@@ -87,8 +92,8 @@ public class ErreurManager {
 		}
 		System.out.println("Opération " + op + " non définie avec ce type :");
 		System.out.println("         Opérande : "+operande+" de type " + id.getType().getNom());
-		Ecriture.ecrireStringln(fichierErreurs, "Opération " + op + " non définie avec ce type :");
-		Ecriture.ecrireStringln(fichierErreurs, "         Opérande : "+operande+" de type " + id.getType().getNom());
+		Ecriture.ecrireStringln(this.fichierErreur, "Opération " + op + " non définie avec ce type :");
+		Ecriture.ecrireStringln(this.fichierErreur, "         Opérande : "+operande+" de type " + id.getType().getNom());
 	}
 
 	public void mauvaisTypeAffectation(Ident id1, Ident id2) {
@@ -96,14 +101,14 @@ public class ErreurManager {
 		System.out.println("Affectation non définie entre ces types :");
 		System.out.println("         Affectation dans la variable : " + id1.getNom() + " de type " + id1.getType().getNom());
 		System.out.println("         Depuis le type " + id2.getType().getNom());
-		Ecriture.ecrireStringln(fichierErreurs, "Affectation non définie entre ces types :");
-		Ecriture.ecrireStringln(fichierErreurs, "         Affectation dans la variable : " + id1.getNom() + " de type " + id1.getType().getNom());
-		Ecriture.ecrireStringln(fichierErreurs, "         Depuis le type " + id2.getType().getNom());
+		Ecriture.ecrireStringln(this.fichierErreur, "Affectation non définie entre ces types :");
+		Ecriture.ecrireStringln(this.fichierErreur, "         Affectation dans la variable : " + id1.getNom() + " de type " + id1.getType().getNom());
+		Ecriture.ecrireStringln(this.fichierErreur, "         Depuis le type " + id2.getType().getNom());
 	}
 
 	public void affectationDansConstante(Ident id) {
 		this.ecritInfoBase(false);
 		System.out.println("Tentative d'affectation dans une constante (" + id.getNom() + ").");
-		Ecriture.ecrireStringln(fichierErreurs, "Tentative d'affectation dans une constante (" + id.getNom() + ").");
+		Ecriture.ecrireStringln(this.fichierErreur, "Tentative d'affectation dans une constante (" + id.getNom() + ").");
 	}
 }

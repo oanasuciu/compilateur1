@@ -10,7 +10,7 @@ iconst 5
 idiv
 istore -2
 iconst 10
-iconst2
+iconst 2
 iadd
 istore -2
 queue

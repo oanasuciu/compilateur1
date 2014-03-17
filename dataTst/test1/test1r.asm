@@ -10,7 +10,7 @@ STARTUPCODE
 
 ; ouvrePrinc 10
 mov bp,sp
-sub sp,14
+sub sp,10
 
 ; iconst 10
 push word ptr 10

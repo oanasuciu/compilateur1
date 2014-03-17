@@ -1,0 +1,7 @@
+Ligne 6 : Identificateur "b" inexistant.
+Ligne 10 : Affectation non définie entre ces types :
+         Affectation dans la variable : c1 de type Entier
+         Depuis le type Booléen
+Ligne 12 : Opération Or non définie avec ces types :
+         Membre gauche : constante de type Entier
+         Membre droit : constante de type Booléen

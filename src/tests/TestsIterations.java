@@ -6,16 +6,16 @@ import org.junit.Test;
 
 import yaka.Yaka;
 
-public class TestsIterations extends TestsAffectationsEntreesSorties {
+public class TestsIterations {
 
 	@Test
 	public void test4() throws IOException {
-		Yaka.main(new String[] {"dataTst\\test4\\test4s"});
+		Yaka.main(new String[] {"dataTst\\test4\\test4s", "1"});
 		// comparaison YVM
-		compare("dataTst\\test4\\test4r.yvm", "dataTst\\test4\\test4s.yvm");
+		CompareUtils.compare("dataTst\\test4\\test4r.yvm", "dataTst\\test4\\test4s.yvm");
 		// comparaison ASM
-		compare("dataTst\\test4\\test4r.asm", "dataTst\\test4\\test4s.asm");
+		CompareUtils.compare("dataTst\\test4\\test4r.asm", "dataTst\\test4\\test4s.asm");
 		// comparaison sortie EXE
-		compare("dataTst\\test4\\test4r.out", "dataTst\\test4\\test4s.out");
+		CompareUtils.compare("dataTst\\test4\\test4r.out", "dataTst\\test4\\test4s.out");
 	}
 }

@@ -1,16 +1,13 @@
 PROGRAMME entreeSortie
 CONST 
-	x=2,
-	y=3;
-VAR ENTIER z;
+	x=2;
+VAR ENTIER y,z;
 	ECRIRE(" x= ");
 	ECRIRE(x);
 	ALALIGNE;
-	ECRIRE(" y= ");
-	ECRIRE(y);
-	ALALIGNE;
 	ECRIRE(" somme= ");
-	z=x+y;
+	y=x;
+	z=VRAI+y;
 	ECRIRE(z);
 	ALALIGNE;
 FPROGRAMME

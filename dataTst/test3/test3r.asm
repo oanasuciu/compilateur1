@@ -10,11 +10,11 @@ STARTUPCODE
 
 ; ouvrePrinc 2
 mov bp,sp
-sub sp,6
+sub sp,2
 
 ; ecrireChaine "x="
 .DATA
-mess0 DB "x=$"
+mess0 DB " x= $ "
 .CODE
 lea dx,mess0
 push dx
@@ -31,7 +31,7 @@ call ligsuiv
 
 ; ecrireChaine "y="
 .DATA
-mess1 DB "y=$"
+mess1 DB " y= $ "
 .CODE
 lea dx,mess1
 push dx
@@ -46,9 +46,9 @@ call ecrent
 ; aLaLigne
 call ligsuiv
 
-; ecrireChaine "somme="
+; ecrireChaine " somme= "
 .DATA
-mess2 DB "somme=$"
+mess2 DB " somme= $ "
 .CODE
 lea dx,mess2
 push dx

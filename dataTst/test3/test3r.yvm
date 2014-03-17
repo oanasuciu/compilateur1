@@ -1,19 +1,19 @@
 entete
-; truc truc
 ouvrePrinc 2
-ecrireChaine "x="
+ecrireChaine " x= "
 iconst 2
 ecrireEnt
 aLaLigne
-ecrireChaine "y="
+ecrireChaine " y= "
 iconst 3
 ecrireEnt
 aLaLigne
-ecrireChaine "somme="
+ecrireChaine " somme= "
 iconst 2
 iconst 3
 iadd
 istore -2
+iload -2
 ecrireEnt
 aLaLigne
 queue
