@@ -170,12 +170,7 @@ public class YVM {
 	
 	public String stringNumerotation(){
 		String res = "";
-		if (profondeurIteration<=1){
-			res+=numerotationIteration[profondeurIteration-1];
-		}else {
-			for(int i=0;i<profondeurIteration-1;i++) res+=numerotationIteration[i]+".";
-			res+=numerotationIteration[profondeurIteration-1];
-		}
+		for(int i=0;i<=profondeurIteration-1;i++) res+="_"+numerotationIteration[i];
 		return res;
 	}
 	

@@ -337,7 +337,7 @@ public class YVMasm extends YVM {
 	public void tantque(){
 		numerotationIteration[profondeurIteration]++;
 		profondeurIteration++;
-		Ecriture.ecrireStringln(ficYVM, "FAIRE"+stringNumerotation()+":");
+		Ecriture.ecrireStringln(ficYVM, "\nFAIRE"+stringNumerotation()+":");
 	}
 	
 	public void faire(){
@@ -347,7 +347,7 @@ public class YVMasm extends YVM {
 	}
 	
 	public void fait(){
-		Ecriture.ecrireStringln(ficYVM, "jmp FAIRE"+stringNumerotation()+"\nFAIT"+stringNumerotation()+":");
+		Ecriture.ecrireStringln(ficYVM, "jmp FAIRE"+stringNumerotation()+"\nFAIT"+stringNumerotation()+":\n");
 		numerotationIteration[profondeurIteration--]=0;
 	}
 }
