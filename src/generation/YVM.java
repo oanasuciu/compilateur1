@@ -170,15 +170,19 @@ public class YVM {
 	
 	public String stringNumerotation(){
 		String res = "";
-		for(int i=0;i<profondeurIteration-2;i++) res+=numerotationIteration[i]+".";
-		res+=numerotationIteration[profondeurIteration-2];
+		if (profondeurIteration<=1){
+			res+=numerotationIteration[profondeurIteration-1];
+		}else {
+			for(int i=0;i<profondeurIteration-1;i++) res+=numerotationIteration[i]+".";
+			res+=numerotationIteration[profondeurIteration-1];
+		}
 		return res;
 	}
 	
 	public void tantque(){
 		numerotationIteration[profondeurIteration]++;
 		profondeurIteration++;
-		Ecriture.ecrireStringln(ficYVM, "FAIRE"+stringNumerotation()+":");
+		Ecriture.ecrireStringln(ficYVM, "\nFAIRE"+stringNumerotation()+":");
 	}
 	
 	public void faire(){
@@ -186,7 +190,7 @@ public class YVM {
 	}
 	
 	public void fait(){
-		Ecriture.ecrireStringln(ficYVM, "goto FAIRE"+stringNumerotation()+"\nFAIT"+stringNumerotation());
+		Ecriture.ecrireStringln(ficYVM, "goto FAIRE"+stringNumerotation()+"\nFAIT"+stringNumerotation()+":\n");
 		numerotationIteration[profondeurIteration--]=0;
 	}
 }
