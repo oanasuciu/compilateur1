@@ -331,7 +331,7 @@ public class Yaka implements YakaConstants {
     expression();
     jj_consume_token(FAIRE);
                    Yaka.yvm.faire();
-    instruction();
+    suiteInstr();
     jj_consume_token(FAIT);
                   Yaka.yvm.fait();
   }

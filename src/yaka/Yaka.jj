@@ -273,7 +273,7 @@ void iteration() : {}
 	(<TANTQUE> { Yaka.yvm.tantque(); })
 	expression()
 	(<FAIRE> { Yaka.yvm.faire(); })
-	instruction()
+	suiteInstr()
 	(<FAIT> { Yaka.yvm.fait(); })
 }
 
