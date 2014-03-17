@@ -5,7 +5,7 @@ import concept.es.Sortie;
 public class TypeBooleen extends Type {
 
 	public TypeBooleen() {
-		super("Booléeen");
+		super("Booléen");
 	}
 
 	@Override

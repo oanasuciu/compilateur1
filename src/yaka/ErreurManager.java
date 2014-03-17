@@ -1,4 +1,4 @@
-package yaka;
+﻿package yaka;
 
 import java.io.OutputStream;
 
@@ -49,6 +49,7 @@ public class ErreurManager {
 	public void aucuneValeurAEcrire() {
 		this.ecritInfoBase(false);
 		System.out.println("Aucune valeur à écrire.");
+		Ecriture.ecrireStringln(fichierErreurs, "Aucune valeur à écrire.");
 	}
 
 	public void mauvaisType(Operateur op, Ident id1, Ident id2) {
@@ -70,6 +71,9 @@ public class ErreurManager {
 		System.out.println("Opération " + op + " non définie avec ces types :");
 		System.out.println("         Membre gauche : "+membreGauche+" de type " + id1.getType().getNom());
 		System.out.println("         Membre droit : "+membreDroit+" de type " + id2.getType().getNom());
+		Ecriture.ecrireStringln(fichierErreurs, "Opération " + op + " non définie avec ces types :");
+		Ecriture.ecrireStringln(fichierErreurs, "         Membre gauche : "+membreGauche+" de type " + id1.getType().getNom());
+		Ecriture.ecrireStringln(fichierErreurs, "         Membre droit : "+membreDroit+" de type " + id2.getType().getNom());
 	}
 
 	public void mauvaisType(Operateur op, Ident id) {
@@ -83,6 +87,8 @@ public class ErreurManager {
 		}
 		System.out.println("Opération " + op + " non définie avec ce type :");
 		System.out.println("         Opérande : "+operande+" de type " + id.getType().getNom());
+		Ecriture.ecrireStringln(fichierErreurs, "Opération " + op + " non définie avec ce type :");
+		Ecriture.ecrireStringln(fichierErreurs, "         Opérande : "+operande+" de type " + id.getType().getNom());
 	}
 
 	public void mauvaisTypeAffectation(Ident id1, Ident id2) {
@@ -90,15 +96,14 @@ public class ErreurManager {
 		System.out.println("Affectation non définie entre ces types :");
 		System.out.println("         Affectation dans la variable : " + id1.getNom() + " de type " + id1.getType().getNom());
 		System.out.println("         Depuis le type " + id2.getType().getNom());
+		Ecriture.ecrireStringln(fichierErreurs, "Affectation non définie entre ces types :");
+		Ecriture.ecrireStringln(fichierErreurs, "         Affectation dans la variable : " + id1.getNom() + " de type " + id1.getType().getNom());
+		Ecriture.ecrireStringln(fichierErreurs, "         Depuis le type " + id2.getType().getNom());
 	}
 
 	public void affectationDansConstante(Ident id) {
 		this.ecritInfoBase(false);
 		System.out.println("Tentative d'affectation dans une constante (" + id.getNom() + ").");
-	}
-
-	public void stockerErreurs() {
-		if (hasErreur)
-			;
+		Ecriture.ecrireStringln(fichierErreurs, "Tentative d'affectation dans une constante (" + id.getNom() + ").");
 	}
 }

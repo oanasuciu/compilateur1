@@ -8,7 +8,7 @@ extrn ecrch:proc, ligsuiv:proc
 debut:
 STARTUPCODE
 
-; ouvrePrinc 14
+; ouvrePrinc 10
 mov bp,sp
 sub sp,14
 
@@ -48,64 +48,11 @@ push ax
 pop ax
 mov word ptr [bp-2],ax
 
-; iload -2
-push word ptr [bp-2]
-
-; iconst 3
-push word ptr 3
-
-; iload -2
-push word ptr [bp-2]
-
-; imul
-pop bx
-pop ax
-imul bx
-push ax
-
-; iadd
-pop bx
-pop ax
-add ax,bx
-push ax
-
 ; iconst 10
 push word ptr 10
 
-; isub
-pop bx
-pop ax
-sub ax,bx
-push ax
-
-; istore -4
-pop ax
-mov word ptr [bp-4],ax
-
-; iconst -1
-push word ptr -1
-
-; iconst -1
-push word ptr -1
-
-; ior
-pop bx
-pop ax
-or ax,bx
-push ax
-
-; istore -12
-pop ax
-mov word ptr [bp-12],ax
-
-; iload -2
-push word ptr [bp-2]
-
-; iload -4
-push word ptr [bp-4]
-
-; iconst 4
-push word ptr 4
+; iconst 2
+push word ptr 2
 
 ; iadd
 pop bx
@@ -113,18 +60,10 @@ pop ax
 add ax,bx
 push ax
 
-; iinfegal
-pop bx
+; istore -2
 pop ax
-cmp ax,bx
-jg $+6
-push -1
-jmp $+4
-push 0
+mov word ptr [bp-2],ax
 
-; istore -14
-pop ax
-mov word ptr [bp-14],ax
 
 ; queue
 nop

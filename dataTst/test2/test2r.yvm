@@ -1,32 +1,30 @@
 entete
 ; truc truc
-ouvrePrinc 6
-ecrireChaine "x="
-lireEnt -2
-aLaLigne 
-ecrireChaine "y="
-lireEnt -4
-aLaLigne
-ecrireChaine "x+y="
-iload -2
-iload -4
-iadd
-ecrireEnt
-aLaLigne
-iload -2
-iload -4
+ouvrePrinc 14
+iconst 10
+iconst 10
 iconst 2
 idiv
 iadd
 iconst 5
 idiv
-istore -6
-iload -4
+istore -2
+iload -2 
 iconst 3
-iload -4
+iload -2
 imul
 iadd
-iconst 4
+iconst 10
 isub
-istore -2
+istore -4
+iconst -1
+iconst -1
+ior
+istore -12
+iload -2
+iload -4
+iconst 4
+iadd
+iinfegal
+istore -14
 queue

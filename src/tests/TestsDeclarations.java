@@ -1,12 +1,12 @@
-package tests;
+﻿package tests;
 import java.io.*;
 
 import org.junit.Test;
-
+  
 import yaka.Yaka;
 import static org.junit.Assert.*;
 
-public class Tests {
+public class TestsDeclarations {
 	
 	public void compareLignes(String l1, String l2){
 		assertEquals(l1, l2);

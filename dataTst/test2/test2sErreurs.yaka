@@ -3,18 +3,12 @@ CONST
 	aa=10,
 	ba=VRAI,
 	cc=aa;
+	a=b;
+	b=4;
 VAR ENTIER c1,c2,c3,c4,c5;
 VAR BOOLEEN b1,b2;
-	c1 = (aa+cc/2)/5;
+	c1 = ba;
 	c2 = c1+3*c1-aa;
-	b1 = ba OU VRAI;
+	b1 = aa OU VRAI;
 	b2 = (c1<=(c2+4));
-	ECRIRE(c1);
-	ALALIGNE;
-	ECRIRE(c2);
-	ALALIGNE;
-	ECRIRE(b1);
-	ALALIGNE;
-	ECRIRE(b2);
-	ALALIGNE;
 FPROGRAMME
