@@ -140,12 +140,14 @@ public class YVMasm extends YVM {
 	}
 
 	public void ecrireChaine(String str) {
-		// la chaîne reçue inclut aussi les doubles ou simples quote : on les enlève
-		str = str.substring(1,str.length()-1);
+		// la chaîne reçue peut être délimitée par des doubles ou simple quotes
+		// on enregistre le séparateur utilisé, puis on insère un "$" avant la fin de la chaîne (avant le sep final)
+		String sep = str.substring(str.length()-1);
+		str = str.substring(0, str.length()-1);
 		Ecriture.ecrireStringln(ficYVM, "");
 		Ecriture.ecrireStringln(ficYVM, "; ecrireChaine " + str + "");
 		Ecriture.ecrireStringln(ficYVM, ".DATA");
-		Ecriture.ecrireStringln(ficYVM, "mess" + this.numMsg + " DB \"" + str + "$\"");
+		Ecriture.ecrireStringln(ficYVM, "mess" + this.numMsg + " DB " + str + "$"+sep);
 		Ecriture.ecrireStringln(ficYVM, ".CODE");
 		Ecriture.ecrireStringln(ficYVM, "lea dx,mess" + this.numMsg++);
 		Ecriture.ecrireStringln(ficYVM, "push dx");

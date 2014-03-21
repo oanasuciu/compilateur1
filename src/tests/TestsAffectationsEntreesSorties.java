@@ -16,7 +16,7 @@ public class TestsAffectationsEntreesSorties {
 		// comparaison ASM
 		CompareUtils.compare("dataTst\\test3\\test3r.asm", "dataTst\\test3\\test3s.asm");
 		// comparaison sortie EXE
-		CompareUtils.compare("dataTst\\test3\\test3r.out", "dataTst\\test3\\test3s.out");
+		CompareUtils.compare("dataTst\\test3\\test3r.out", "dataTst\\test3\\TEST3S.OUT");
 	}
 	
 	@Test

@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import utils.FilenameUtils;
+
 /**
  * 
  * @author Oana-maxi
@@ -14,8 +16,8 @@ import java.io.IOException;
 public class CompareUtils {
 	
 	public static void compare(String nomFichierReference, String nomFichierCompilation) throws IOException{
-		BufferedReader fichierReference = new BufferedReader(new FileReader(nomFichierReference));
-		BufferedReader fichierCompilation = new BufferedReader(new FileReader(nomFichierCompilation));
+		BufferedReader fichierReference = new BufferedReader(new FileReader(FilenameUtils.separatorsToSystem(nomFichierReference)));
+		BufferedReader fichierCompilation = new BufferedReader(new FileReader(FilenameUtils.separatorsToSystem(nomFichierCompilation)));
 		
 		String l1;   //variable pour contenir la ligne l1
 		String l2;   //variable pour contenir la ligne l2

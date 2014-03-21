@@ -14,7 +14,7 @@ sub sp,2
 
 ; ecrireChaine "x="
 .DATA
-mess0 DB " x= $ "
+mess0 DB " x= $"
 .CODE
 lea dx,mess0
 push dx
@@ -31,7 +31,7 @@ call ligsuiv
 
 ; ecrireChaine "y="
 .DATA
-mess1 DB " y= $ "
+mess1 DB " y= $"
 .CODE
 lea dx,mess1
 push dx
@@ -48,7 +48,7 @@ call ligsuiv
 
 ; ecrireChaine " somme= "
 .DATA
-mess2 DB " somme= $ "
+mess2 DB " somme= $"
 .CODE
 lea dx,mess2
 push dx
@@ -70,11 +70,33 @@ push ax
 pop ax
 mov word ptr [bp-2],ax
 
+; iload -2
+push word ptr [bp-2]
+
 ; ecrireEnt
 call ecrent
 
 ; aLaLigne
 call ligsuiv
+
+; ecrireChaine "blah'blah"
+.DATA
+mess3 DB "blah'blah$"
+.CODE
+lea dx,mess3
+push dx
+call ecrch
+
+; aLaLigne
+call ligsuiv
+
+; ecrireChaine 'blah"blah'
+.DATA
+mess4 DB "blah"blah$"
+.CODE
+lea dx,mess4
+push dx
+call ecrch
 
 ; queue
 nop

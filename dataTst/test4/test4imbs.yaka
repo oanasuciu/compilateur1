@@ -1,0 +1,34 @@
+PROGRAMME iter2
+CONST
+	n=3,
+	m=2;
+	
+VAR ENTIER s,i,j,k;
+	i=0;
+	j=0;
+	s=0;
+	TANTQUE i<=m FAIRE
+		j=0;
+		TANTQUE j<=m FAIRE
+			s=s+1;
+			j=j+1;
+		FAIT;
+		i=i+1;
+	FAIT;
+	k=0;
+	TANTQUE i<=n FAIRE
+		j=0;
+		TANTQUE j<=m FAIRE
+			k=0;
+			TANTQUE k<=m FAIRE
+				s=s+1;
+				k=k+1;
+			FAIT;
+			j=j+1;
+		FAIT;
+		i=i+1;
+	FAIT;
+	ALALIGNE;
+	ECRIRE("s=");
+	ECRIRE(s);
+FPROGRAMME

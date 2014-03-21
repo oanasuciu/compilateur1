@@ -17,11 +17,13 @@ stderr.txt
 stdout.txt
 *s.asm
 *s.yvm
+*S.OUT
 *s.OUT
 *s.out
 *s.obj
 *s.err
 *s.OBJ
+*S.OBJ
 *S.MAP
 *~
 /tests/

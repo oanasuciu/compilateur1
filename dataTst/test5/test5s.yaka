@@ -1,0 +1,11 @@
+PROGRAMME max2
+CONST
+	i = 2,
+	j = 4;
+VAR ENTIER max;
+	max = j;
+	SI i > j ALORS
+		max = i
+	FSI ;
+	ECRIRE(max)
+FPROGRAMME
