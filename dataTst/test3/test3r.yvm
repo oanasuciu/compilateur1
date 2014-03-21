@@ -16,4 +16,7 @@ istore -2
 iload -2
 ecrireEnt
 aLaLigne
+ecrireChaine "blah'blah"
+aLaLigne
+ecrireChaine 'blah"blah'
 queue
