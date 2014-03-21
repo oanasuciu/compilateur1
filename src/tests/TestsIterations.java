@@ -16,6 +16,6 @@ public class TestsIterations {
 		// comparaison ASM
 		CompareUtils.compare("dataTst\\test4\\test4r.asm", "dataTst\\test4\\test4s.asm");
 		// comparaison sortie EXE
-		CompareUtils.compare("dataTst\\test4\\test4r.out", "dataTst\\test4\\test4s.out");
+		CompareUtils.compare("dataTst\\test4\\test4r.out", "dataTst\\test4\\TEST4S.OUT");
 	}
 }

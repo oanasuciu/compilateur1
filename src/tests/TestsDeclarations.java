@@ -16,6 +16,6 @@ public class TestsDeclarations {
 		// comparaison ASM
 		CompareUtils.compare("dataTst\\test1\\test1r.asm", "dataTst\\test1\\test1s.asm");
 		// comparaison sortie EXE
-		CompareUtils.compare("dataTst\\test1\\test1r.out", "dataTst\\test1\\test1s.out");
+		CompareUtils.compare("dataTst\\test1\\test1r.out", "dataTst\\test1\\TEST1S.OUT");
 	}
 }

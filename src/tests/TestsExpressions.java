@@ -16,7 +16,7 @@ public class TestsExpressions {
 		// comparaison ASM
 		CompareUtils.compare("dataTst\\test2\\test2r.asm", "dataTst\\test2\\test2s.asm");
 		// comparaison sortie EXE
-		CompareUtils.compare("dataTst\\test2\\test2r.out", "dataTst\\test2\\test2s.out");
+		CompareUtils.compare("dataTst\\test2\\test2r.out", "dataTst\\test2\\TEST2S.OUT");
 	}
 	
 	@Test
