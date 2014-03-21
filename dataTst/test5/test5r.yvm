@@ -1,0 +1,16 @@
+entete
+ouvrePrinc 2
+iconst 4
+istore -2
+iconst 2
+iconst 4
+isup
+iifaux SINON1
+iconst 2
+istore -2
+goto FSI1
+SINON1 :
+FSI1 :
+iload -2
+ecrireEnt
+queue

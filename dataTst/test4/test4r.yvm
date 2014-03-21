@@ -6,11 +6,11 @@ istore -4
 iconst 0
 istore -2
 
-FAIRE1:
+FAIRE_1:
 iload -4
 iconst 4
 iinfegal
-iffaux FAIT1
+iffaux FAIT_1
 iload -2
 iload -4
 iadd
@@ -19,9 +19,9 @@ iload -4
 iconst 1
 iadd
 istore -4
-goto FAIRE1
+goto FAIRE_1
+FAIT_1:
 
-FAIT1:
 aLaLigne
 ecrireChaine "s="
 iload -2
