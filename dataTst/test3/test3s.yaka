@@ -13,4 +13,7 @@ VAR ENTIER z;
 	z=x+y;
 	ECRIRE(z);
 	ALALIGNE;
+	ECRIRE("blah'blah");
+	ALALIGNE;
+	ECRIRE('blah"blah');
 FPROGRAMME
