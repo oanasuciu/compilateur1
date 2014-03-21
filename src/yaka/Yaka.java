@@ -11,6 +11,7 @@ import concept.ident.IdVar;
 import concept.ident.TabIdent;
 import concept.affectation.Affectation;
 import concept.declaration.Declaration;
+import concept.iteration.Iteration;
 import utils.FilenameUtils;
 import yaka.Constante;
 
@@ -22,6 +23,7 @@ public class Yaka implements YakaConstants {
   public static Expression expression;
   public static Sortie sortie;
   public static TabIdent tabIdent;
+  public static Iteration iteration;
   public static YVM yvm;
   public static boolean init = false;
 
@@ -32,6 +34,7 @@ public class Yaka implements YakaConstants {
     Yaka.expression = new Expression();
     Yaka.sortie = new Sortie();
     Yaka.tabIdent = new TabIdent(2);
+    Yaka.iteration = new Iteration();
     java.io.InputStream input;
     if (args.length==1 || args.length==2) {
       args[0] = FilenameUtils.separatorsToSystem(args[0]);
@@ -55,6 +58,7 @@ public class Yaka implements YakaConstants {
     else {
         IdVar.reInit();
         Yaka.tabIdent.reInit();
+        Yaka.iteration.ReInit();
         Yaka.ReInit(input);
     }
     try {
@@ -327,13 +331,13 @@ public class Yaka implements YakaConstants {
 
   static final public void iteration() throws ParseException {
     jj_consume_token(TANTQUE);
-                     Yaka.yvm.tantque();
+                     Yaka.iteration.tantque();
     expression();
     jj_consume_token(FAIRE);
-                   Yaka.yvm.faire();
+                   Yaka.iteration.faire();
     suiteInstr();
     jj_consume_token(FAIT);
-                  Yaka.yvm.fait();
+                  Yaka.iteration.fait();
   }
 
 /*

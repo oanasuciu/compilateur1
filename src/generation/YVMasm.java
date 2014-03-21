@@ -2,7 +2,9 @@ package generation;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
+import concept.iteration.Iteration;
 import utils.Ecriture;
 import utils.FilenameUtils;
 import yaka.Yaka;
@@ -334,20 +336,14 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(ficYVM, "push 0");
 	}
 	
-	public void tantque(){
-		numerotationIteration[profondeurIteration]++;
-		profondeurIteration++;
-		Ecriture.ecrireStringln(ficYVM, "\nFAIRE"+stringNumerotation()+":");
-	}
-	
-	public void faire(){
+	public void faire(ArrayList<Integer> numerotationIteration){
 		Ecriture.ecrireStringln(ficYVM, "pop ax");
 		Ecriture.ecrireStringln(ficYVM, "cmp ax, 0");
-		Ecriture.ecrireStringln(ficYVM, "je FAIT"+stringNumerotation());
+		Ecriture.ecrireStringln(ficYVM, "je FAIT"+Iteration.stringNumerotation(numerotationIteration));
 	}
 	
-	public void fait(){
-		Ecriture.ecrireStringln(ficYVM, "jmp FAIRE"+stringNumerotation()+"\nFAIT"+stringNumerotation()+":\n");
-		numerotationIteration[profondeurIteration--]=0;
+	public void fait(ArrayList<Integer> numerotationIteration){
+		Ecriture.ecrireStringln(ficYVM, "jmp FAIRE"+Iteration.stringNumerotation(numerotationIteration));
+		Ecriture.ecrireStringln(ficYVM, "FAIT"+Iteration.stringNumerotation(numerotationIteration)+":\n");
 	}
 }

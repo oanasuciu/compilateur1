@@ -27,6 +27,7 @@ import concept.ident.IdVar;
 import concept.ident.TabIdent;
 import concept.affectation.Affectation;
 import concept.declaration.Declaration;
+import concept.iteration.Iteration;
 import utils.FilenameUtils;
 import yaka.Constante;
 
@@ -38,6 +39,7 @@ public class Yaka {
   public static Expression expression;
   public static Sortie sortie;
   public static TabIdent tabIdent;
+  public static Iteration iteration;
   public static YVM yvm;
   public static boolean init = false;
 
@@ -48,6 +50,7 @@ public class Yaka {
     Yaka.expression = new Expression();
     Yaka.sortie = new Sortie();
     Yaka.tabIdent = new TabIdent(2);
+    Yaka.iteration = new Iteration();
     java.io.InputStream input;
     if (args.length==1 || args.length==2) {
       args[0] = FilenameUtils.separatorsToSystem(args[0]);
@@ -71,6 +74,7 @@ public class Yaka {
     else {
     	IdVar.reInit();
     	Yaka.tabIdent.reInit();
+    	Yaka.iteration.ReInit();
     	Yaka.ReInit(input);
     }
     try {
@@ -270,11 +274,11 @@ void ecriture() : {}
 
 void iteration() : {}
 {
-	(<TANTQUE> { Yaka.yvm.tantque(); })
+	(<TANTQUE> { Yaka.iteration.tantque(); })
 	expression()
-	(<FAIRE> { Yaka.yvm.faire(); })
+	(<FAIRE> { Yaka.iteration.faire(); })
 	suiteInstr()
-	(<FAIT> { Yaka.yvm.fait(); })
+	(<FAIT> { Yaka.iteration.fait(); })
 }
 
 /*

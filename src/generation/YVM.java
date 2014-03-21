@@ -2,9 +2,11 @@ package generation;
 
 import java.io.File;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import concept.expression.operation.Operateur;
 import concept.ident.Ident;
+import concept.iteration.Iteration;
 import utils.Ecriture;
 import yaka.Yaka;
 
@@ -168,24 +170,16 @@ public class YVM {
 		Ecriture.ecrireStringln(ficYVM, "isupegal");
 	}
 	
-	public String stringNumerotation(){
-		String res = "";
-		for(int i=0;i<=profondeurIteration-1;i++) res+="_"+numerotationIteration[i];
-		return res;
+	public void tantque(ArrayList<Integer> numerotationIteration){
+		Ecriture.ecrireStringln(ficYVM, "\nFAIRE"+Iteration.stringNumerotation(numerotationIteration)+":");
 	}
 	
-	public void tantque(){
-		numerotationIteration[profondeurIteration]++;
-		profondeurIteration++;
-		Ecriture.ecrireStringln(ficYVM, "\nFAIRE"+stringNumerotation()+":");
+	public void faire(ArrayList<Integer> numerotationIteration){
+		Ecriture.ecrireStringln(ficYVM, "iffaux FAIT"+Iteration.stringNumerotation(numerotationIteration));
 	}
 	
-	public void faire(){
-		Ecriture.ecrireStringln(ficYVM, "iffaux FAIT"+stringNumerotation());
-	}
-	
-	public void fait(){
-		Ecriture.ecrireStringln(ficYVM, "goto FAIRE"+stringNumerotation()+"\nFAIT"+stringNumerotation()+":\n");
-		numerotationIteration[profondeurIteration--]=0;
+	public void fait(ArrayList<Integer> numerotationIteration){
+		Ecriture.ecrireStringln(ficYVM, "goto FAIRE"+Iteration.stringNumerotation(numerotationIteration));
+		Ecriture.ecrireStringln(ficYVM, "FAIT"+Iteration.stringNumerotation(numerotationIteration)+":\n");
 	}
 }
