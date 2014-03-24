@@ -2,6 +2,10 @@ package concept.iteration;
 
 import java.util.ArrayList;
 
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+
+import concept.ident.Ident;
+import yaka.Constante;
 import yaka.Yaka;
 
 
@@ -46,8 +50,13 @@ public class Iteration {
 	}
 	
 	public void faire(){
-		//TODO Gestion erreur si expression non booleen
-		Yaka.yvm.faire(numerotationIteration);
+		Ident id = Yaka.expression.recupereTete();
+		if (id.getType() == Constante.BOOLEEN){
+			Yaka.yvm.faire(numerotationIteration);
+		} else {
+			Yaka.em.expressionNonBooleen(id);
+		}
+		
 	}
 	
 	public void fait(){

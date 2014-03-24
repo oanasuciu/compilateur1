@@ -3,6 +3,7 @@
 import java.io.OutputStream;
 
 import utils.Ecriture;
+import concept.expression.Expression;
 import concept.expression.operation.Operateur;
 import concept.ident.Ident;
 
@@ -110,5 +111,20 @@ public class ErreurManager {
 		this.ecritInfoBase(false);
 		System.out.println("Tentative d'affectation dans une constante (" + id.getNom() + ").");
 		Ecriture.ecrireStringln(this.fichierErreur, "Tentative d'affectation dans une constante (" + id.getNom() + ").");
+	}
+	
+	public void expressionNonBooleen(Ident id){
+		this.ecritInfoBase(false);
+		String expr;
+		if(id.isVar()) {
+			expr = id.getNom();
+		}
+		else {
+			expr = "constante";
+		}
+		System.out.println("L'expression pour l'itération n'est pas booléenne");
+		System.out.println("         Expression : "+expr+" de type " + id.getType().getNom());
+		Ecriture.ecrireStringln(this.fichierErreur, "L'expression pour l'itération n'est pas booléenne");
+		Ecriture.ecrireStringln(this.fichierErreur, "         Expression : "+expr+" de type " + id.getType().getNom());
 	}
 }
