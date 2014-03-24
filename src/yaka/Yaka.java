@@ -58,7 +58,7 @@ public class Yaka implements YakaConstants {
     else {
         IdVar.reInit();
         Yaka.tabIdent.reInit();
-        Yaka.iteration.ReInit();
+        Yaka.iteration.reInit();
         Yaka.ReInit(input);
     }
     try {
@@ -81,6 +81,7 @@ public class Yaka implements YakaConstants {
                 }
                 IdVar.reInit();
                 Yaka.ReInit(input);
+                Yaka.iteration.reInit();
         Yaka.tabIdent.reInit();
         Yaka.yvm = new YVMasm(args[0], !(args.length==2 && args[1] == "1"));
         try {

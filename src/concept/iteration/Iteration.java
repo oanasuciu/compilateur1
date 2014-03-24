@@ -14,23 +14,20 @@ public class Iteration {
 	}
 	
 	public void incIteration(){
-		System.out.println("COUCOU0\n");
 		if (numerotationIteration.size() <= profondeurIteration){
-			System.out.println("COUCOU1\n");
 			numerotationIteration.add(1);
-			System.out.println("COUCOU2\n");
 		}else{
-			System.out.println("COUCOU2,5\n");
 			numerotationIteration.set(profondeurIteration, (numerotationIteration.get(profondeurIteration)) +1);
-			System.out.println("COUCOU3\n");
 		}
-		System.out.println("COUCOU4\n");
 		profondeurIteration++;
-		System.out.println("COUCOU5\n");
 	}
 	
 	public void decIteration(){
-		numerotationIteration.add(profondeurIteration, 0);
+		if (numerotationIteration.size() <= profondeurIteration){
+			numerotationIteration.add(profondeurIteration, 0);
+		} else {
+			numerotationIteration.set(profondeurIteration, 0);
+		}
 		profondeurIteration--;
 	}
 	
@@ -44,21 +41,22 @@ public class Iteration {
 	}
 	
 	public void tantque(){
-		System.out.println("COUCOU14\n");
 		incIteration();
 		Yaka.yvm.tantque(numerotationIteration);
 	}
 	
 	public void faire(){
+		//TODO Gestion erreur si expression non booleen
 		Yaka.yvm.faire(numerotationIteration);
 	}
 	
 	public void fait(){
-		Yaka.yvm.fait(numerotationIteration);
 		decIteration();
+		Yaka.yvm.fait(numerotationIteration);
+		
 	}
 
-	public void ReInit() {
+	public void reInit() {
 		numerotationIteration.clear();
 	}
 	
