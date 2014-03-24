@@ -28,6 +28,7 @@ import concept.ident.TabIdent;
 import concept.affectation.Affectation;
 import concept.declaration.Declaration;
 import concept.iteration.Iteration;
+import concept.conditionnelle.Conditionnelle;
 import utils.FilenameUtils;
 import yaka.Constante;
 
@@ -40,6 +41,7 @@ public class Yaka {
   public static Sortie sortie;
   public static TabIdent tabIdent;
   public static Iteration iteration;
+  public static Conditionnelle conditionnelle;
   public static YVM yvm;
   public static boolean init = false;
 
@@ -51,6 +53,7 @@ public class Yaka {
     Yaka.sortie = new Sortie();
     Yaka.tabIdent = new TabIdent(2);
     Yaka.iteration = new Iteration();
+    Yaka.conditionnelle = new Conditionnelle();
     java.io.InputStream input;
     if (args.length==1 || args.length==2) {
       args[0] = FilenameUtils.separatorsToSystem(args[0]);
@@ -76,6 +79,7 @@ public class Yaka {
     	Yaka.tabIdent.reInit();
     	Yaka.iteration.ReInit();
     	Yaka.ReInit(input);
+    	Yaka.conditionnelle.reInit();
     }
     try {
       Yaka.analyse();
@@ -97,6 +101,7 @@ public class Yaka {
 		}
 		IdVar.reInit();
 		Yaka.ReInit(input);
+    	Yaka.conditionnelle.reInit();
     	Yaka.tabIdent.reInit();
         Yaka.yvm = new YVMasm(args[0], !(args.length==2 && args[1] == "1"));
         try {
@@ -254,7 +259,7 @@ void suiteInstr() : {}
 
 void instruction() : {}
 {
-	affectation() | lecture() | ecriture() | iteration()
+	affectation() | lecture() | ecriture() | iteration() | conditionnelle()
 }
 
 void affectation() : {}
@@ -279,6 +284,17 @@ void iteration() : {}
 	(<FAIRE> { Yaka.iteration.faire(); })
 	suiteInstr()
 	(<FAIT> { Yaka.iteration.fait(); })
+}
+
+void conditionnelle() : {}
+{
+	<SI>
+	expression()
+	(<ALORS> { Yaka.conditionnelle.alors(); })
+	suiteInstr() { Yaka.conditionnelle.sinon(); }
+	(<SINON>
+	suiteInstr())?
+	(<FSI> { Yaka.conditionnelle.fsi(); })
 }
 
 /*

@@ -36,7 +36,7 @@ push 0
 
 ;iffaux SINON1
 pop ax
-cmp ax, 0
+cmp ax,0
 je SINON1
 
 ; iconst 2

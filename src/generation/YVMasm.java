@@ -57,7 +57,7 @@ public class YVMasm extends YVM {
 				"C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
 				"-c",
 				"H:\\" + cheminNormalise + ".exe"+((!this.interactif) ? ">H:\\" + cheminNormalise + ".out" : ""), // on éxécute le fichier fraichement compilé
-				((!this.interactif) ? "-c" : ""),
+				"-c",
 				((!this.interactif) ? "exit" : ""),
 				"-noconsole",
 				"-noautoexec"
@@ -347,5 +347,21 @@ public class YVMasm extends YVM {
 	public void fait(ArrayList<Integer> numerotationIteration){
 		Ecriture.ecrireStringln(ficYVM, "jmp FAIRE"+Iteration.stringNumerotation(numerotationIteration));
 		Ecriture.ecrireStringln(ficYVM, "FAIT"+Iteration.stringNumerotation(numerotationIteration)+":\n");
+	}
+
+	public void goTo(String etiquette) {
+		Ecriture.ecrireStringln(ficYVM, "jmp "+etiquette);
+	}
+
+	public void etiquette(String etiquette) {
+		Ecriture.ecrireStringln(ficYVM, etiquette+":");
+	}
+	
+	public void iffaux(String etiquette) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; iffaux "+etiquette);
+		Ecriture.ecrireStringln(ficYVM, "pop ax");
+		Ecriture.ecrireStringln(ficYVM, "cmp ax,0");
+		Ecriture.ecrireStringln(ficYVM, "je "+etiquette);
 	}
 }

@@ -170,6 +170,10 @@ public class YVM {
 		Ecriture.ecrireStringln(ficYVM, "isupegal");
 	}
 	
+	public void iffaux(String etiquette) {
+		Ecriture.ecrireStringln(ficYVM, "iffaux "+etiquette);
+	}
+	
 	public void tantque(ArrayList<Integer> numerotationIteration){
 		Ecriture.ecrireStringln(ficYVM, "\nFAIRE"+Iteration.stringNumerotation(numerotationIteration)+":");
 	}
@@ -181,5 +185,13 @@ public class YVM {
 	public void fait(ArrayList<Integer> numerotationIteration){
 		Ecriture.ecrireStringln(ficYVM, "goto FAIRE"+Iteration.stringNumerotation(numerotationIteration));
 		Ecriture.ecrireStringln(ficYVM, "FAIT"+Iteration.stringNumerotation(numerotationIteration)+":\n");
+	}
+
+	public void goTo(String etiquette) {
+		Ecriture.ecrireStringln(ficYVM, "goto "+etiquette);
+	}
+
+	public void etiquette(String etiquette) {
+		Ecriture.ecrireStringln(ficYVM, etiquette+":");
 	}
 }
