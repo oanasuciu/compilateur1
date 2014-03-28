@@ -49,6 +49,7 @@ main:
 	istore -2
 	iconst 5
 	istore -4
+	lireEnt -4
 	aLaLigne
 	reserveRetour
 	iload -2
