@@ -1,0 +1,28 @@
+PROGRAMME max3
+CONST
+	i = 2,
+	j = 4,
+	k = 3;
+VAR ENTIER max;
+	max = j;
+	SI i > j ALORS
+		max = i
+		SI k > i ALORS
+			max = k
+			SINON 
+			max=i
+		FSI;
+	FSI ;
+	
+	SI VRAI ALORS
+		max = 1
+		SI FAUX ALORS
+			max = 0
+			SI VRAI ALORS
+				max = 1
+						
+			FSI;
+		FSI;
+	FSI;
+			
+FPROGRAMME

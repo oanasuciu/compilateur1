@@ -21,12 +21,12 @@ public class TestsIterations {
 
 	@Test
 	public void testIterationImbrique() throws IOException {
-		Yaka.main(new String[] {"dataTst\\test4imb\\test4imbs", "1"});
+		Yaka.main(new String[] {"dataTst\\test4\\test4ibs", "1"});
 		// comparaison YVM
-		CompareUtils.compare("dataTst\\test4imb\\test4imbr.yvm", "dataTst\\test4\\test4imbs.yvm");
+		CompareUtils.compare("dataTst\\test4\\test4ibr.yvm", "dataTst\\test4\\test4ibs.yvm");
 		// comparaison ASM
-		CompareUtils.compare("dataTst\\test4\\test4imbr.asm", "dataTst\\test4\\test4imbs.asm");
+		CompareUtils.compare("dataTst\\test4\\test4ibr.asm", "dataTst\\test4\\test4ibs.asm");
 		// comparaison sortie EXE
-		CompareUtils.compare("dataTst\\test4\\test4imbr.out", "dataTst\\test4\\TEST4IMBS.OUT");
+		CompareUtils.compare("dataTst\\test4\\test4ibr.out", "dataTst\\test4\\TEST4IBS.OUT");
 	}
 }
