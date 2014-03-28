@@ -1,5 +1,7 @@
 package concept.conditionnelle;
 
+import concept.ident.Ident;
+import yaka.Constante;
 import yaka.Yaka;
 
 public class Conditionnelle {
@@ -10,7 +12,12 @@ public class Conditionnelle {
 	}
 
 	public void alors() {
-		Yaka.yvm.iffaux("SINON"+(++this.etiquetteCourante));
+		Ident id = Yaka.expression.recupereTete();
+		if (id.getType() == Constante.BOOLEEN){
+			Yaka.yvm.iffaux("SINON"+(++this.etiquetteCourante));
+		} else {
+			Yaka.em.expressionNonBooleen(id);
+		}
 	}
 
 	public void sinon() {
