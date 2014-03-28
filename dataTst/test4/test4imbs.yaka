@@ -1,6 +1,6 @@
 PROGRAMME iter2
 CONST
-	n=3,
+	n=1,
 	m=2;
 	
 VAR ENTIER s,i,j,k;
@@ -15,20 +15,12 @@ VAR ENTIER s,i,j,k;
 		FAIT;
 		i=i+1;
 	FAIT;
-	k=0;
-	TANTQUE i<=n FAIRE
-		j=0;
-		TANTQUE j<=m FAIRE
-			k=0;
-			TANTQUE k<=m FAIRE
-				s=s+1;
-				k=k+1;
+	
+	TANTQUE FAUX FAIRE
+		TANTQUE FAUX FAIRE
+			TANTQUE FAUX FAIRE
+				ALALIGNE
 			FAIT;
-			j=j+1;
 		FAIT;
-		i=i+1;
 	FAIT;
-	ALALIGNE;
-	ECRIRE("s=");
-	ECRIRE(s);
 FPROGRAMME

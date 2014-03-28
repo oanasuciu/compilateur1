@@ -92,7 +92,7 @@ call ligsuiv
 
 ; ecrireChaine 'blah"blah'
 .DATA
-mess4 DB "blah"blah$"
+mess4 DB 'blah"blah$'
 .CODE
 lea dx,mess4
 push dx

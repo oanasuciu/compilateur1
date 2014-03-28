@@ -15,6 +15,6 @@ public class TestsConditionnelle {
 		// comparaison ASM
 		CompareUtils.compare("dataTst\\test5\\test5r.asm", "dataTst\\test5\\test5s.asm");
 		// comparaison sortie EXE
-		CompareUtils.compare("dataTst\\test5\\test5r.out", "dataTst\\test5\\test5s.out");
+		CompareUtils.compare("dataTst\\test5\\test5r.out", "dataTst\\test5\\TEST5S.OUT");
 	}
 }
