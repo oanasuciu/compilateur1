@@ -3,9 +3,9 @@ CONST
 	i = 2,
 	j = 4;
 VAR ENTIER max;
-	max = j;
+	max=j;
 	SI i > j ALORS
-		max = i
+		max=i;
 	FSI;
-	ECRIRE(max)
+	ECRIRE(max);
 FPROGRAMME

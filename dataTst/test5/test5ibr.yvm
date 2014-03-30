@@ -5,45 +5,42 @@ istore -2
 iconst 2
 iconst 4
 isup
-iffaux SINON1
+iffaux SINON_1
 iconst 2
 istore -2
-;2e SI
-iconst 2
 iconst 3
+iconst 2
 isup
-iffaux SINON2
+iffaux SINON_1_1
 iconst 3
 istore -2
-goto FSI2
-SINON2:
+goto FSI_1_1
+SINON_1_1:
 iconst 2
 istore -2
-FSI2:
-goto FSI1
-SINON1:
-FSI1:
-;2e partie
-;iconst -1 correspond à VRAI
+FSI_1_1:
+goto FSI_1
+SINON_1:
+FSI_1:
 iconst -1
-iffaux SINON3
-iconst 0
-istore -2
-iconst 0
-iffaux SINON4
-iconst 0
-istore -2
-iconst -1
-iffaux SINON5
+iffaux SINON_2
 iconst 1
 istore -2
-goto FSI5
-SINON5:
-FSI5:
-goto FSI4
-SINON4:
-FSI4:
-goto FSI3
-SINON3:
-FSI3:
+iconst 0
+iffaux SINON_2_1
+iconst 0
+istore -2
+iconst -1
+iffaux SINON_2_1_1
+iconst 1
+istore -2
+goto FSI_2_1_1
+SINON_2_1_1:
+FSI_2_1_1:
+goto FSI_2_1
+SINON_2_1:
+FSI_2_1:
+goto FSI_2
+SINON_2:
+FSI_2:
 queue

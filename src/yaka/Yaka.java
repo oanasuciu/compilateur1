@@ -11,8 +11,8 @@ import concept.ident.IdVar;
 import concept.ident.TabIdent;
 import concept.affectation.Affectation;
 import concept.declaration.Declaration;
-import concept.iteration.Iteration;
-import concept.conditionnelle.Conditionnelle;
+import concept.controle.iteration.Iteration;
+import concept.controle.conditionnelle.Conditionnelle;
 import utils.FilenameUtils;
 import yaka.Constante;
 
@@ -84,10 +84,10 @@ public class Yaka implements YakaConstants {
                 return;
                 }
                 IdVar.reInit();
-                Yaka.ReInit(input);
+        Yaka.ReInit(input);
         Yaka.conditionnelle.reInit();
-                Yaka.iteration.reInit();
         Yaka.tabIdent.reInit();
+        Yaka.iteration.reInit();
         Yaka.yvm = new YVMasm(args[0], !(args.length==2 && args[1] == "1"));
         try {
               Yaka.analyse();

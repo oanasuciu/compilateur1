@@ -34,10 +34,10 @@ push -1
 jmp $+4
 push 0
 
-;iffaux SINON1
+; iffaux SINON_1
 pop ax
 cmp ax,0
-je SINON1
+je SINON_1
 
 ; iconst 2
 push word ptr 2
@@ -46,11 +46,11 @@ push word ptr 2
 pop ax
 mov word ptr [bp-2],ax
 
-; iconst 2
-push word ptr 2
-
 ; iconst 3
 push word ptr 3
+
+; iconst 2
+push word ptr 2
 
 ; isup
 pop bx
@@ -61,10 +61,10 @@ push -1
 jmp $+4
 push 0
 
-;iffaux SINON2
+; iffaux SINON_1_1
 pop ax
 cmp ax,0
-je SINON2
+je SINON_1_1
 
 ; iconst 3
 push word ptr 3
@@ -73,61 +73,34 @@ push word ptr 3
 pop ax
 mov word ptr [bp-2],ax
 
-;goto FSI2
-jmp FSI2
+; goto FSI_1_1
+jmp FSI_1_1
 
-SINON2:
+SINON_1_1:
+
 ; iconst 2
 push word ptr 2
 
 ; istore -2
 pop ax
 mov word ptr [bp-2],ax
-FSI2:
 
-;goto FSI1
-jmp FSI1
+FSI_1_1:
 
-SINON1:
-FSI1:
+; goto FSI_1
+jmp FSI_1
 
-; iconst -1
-push word ptr -1
+SINON_1:
 
-;iffaux SINON3
-pop ax
-cmp ax,0
-je SINON3
-
-; iconst 0
-push word ptr 0
-
-; istore -2
-pop ax
-mov word ptr [bp-2],ax
-
-; iconst 0
-push word ptr 0
-
-;iffaux SINON4
-pop ax
-cmp ax,0
-je SINON4
-
-; iconst 0
-push word ptr 0
-
-; istore -2
-pop ax
-mov word ptr [bp-2],ax
+FSI_1:
 
 ; iconst -1
 push word ptr -1
 
-;iffaux SINON5
+; iffaux SINON_2
 pop ax
 cmp ax,0
-je SINON5
+je SINON_2
 
 ; iconst 1
 push word ptr 1
@@ -136,26 +109,55 @@ push word ptr 1
 pop ax
 mov word ptr [bp-2],ax
 
-;goto FSI5
-jmp FSI5
+; iconst 0
+push word ptr 0
 
-SINON5:
-FSI5:
+;iffaux SINON_2_1
+pop ax
+cmp ax,0
+je SINON_2_1
 
-;goto FSI4
-jmp FSI4
+; iconst 0
+push word ptr 0
 
-SINON4:
-FSI4:
+; istore -2
+pop ax
+mov word ptr [bp-2],ax
 
-;goto FSI3
-jmp FSI3
+; iconst -1
+push word ptr -1
 
-SINON3:
-FSI3:
+;iffaux SINON_2_1_1
+pop ax
+cmp ax,0
+je SINON_2_1_1
+
+; iconst 1
+push word ptr 1
+
+; istore -2
+pop ax
+mov word ptr [bp-2],ax
+
+;goto FSI_2_1_1
+jmp FSI_2_1_1
+
+SINON_2_1_1:
+FSI_2_1_1:
+
+;goto FSI_2_1
+jmp FSI_2_1
+
+SINON_2_1:
+FSI_2_1:
+
+;goto FSI_2
+jmp FSI_2
+
+SINON_2:
+FSI_2:
 
 ; queue
 nop
 EXITCODE
 END debut
-

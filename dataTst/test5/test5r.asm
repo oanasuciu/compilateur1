@@ -34,10 +34,10 @@ push -1
 jmp $+4
 push 0
 
-;iffaux SINON1
+;iffaux SINON_1
 pop ax
 cmp ax,0
-je SINON1
+je SINON_1
 
 ; iconst 2
 push word ptr 2
@@ -46,11 +46,11 @@ push word ptr 2
 pop ax
 mov word ptr [bp-2],ax
 
-;goto FSI1
-jmp FSI1
+;goto FSI_1
+jmp FSI_1
 
-SINON1:
-FSI1:
+SINON_1:
+FSI_1:
 
 ;iload -2
 push word ptr [bp-2]

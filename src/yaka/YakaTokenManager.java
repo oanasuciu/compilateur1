@@ -10,8 +10,8 @@ import concept.ident.IdVar;
 import concept.ident.TabIdent;
 import concept.affectation.Affectation;
 import concept.declaration.Declaration;
-import concept.iteration.Iteration;
-import concept.conditionnelle.Conditionnelle;
+import concept.controle.iteration.Iteration;
+import concept.controle.conditionnelle.Conditionnelle;
 import utils.FilenameUtils;
 import yaka.Constante;
 

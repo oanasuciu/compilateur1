@@ -4,7 +4,6 @@ import java.io.*;
 import org.junit.Test;
   
 import yaka.Yaka;
-import static org.junit.Assert.*;
 
 public class TestsDeclarations {
 	
