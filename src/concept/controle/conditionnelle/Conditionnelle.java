@@ -1,13 +1,20 @@
 package concept.controle.conditionnelle;
 
 import concept.controle.StructureControle;
+import concept.ident.Ident;
+import yaka.Constante;
 import yaka.Yaka;
 
 public class Conditionnelle extends StructureControle {
 
 	public void alors() {
 		incIteration();
-		Yaka.yvm.iffaux("SINON" + (this.stringNumerotation()));
+		Ident id = Yaka.expression.recupereTete();
+		if (id.getType() == Constante.BOOLEEN){
+			Yaka.yvm.iffaux("SINON"+(this.stringNumerotation()));
+		} else {
+			Yaka.em.expressionNonBooleen(id);
+		}
 	}
 
 	public void sinon() {

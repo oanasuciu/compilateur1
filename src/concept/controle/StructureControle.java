@@ -40,6 +40,7 @@ public class StructureControle {
 	}
 
 	public void reInit() {
+		profondeurIteration = 0;
 		numerotationIteration.clear();
 	}
 }
