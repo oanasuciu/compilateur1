@@ -2,6 +2,7 @@ package concept.ident;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Stack;
 
 import yaka.Yaka;
 
@@ -11,10 +12,12 @@ import yaka.Yaka;
 public class TabIdent {
 	private HashMap<String, Ident> locaux;
 	private HashMap<String, Ident> globaux;
+	private Stack<HashMap<String, Ident>> pileHash = new Stack<HashMap<String, Ident>>(); 
 	
 	public TabIdent() {
 		this.locaux = new HashMap<String, Ident>();
 		this.globaux = new HashMap<String, Ident>();
+		
 	}
 
 	public Ident chercheIdent(String clef) {
@@ -58,5 +61,14 @@ public class TabIdent {
 	
 	public void reInit() {
 		this.locaux.clear();
+	}
+	
+	public void ouvertureFonction(){
+		this.pileHash.add(locaux);
+		this.locaux = new HashMap<String, Ident>();
+	}
+	
+	public void fermetureFonction(){
+		this.locaux = this.pileHash.pop();
 	}
 }
