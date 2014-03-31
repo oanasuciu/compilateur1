@@ -12,15 +12,12 @@ public class YVM {
 	protected String nomFichier;
 	protected OutputStream ficYVM;
 	protected boolean interactif;
-	protected static int[] numerotationIteration;
-	protected static int profondeurIteration = 0;
 
 	public YVM(String nomFichier, boolean interactif) {
 		this.nomFichier = nomFichier;
 		this.interactif = interactif;
 		System.out.println(this.nomFichier + this.getExtension());
 		ficYVM = Ecriture.ouvrir(this.nomFichier + this.getExtension());
-		numerotationIteration = new int[10];
 	}
 	
 	public String getExtension() {
