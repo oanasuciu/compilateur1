@@ -51,7 +51,7 @@ public class Yaka {
     Yaka.entree = new Entree();
     Yaka.expression = new Expression();
     Yaka.sortie = new Sortie();
-    Yaka.tabIdent = new TabIdent(2);
+    Yaka.tabIdent = new TabIdent();
     Yaka.iteration = new Iteration();
     Yaka.conditionnelle = new Conditionnelle();
     java.io.InputStream input;
@@ -100,10 +100,10 @@ public class Yaka {
         	return;
 		}
 		IdVar.reInit();
-        Yaka.ReInit(input);
-        Yaka.conditionnelle.reInit();
-        Yaka.tabIdent.reInit();
-        Yaka.iteration.reInit();
+		Yaka.ReInit(input);
+    	Yaka.iteration.reInit();
+    	Yaka.conditionnelle.reInit();
+    	Yaka.tabIdent.reInit();
         Yaka.yvm = new YVMasm(args[0], !(args.length==2 && args[1] == "1"));
         try {
               Yaka.analyse();
@@ -200,9 +200,32 @@ TOKEN  :
 /**************************************/
 void analyse() : {}
 {
-   (<PROGRAMME> {Yaka.yvm.entete();}) <ident>	
+   (<PROGRAMME> {Yaka.yvm.entete();}) <ident>
+   (declFonction())*
+   <PRINCIPAL>
    bloc()
+   <FPRINCIPAL>
    (<FPROGRAMME> {Yaka.yvm.queue();})
+}
+
+void declFonction() : {}
+{
+	type()
+	<FONCTION>
+	<ident>
+	paramForms()
+	bloc()
+	<FFONCTION>
+}
+
+void paramForms() : {}
+{
+	"(" (paramForm() ("," paramForm())*)? ")"
+}
+
+void paramForm() : {}
+{
+	type() <ident>
 }
 
 void bloc() : {}{
@@ -260,7 +283,12 @@ void suiteInstr() : {}
 
 void instruction() : {}
 {
-	affectation() | lecture() | ecriture() | iteration() | conditionnelle()
+	affectation() | lecture() | ecriture() | iteration() | conditionnelle() | retourne()
+}
+
+void retourne() : {}
+{
+	<RETOURNE> expression()
 }
 
 void affectation() : {}
@@ -317,7 +345,8 @@ void simpleExpr() : {}
    (opAdd() 
    terme() { Yaka.expression.faireOperation(); }
    )*
-} 
+}
+
 void terme() : {}
 {
   facteur() 
@@ -340,9 +369,14 @@ void primaire (): {}
 void valeur () : {}
 {
     (<entier> { Yaka.expression.ajouteValeur(YakaTokenManager.entierLu); })
-  | (<ident> { Yaka.expression.ajouteValeur(YakaTokenManager.identLu); })
+  | (<ident> (argumentsFonction())? { Yaka.expression.ajouteValeur(YakaTokenManager.identLu); })
   | (<VRAI> { Yaka.expression.ajouteValeur(true);})
   | (<FAUX> { Yaka.expression.ajouteValeur(false); })
+}
+
+void argumentsFonction() : {}
+{
+	"(" (expression() ("," expression())*)? ")"
 }
 
 void opRel() : {}
