@@ -9,22 +9,25 @@ import yaka.Yaka;
  * TODO: Documenter cette fonction, notamment : qu'est-ce qu'elle renvoie quand pas d'élément trouvé ?
  */
 public class TabIdent {
-	private HashMap<String, Ident> table;
-
-	public TabIdent(int taille) {
-		this.table = new HashMap<String, Ident>(taille);
+	private HashMap<String, Ident> locaux;
+	private HashMap<String, Ident> globaux;
+	
+	public TabIdent() {
+		this.locaux = new HashMap<String, Ident>();
+		this.globaux = new HashMap<String, Ident>();
 	}
 
 	public Ident chercheIdent(String clef) {
-		return table.get(clef);
+		return locaux.get(clef);
 	}
+	
 
 	public boolean existeIdent(String clef) {
-		return table.containsKey(clef);
+		return locaux.containsKey(clef);
 	}
 
 	public void rangeIdent(String clef, Ident id) {
-		Ident oldIdent = table.put(clef, id);
+		Ident oldIdent = locaux.put(clef, id);
 		// oldIdent contient l'ancienne valeur qui était dans le HashMap à cette clef
 		// si elle n'est pas nulle, c'est qu'on écrase une Ident !
 		if(oldIdent != null) {
@@ -34,7 +37,7 @@ public class TabIdent {
 	
 	public int nbVar(){
 		int cpt=0;
-		Iterator<Ident> i = table.values().iterator();
+		Iterator<Ident> i = locaux.values().iterator();
 		while (i.hasNext()){
 			Ident id = i.next();
 			if(id.isVar()) {
@@ -50,10 +53,10 @@ public class TabIdent {
 
 	@Override
 	public String toString() {
-		return "TabIdent [table=" + table + "]";
+		return "TabIdent [table=" + locaux + "]";
 	}
 	
 	public void reInit() {
-		this.table.clear();
+		this.locaux.clear();
 	}
 }
