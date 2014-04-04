@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import utils.Ecriture;
 import concept.expression.Expression;
 import concept.expression.operation.Operateur;
+import concept.fonction.Fonction;
 import concept.ident.Ident;
 
 public class ErreurManager {
@@ -122,9 +123,32 @@ public class ErreurManager {
 		else {
 			expr = "constante";
 		}
-		System.out.println("L'expression pour l'itération n'est pas booléenne");
+		System.out.println("L'expression pour l'itération n'est pas booléenne.");
 		System.out.println("         Expression : "+expr+" de type " + id.getType().getNom());
-		Ecriture.ecrireStringln(this.fichierErreur, "L'expression pour l'itération n'est pas booléenne");
+		Ecriture.ecrireStringln(this.fichierErreur, "L'expression pour l'itération n'est pas booléenne.");
 		Ecriture.ecrireStringln(this.fichierErreur, "         Expression : "+expr+" de type " + id.getType().getNom());
+	}
+	
+	public void nbParamInvalide(Fonction fonc, int nbParamEntres) {
+		this.ecritInfoBase(false);
+		System.out.println("Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
+		System.out.println("La fonction " + fonc.getNom() + " a besoin de " + fonc.getParam().size() + "paramètres.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
+		Ecriture.ecrireStringln(this.fichierErreur, "La fonction " + fonc.getNom() + " a besoin de " + fonc.getParam().size() + "paramètres.");
+	}
+	
+	public void fonctionInexistante(String fonction) {
+		this.ecritInfoBase(false);
+		System.out.println("Fonction \"" + fonction + "\" inexistante.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Fonction \"" + fonction + "\" inexistante.");
+	}
+	
+	public void typeParamInvalide(Fonction fonc, Ident id) {
+		this.ecritInfoBase(false);
+		System.out.println("La fonction doit recevoir des paramètre de type : ");
+		Ecriture.ecrireStringln(this.fichierErreur, "La fonction doit recevoir des paramètre de type : ");
+		for(Type t : fonc.getParam()){System.out.println(t +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
+		System.out.println("Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
 	}
 }
