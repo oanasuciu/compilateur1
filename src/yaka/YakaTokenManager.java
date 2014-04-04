@@ -10,6 +10,7 @@ import concept.ident.IdVar;
 import concept.ident.TabIdent;
 import concept.affectation.Affectation;
 import concept.declaration.Declaration;
+import concept.fonction.FonctionManager;
 import concept.controle.iteration.Iteration;
 import concept.controle.conditionnelle.Conditionnelle;
 import utils.FilenameUtils;
@@ -18,8 +19,9 @@ import yaka.Constante;
 /** Token Manager. */
 public class YakaTokenManager implements YakaConstants
 {
- public static String identLu,chaineLue;
- public static int entierLu;
+  public static String identLu, chaineLue;
+
+  public static int entierLu;
 
   /** Debug output. */
   public static  java.io.PrintStream debugStream = System.out;
@@ -941,7 +943,7 @@ static void SkipLexicalActions(Token matchedToken)
    {
       case 7 :
          image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-              SwitchTo(DEFAULT);
+    SwitchTo(DEFAULT);
          break;
       default :
          break;
@@ -953,15 +955,15 @@ static void TokenLexicalActions(Token matchedToken)
    {
       case 36 :
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-          entierLu = Integer.parseInt(image.toString());
+    entierLu = Integer.parseInt(image.toString());
          break;
       case 38 :
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-         identLu =image.toString();
+    identLu = image.toString();
          break;
       case 39 :
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-          chaineLue = image.toString();
+    chaineLue = image.toString();
          break;
       default :
          break;

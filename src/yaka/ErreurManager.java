@@ -2,6 +2,7 @@
 
 import java.io.OutputStream;
 
+import type.Type;
 import utils.Ecriture;
 import concept.expression.Expression;
 import concept.expression.operation.Operateur;
@@ -129,12 +130,12 @@ public class ErreurManager {
 		Ecriture.ecrireStringln(this.fichierErreur, "         Expression : "+expr+" de type " + id.getType().getNom());
 	}
 	
-	public void nbParamInvalide(Fonction fonc, int nbParamEntres) {
+	public void nbParamInvalide(Fonction fonc) {
 		this.ecritInfoBase(false);
 		System.out.println("Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
-		System.out.println("La fonction " + fonc.getNom() + " a besoin de " + fonc.getParam().size() + "paramètres.");
+		System.out.println("La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");
 		Ecriture.ecrireStringln(this.fichierErreur, "Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
-		Ecriture.ecrireStringln(this.fichierErreur, "La fonction " + fonc.getNom() + " a besoin de " + fonc.getParam().size() + "paramètres.");
+		Ecriture.ecrireStringln(this.fichierErreur, "La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");
 	}
 	
 	public void fonctionInexistante(String fonction) {
@@ -147,7 +148,7 @@ public class ErreurManager {
 		this.ecritInfoBase(false);
 		System.out.println("La fonction doit recevoir des paramètre de type : ");
 		Ecriture.ecrireStringln(this.fichierErreur, "La fonction doit recevoir des paramètre de type : ");
-		for(Type t : fonc.getParam()){System.out.println(t +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
+		for(Ident t : fonc.getParams()){System.out.println(t.getType() +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
 		System.out.println("Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
 		Ecriture.ecrireStringln(this.fichierErreur, "Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
 	}

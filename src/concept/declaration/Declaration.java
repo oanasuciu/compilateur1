@@ -81,4 +81,8 @@ public class Declaration {
 		this.identCourante.setType(id.type);
 		this.identCourante.setValeur(id.valeur);
 	}
+	
+	public Type getTypeCourant() {
+		return this.typeCourant;
+	}
 }
