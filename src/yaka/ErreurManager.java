@@ -138,10 +138,10 @@ public class ErreurManager {
 		Ecriture.ecrireStringln(this.fichierErreur, "La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");
 	}
 	
-	public void fonctionInexistante(String fonction) {
+	public void fonctionInexistante(String fonc) {
 		this.ecritInfoBase(false);
-		System.out.println("Fonction \"" + fonction + "\" inexistante.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Fonction \"" + fonction + "\" inexistante.");
+		System.out.println("Fonction \"" + fonc + "\" inexistante.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Fonction \"" + fonc + "\" inexistante.");
 	}
 	
 	public void typeParamInvalide(Fonction fonc, Ident id) {
@@ -151,5 +151,12 @@ public class ErreurManager {
 		for(Ident t : fonc.getParams()){System.out.println(t.getType() +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
 		System.out.println("Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
 		Ecriture.ecrireStringln(this.fichierErreur, "Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
+	}
+
+	public void ecraseFonction(String fonc) {
+		this.ecritInfoBase(true);
+		System.out.println("WARNING: La fonction \"" + fonc + "\" a été re-déclaré.");
+		Ecriture.ecrireStringln(this.fichierErreur, "WARNING: La fonciton \"" + fonc + "\" a été re-déclaré.");
+		
 	}
 }
