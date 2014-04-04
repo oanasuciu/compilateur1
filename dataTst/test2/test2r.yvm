@@ -1,6 +1,7 @@
 entete
+main :
 ; truc truc
-ouvrePrinc 14
+ouvbloc 14
 iconst 10
 iconst 10
 iconst 2

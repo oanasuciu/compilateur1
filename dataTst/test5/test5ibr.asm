@@ -8,9 +8,10 @@ extrn ecrch:proc, ligsuiv:proc
 debut:
 STARTUPCODE
 
-; ouvrePrinc 2
-mov bp,sp
-sub sp,2
+main :
+
+; ouvbloc 2
+enter 2,0
 
 ; iconst 4
 push word ptr 4

@@ -1,4 +1,5 @@
 PROGRAMME max
+PRINCIPAL
 CONST
 	aa=10,
 	ba=VRAI,
@@ -9,4 +10,5 @@ VAR BOOLEEN b1,b2;
 	c2 = c1+3*c1-aa;
 	b1 = ba OU VRAI;
 	b2 = (c1<=(c2+4));
+FPRINCIPAL
 FPROGRAMME

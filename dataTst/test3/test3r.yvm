@@ -1,5 +1,6 @@
 entete
-ouvrePrinc 2
+main :
+ouvbloc 2
 ecrireChaine " x= "
 iconst 2
 ecrireEnt
