@@ -176,4 +176,24 @@ public class YVM {
 	public void etiquette(String etiquette) {
 		Ecriture.ecrireStringln(ficYVM, etiquette+":");
 	}
+	
+	public void ouvbloc(int val) {
+		Ecriture.ecrireStringln(ficYVM, "ouvbloc "+val);
+	}
+	
+	public void fermebloc(int val) {
+		Ecriture.ecrireStringln(ficYVM, "fermebloc "+val);
+	}
+	
+	public void ireturn(int val) {
+		Ecriture.ecrireStringln(ficYVM, "ireturn "+val);
+	}
+	
+	public void reserveRetour() {
+		Ecriture.ecrireStringln(ficYVM, "reserveRetour");
+	}
+	
+	public void call(String nomFonction) {
+		Ecriture.ecrireStringln(ficYVM, "call "+nomFonction);
+	}
 }

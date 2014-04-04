@@ -17,7 +17,7 @@ public class TestsConditionnelle {
 		// comparaison sortie EXE
 		CompareUtils.compare("dataTst\\test5\\test5r.out", "dataTst\\test5\\TEST5S.OUT");
 	}
-	
+	 
 	@Test
 	public void test5imb() throws IOException {
 		Yaka.main(new String[] {"dataTst\\test5\\test5ibs", "1"});

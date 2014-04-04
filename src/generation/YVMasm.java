@@ -354,4 +354,36 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(ficYVM, "cmp ax,0");
 		Ecriture.ecrireStringln(ficYVM, "je "+etiquette);
 	}
+	
+	public void ouvbloc(int val) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; ouvbloc "+val);
+		Ecriture.ecrireStringln(ficYVM, "enter "+val+",0");
+	}
+	
+	public void fermebloc(int val) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; fermebloc "+val);
+		Ecriture.ecrireStringln(ficYVM, "leave");
+		Ecriture.ecrireStringln(ficYVM, "ret "+val);
+	}
+	
+	public void ireturn(int val) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; ireturn "+val);
+		Ecriture.ecrireStringln(ficYVM, "pop ax");
+		Ecriture.ecrireStringln(ficYVM, "mov [bp+"+val+"],ax");
+	}
+	
+	public void reserveRetour() {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; reserveRetour ");
+		Ecriture.ecrireStringln(ficYVM, "sub sp,2");
+	}
+	
+	public void call(String nomFonction) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; call "+nomFonction);
+		Ecriture.ecrireStringln(ficYVM, "call "+nomFonction);
+	}
 }
