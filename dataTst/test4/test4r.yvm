@@ -1,5 +1,6 @@
 entete
-ouvrePrinc 4
+main:
+ouvbloc 4
 ecrireChaine "n="
 iconst 1
 istore -4

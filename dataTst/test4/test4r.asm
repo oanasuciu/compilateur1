@@ -8,9 +8,10 @@ extrn ecrch:proc, ligsuiv:proc
 debut:
 STARTUPCODE
 
-; ouvrePrinc 4
-mov bp,sp
-sub sp,4
+main: 
+
+; ouvbloc 4
+enter 4,0
 
 ; ecrireChaine "n="
 .DATA

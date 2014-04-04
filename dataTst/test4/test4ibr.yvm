@@ -1,5 +1,6 @@
 entete
-ouvrePrinc 8
+main:
+ouvbloc 8
 iconst 0
 istore -4
 iconst 0
