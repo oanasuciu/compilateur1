@@ -2,37 +2,45 @@ package concept.fonction;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Stack;
 
 import concept.ident.Ident;
 import yaka.Constante;
 import yaka.Yaka;
 
 public class FonctionManager {
-	private Fonction fonctionCourante;
-	private Iterator<Ident> iteratorParamsAttendus;
+	private Stack<Fonction> pileFonctionCourante;
 	
 	public void declareFonctionIdent(String nom) {
-		this.fonctionCourante = new Fonction();
-		this.fonctionCourante.setNom(nom);
-		this.fonctionCourante.setRetour(Yaka.declaration.getTypeCourant());
+		Fonction fonctionCourante = new Fonction();
+		fonctionCourante.setNom(nom);
+		fonctionCourante.setRetour(Yaka.declaration.getTypeCourant());
+		pileFonctionCourante.push(fonctionCourante);
 		
 	}
 	
 	public void declareFonctionParam(String nom) {
-		this.fonctionCourante.ajouterParam(nom, Yaka.declaration.getTypeCourant());
+		Fonction fonctionCourante = pileFonctionCourante.peek();
+		fonctionCourante.ajouterParam(nom, Yaka.declaration.getTypeCourant());
 	}
 	
 	/**
 	 * Méthode chargée de mettre les bons offsets aux paramètres
 	 */
 	public void declareFonctionParamFin() {
-		this.fonctionCourante.setOffset();
-		Yaka.tabIdent.rangeFonction(this.fonctionCourante);
+		Fonction fonctionCourante = pileFonctionCourante.peek();
+		fonctionCourante.setOffset();
+		Yaka.tabIdent.rangeFonction(fonctionCourante);
+	}
+	
+	public void declareFonctionFin() {
+		pileFonctionCourante.pop();
 	}
 	
 	public void retourne() {
+		Fonction fonctionCourante = pileFonctionCourante.peek();
 		Ident id = Yaka.expression.recupereTete();
-		if (id.getType() == this.fonctionCourante.getRetour() || id.getType() == Constante.ERREUR) {
+		if (id.getType() == fonctionCourante.getRetour() || id.getType() == Constante.ERREUR) {
 			Yaka.yvm.ireturn(0);
 		}
 	}
@@ -45,27 +53,28 @@ public class FonctionManager {
 		else {
 			Yaka.yvm.reserveRetour();
 		}
-		this.fonctionCourante = f;
-		this.iteratorParamsAttendus = f.getParams().iterator();
+		pileFonctionCourante.push(f);
+		f.initVerifParam();
 	}
 	
 	public void appelleFonctionParam() {
 		Ident id = Yaka.expression.recupereTete();
 		if(!this.iteratorParamsAttendus.hasNext()) {
-			Yaka.em.nbParamInvalide(this.fonctionCourante);
+			Yaka.em.nbParamInvalide(pileFonctionCourante.peek());
 			return;
 		}
 		Ident idAttendu = this.iteratorParamsAttendus.next();
 		if(idAttendu.getType() != id.getType() && id.getType() != Constante.ERREUR) {
-			Yaka.em.typeParamInvalide(this.fonctionCourante, idAttendu);
+			Yaka.em.typeParamInvalide(pileFonctionCourante.peek(), idAttendu);
 		}
 	}
 	
 	public void appelleFonctionFin() {
+		Fonction fonctionCourante = pileFonctionCourante.pop();
 		if(this.iteratorParamsAttendus.hasNext()) {
 			Yaka.em.nbParamInvalide(fonctionCourante);
 			return;
 		}
-		Yaka.yvm.call(this.fonctionCourante.getNom());
+		Yaka.yvm.call(fonctionCourante.getNom());
 	}
 }

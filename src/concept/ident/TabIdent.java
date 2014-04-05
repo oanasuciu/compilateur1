@@ -2,7 +2,6 @@ package concept.ident;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Stack;
 
 import concept.fonction.Fonction;
 import yaka.Yaka;

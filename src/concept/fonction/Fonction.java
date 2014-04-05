@@ -12,6 +12,7 @@ public class Fonction {
 	private Type retour;
 	private ArrayList<Ident> params;
 	private int rangParam;
+	private Iterator<Ident> iteratorParamsAttendus;
 
 	public Fonction() {
 		super();
@@ -52,5 +53,9 @@ public class Fonction {
 
 	public ArrayList<Ident> getParams() {
 		return this.params;
+	}
+
+	public void initVerifParam() {
+		this.iteratorParamsAttendus = this.getParams().iterator();
 	}
 }

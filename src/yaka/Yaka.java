@@ -164,6 +164,7 @@ public class Yaka implements YakaConstants {
     paramForms();
     bloc();
     jj_consume_token(FFONCTION);
+                Yaka.fonction.declareFonctionFin();
   }
 
   static final public void paramForms() throws ParseException {
