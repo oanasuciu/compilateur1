@@ -88,7 +88,7 @@ public class Expression {
 		}
 		ArrayList<IdVar> params = fonction.getParams();
 		if(params == null) {
-			Yaka.em.identEstPasUneFonction(fonction);
+			Yaka.em.fonction.identEstPasUneFonction(fonction);
 			this.pileParams.add(new ArrayList<IdVar>());
 			this.pileNbParams.add(-1);
 			return;
@@ -114,7 +114,7 @@ public class Expression {
 		Ident identFournie = Yaka.expression.recupereTete();
 		Ident identAttendue = params.get(paramIndex);
 		if(identFournie.getType() != Constante.ERREUR && identFournie.getType() != identAttendue.getType()) {
-			Yaka.em.typeParamInvalide(identAttendue, identFournie);
+			Yaka.em.fonction.typeParamInvalide(identAttendue, identFournie);
 		}
 		this.pileNbParams.push(++paramIndex);
 	}
@@ -123,7 +123,7 @@ public class Expression {
 		int paramVerifie = this.pileNbParams.pop();
 		ArrayList<IdVar> params = this.pileParams.pop();
 		if(params.size() != paramVerifie) {
-			Yaka.em.nbParamInvalide(params.size(), paramVerifie);
+			Yaka.em.fonction.nbParamInvalide(params.size(), paramVerifie);
 		}
 		Ident fonction = this.pileValeur.peek();
 		Yaka.yvm.call(fonction.getNom());

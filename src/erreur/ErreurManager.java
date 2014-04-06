@@ -5,20 +5,32 @@ import java.io.OutputStream;
 import utils.Ecriture;
 import yaka.SimpleCharStream;
 import concept.affectation.ErreurAffectation;
+import concept.controle.conditionnelle.ErreurConditionnelle;
+import concept.controle.iteration.ErreurIteration;
 import concept.declaration.ErreurDeclaration;
+import concept.expression.ErreurExpression;
 import concept.expression.operation.Operateur;
+import concept.fonction.ErreurFonction;
 import concept.ident.Ident;
 
 public class ErreurManager {
 	public OutputStream fichierErreur;
 	public ErreurAffectation affectation;
 	public ErreurDeclaration declaration;
+	public ErreurExpression expression;
+	public ErreurIteration iteration;
+	public ErreurConditionnelle conditionnelle;
+	public ErreurFonction fonction;
 	private boolean hasErreur = false;
 
 	public ErreurManager(String nomFichier) {
 		this.fichierErreur = Ecriture.ouvrir(nomFichier+".err");
 		this.affectation = new ErreurAffectation(this);
 		this.declaration = new ErreurDeclaration(this);
+		this.expression = new ErreurExpression(this);
+		this.iteration = new ErreurIteration(this);
+		this.conditionnelle = new ErreurConditionnelle(this);
+		this.fonction = new ErreurFonction(this);
 	}
 
 	public int getNumLigne() {
@@ -106,22 +118,6 @@ public class ErreurManager {
 		Ecriture.ecrireStringln(this.fichierErreur, "         Expression : "+expr+" de type " + id.getType().getNom());
 	}
 	
-	public void fonctionInexistante(String fonc) {
-		this.ecritInfoBase(false);
-		System.out.println("Fonction \"" + fonc + "\" inexistante.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Fonction \"" + fonc + "\" inexistante.");
-	}
-	
-	public void typeParamInvalide(Ident identAttendue, Ident id) {
-		System.out.println("typeParamInvalide");
-		// TODO
-		/*this.ecritInfoBase(false);
-		System.out.println("La fonction doit recevoir des paramètre de type : ");
-		Ecriture.ecrireStringln(this.fichierErreur, "La fonction doit recevoir des paramètre de type : ");
-		for(Ident t : identAttendue.getParams()){System.out.println(t.getType() +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
-		System.out.println("Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");*/
-	}
 
 	public void lireEntierSurNonEntier(Ident id) {
 		this.ecritInfoBase(false);
@@ -130,26 +126,5 @@ public class ErreurManager {
 		Ecriture.ecrireStringln(this.fichierErreur, "Appel de LIRE sur une variable de type différent d'entier.");
 		Ecriture.ecrireStringln(this.fichierErreur, "         Variable "+id.getNom()+" de type "+id.getType().getNom());
 	}
-
-	public void retourInvalide(Ident identAttendue, Ident identFournie) {
-		System.out.println("retourInvalide");
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void nbParamInvalide(int size, int paramVerifie) {
-		System.out.println("nbParamInvalide");
-		// TODO Auto-generated method stub
-		/*this.ecritInfoBase(false);
-		System.out.println("Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
-		System.out.println("La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
-		Ecriture.ecrireStringln(this.fichierErreur, "La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");*/
-	}
-
-	public void identEstPasUneFonction(Ident fonction) {
-		System.out.println("identEstPasUneFonction");
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
