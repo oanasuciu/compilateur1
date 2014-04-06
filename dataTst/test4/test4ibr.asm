@@ -53,7 +53,7 @@ push 0
 
 ;iffaux FAIT_1
 pop ax
-cmp ax, 0
+cmp ax,0
 je FAIT_1
 
 ; iconst 0
@@ -82,7 +82,7 @@ push 0
 
 ;iffaux FAIT_1_1
 pop ax
-cmp ax, 0
+cmp ax,0
 je FAIT_1_1
 
 ;iload -2
@@ -150,7 +150,7 @@ push word ptr 0
 
 ;iffaux FAIT_2
 pop ax
-cmp ax, 0
+cmp ax,0
 je FAIT_2
 
 FAIRE_2_1:
@@ -160,7 +160,7 @@ push word ptr 0
 
 ;iffaux FAIT_2_1
 pop ax
-cmp ax, 0
+cmp ax,0
 je FAIT_2_1
 
 FAIRE_2_1_1:
@@ -170,7 +170,7 @@ push word ptr 0
 
 ;iffaux FAIT_2_1_1
 pop ax
-cmp ax, 0
+cmp ax,0
 je FAIT_2_1_1
 
 ; aLaLigne

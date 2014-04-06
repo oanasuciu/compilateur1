@@ -8,7 +8,7 @@ extrn ecrch:proc, ligsuiv:proc
 debut:
 STARTUPCODE
 
-main :
+main:
 
 ; ouvreBloc 14
 enter 14,0

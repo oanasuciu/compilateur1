@@ -24,9 +24,8 @@ public class Iteration extends StructureControle {
 	}
 	
 	public void fait(){
-		decIteration();
 		Yaka.yvm.goTo("FAIRE" + (this.stringNumerotation()));
 		Yaka.yvm.etiquette("FAIT" + (this.stringNumerotation()));
-		
+		decIteration();
 	}
 }

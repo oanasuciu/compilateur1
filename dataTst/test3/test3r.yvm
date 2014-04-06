@@ -1,5 +1,5 @@
 entete
-main :
+main:
 ouvreBloc 2
 ecrireChaine " x= "
 iconst 2

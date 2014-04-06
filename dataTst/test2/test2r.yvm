@@ -1,5 +1,5 @@
 entete
-main :
+main:
 ; truc truc
 ouvreBloc 14
 iconst 10

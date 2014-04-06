@@ -54,7 +54,7 @@ push 0
 
 ;iffaux FAIT_1
 pop ax
-cmp ax, 0
+cmp ax,0
 je FAIT_1
 
 ;iload -2

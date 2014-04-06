@@ -1,5 +1,5 @@
 entete
-main :
+main:
 ouvreBloc 2
 iconst 4
 istore -2
