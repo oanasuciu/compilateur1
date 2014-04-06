@@ -60,7 +60,7 @@ public class IdConst extends Ident {
 
 	@Override
 	public void affectation(Ident partieDroite) {
-		Yaka.em.affectationDansConstante(this);
+		Yaka.em.affectation.affectationDansConstante(this);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class IdConst extends Ident {
 
 	@Override
 	public void lireEntier() {
-		Yaka.em.affectationDansConstante(this);
+		Yaka.em.affectation.affectationDansConstante(this);
 	}
 
 	@Override

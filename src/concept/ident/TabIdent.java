@@ -32,7 +32,7 @@ public class TabIdent {
 		// oldIdent contient l'ancienne valeur qui était dans le HashMap à cette clef
 		// si elle n'est pas nulle, c'est qu'on écrase une Ident !
 		if(oldIdent != null) {
-			Yaka.em.ecraseIdentificateur(clef);
+			Yaka.em.affectation.ecraseIdentificateur(clef);
 		}
 	}
 	
@@ -41,7 +41,7 @@ public class TabIdent {
 		// oldIdent contient l'ancienne valeur qui était dans le HashMap à cette clef
 		// si elle n'est pas nulle, c'est qu'on écrase une Ident !
 		if(oldIdent != null) {
-			Yaka.em.ecraseIdentificateur(clef);
+			Yaka.em.affectation.ecraseIdentificateur(clef);
 		}
 	}
 	

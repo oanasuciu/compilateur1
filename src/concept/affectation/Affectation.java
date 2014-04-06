@@ -21,7 +21,7 @@ public class Affectation {
 	public void faitAffectation() {
 		Ident id = Yaka.expression.recupereTete();
 		if(id == null) {
-			Yaka.em.aucuneValeurAAffecter();
+			Yaka.em.affectation.aucuneValeurAAffecter();
 			return;
 		}
 		this.affecterDans.affectation(id);

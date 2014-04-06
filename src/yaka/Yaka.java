@@ -13,6 +13,7 @@ import concept.declaration.Declaration;
 import concept.fonction.Fonction;
 import concept.controle.iteration.Iteration;
 import concept.controle.conditionnelle.Conditionnelle;
+import erreur.ErreurManager;
 import utils.FilenameUtils;
 import yaka.Constante;
 

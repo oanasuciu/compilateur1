@@ -1,17 +1,24 @@
-﻿package yaka;
+﻿package erreur;
 
 import java.io.OutputStream;
 
 import utils.Ecriture;
+import yaka.SimpleCharStream;
+import concept.affectation.ErreurAffectation;
+import concept.declaration.ErreurDeclaration;
 import concept.expression.operation.Operateur;
 import concept.ident.Ident;
 
 public class ErreurManager {
-	private boolean hasErreur = false;
 	public OutputStream fichierErreur;
+	public ErreurAffectation affectation;
+	public ErreurDeclaration declaration;
+	private boolean hasErreur = false;
 
 	public ErreurManager(String nomFichier) {
 		this.fichierErreur = Ecriture.ouvrir(nomFichier+".err");
+		this.affectation = new ErreurAffectation(this);
+		this.declaration = new ErreurDeclaration(this);
 	}
 
 	public int getNumLigne() {
@@ -33,22 +40,10 @@ public class ErreurManager {
 		Ecriture.ecrireString(this.fichierErreur, "Ligne " + this.getNumLigne() + " : ");
 	}
 
-	public void ecraseIdentificateur(String ident) {
-		this.ecritInfoBase(true);
-		System.out.println("WARNING: L'identificateur \"" + ident + "\" a été re-déclaré.");
-		Ecriture.ecrireStringln(this.fichierErreur, "WARNING: L'identificateur \"" + ident + "\" a été re-déclaré.");
-	}
-
 	public void identificateurInexistant(String ident) {
 		this.ecritInfoBase(false);
 		System.out.println("Identificateur \"" + ident + "\" inexistant.");
 		Ecriture.ecrireStringln(this.fichierErreur, "Identificateur \"" + ident + "\" inexistant.");
-	}
-
-	public void aucuneValeurAAffecter() {
-		this.ecritInfoBase(false);
-		System.out.println("Aucune valeur trouvée pour l'affectation.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Aucune valeur trouvée pour l'affectation.");
 	}
 
 	public void aucuneValeurAEcrire() {
@@ -95,28 +90,6 @@ public class ErreurManager {
 		Ecriture.ecrireStringln(this.fichierErreur, "Opération " + op + " non définie avec ce type :");
 		Ecriture.ecrireStringln(this.fichierErreur, "         Opérande : "+operande+" de type " + id.getType().getNom());
 	}
-
-	public void mauvaisTypeAffectation(Ident id1, Ident id2) {
-		this.ecritInfoBase(false);
-		System.out.println("Affectation non définie entre ces types :");
-		System.out.println("         Affectation dans la variable : " + id1.getNom() + " de type " + id1.getType().getNom());
-		System.out.println("         Depuis le type " + id2.getType().getNom());
-		Ecriture.ecrireStringln(this.fichierErreur, "Affectation non définie entre ces types :");
-		Ecriture.ecrireStringln(this.fichierErreur, "         Affectation dans la variable : " + id1.getNom() + " de type " + id1.getType().getNom());
-		Ecriture.ecrireStringln(this.fichierErreur, "         Depuis le type " + id2.getType().getNom());
-	}
-
-	public void affectationDansConstante(Ident id) {
-		this.ecritInfoBase(false);
-		System.out.println("Tentative d'affectation dans une constante (" + id.getNom() + ").");
-		Ecriture.ecrireStringln(this.fichierErreur, "Tentative d'affectation dans une constante (" + id.getNom() + ").");
-	}
-
-	public void affectationDansFonction(Ident id) {
-		this.ecritInfoBase(false);
-		System.out.println("Tentative d'affectation dans une fonction (" + id.getNom() + ").");
-		Ecriture.ecrireStringln(this.fichierErreur, "Tentative d'affectation dans une fonction (" + id.getNom() + ").");
-	}
 	
 	public void expressionNonBooleen(Ident id){
 		this.ecritInfoBase(false);
@@ -148,23 +121,6 @@ public class ErreurManager {
 		for(Ident t : identAttendue.getParams()){System.out.println(t.getType() +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
 		System.out.println("Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
 		Ecriture.ecrireStringln(this.fichierErreur, "Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");*/
-	}
-
-	public void ecraseFonction(String fonc) {
-		this.ecritInfoBase(true);
-		System.out.println("WARNING: La fonction \"" + fonc + "\" a été re-déclaré.");
-		Ecriture.ecrireStringln(this.fichierErreur, "WARNING: La fonciton \"" + fonc + "\" a été re-déclaré.");
-		
-	}
-
-	public void affectationMauvaisIdentificateurDansConstante(String partieGauche, Ident partieDroite) {
-		this.ecritInfoBase(false);
-		System.out.println("Seules les constantes peuvent être utilisées en partie droite lors de la déclaration de constante.");
-		System.out.println("         Affectation dans la constante : " + partieGauche);
-		System.out.println("         Depuis l'identificateur "+partieDroite.getNom()+" de type " + partieDroite.getTypeIdent());
-		Ecriture.ecrireStringln(this.fichierErreur, "Seules les constantes peuvent être utilisées en partie droite lors de la déclaration de constante.");
-		Ecriture.ecrireStringln(this.fichierErreur, "         Affectation dans la constante : " + partieGauche);
-		Ecriture.ecrireStringln(this.fichierErreur, "         Depuis l'identificateur "+partieDroite.getNom()+" de type " + partieDroite.getTypeIdent());
 	}
 
 	public void lireEntierSurNonEntier(Ident id) {

@@ -52,7 +52,7 @@ public class IdVar extends Ident {
 	public void affectation(Ident partieDroite) {
 		// on regarde si les types sont compatibles :
 		if(partieDroite.getType() != Constante.ERREUR && this.getType() != Constante.ERREUR && partieDroite.getType() != this.getType()) {
-			Yaka.em.mauvaisTypeAffectation(this, partieDroite);
+			Yaka.em.affectation.mauvaisTypeAffectation(this, partieDroite);
 			return;
 		}
 		Yaka.yvm.istore(this.offset);
