@@ -1,7 +1,7 @@
 entete
 main :
 ; truc truc
-ouvbloc 14
+ouvreBloc 14
 iconst 10
 iconst 10
 iconst 2

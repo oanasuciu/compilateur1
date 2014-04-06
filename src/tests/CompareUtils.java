@@ -23,14 +23,14 @@ public class CompareUtils {
 		String l2;   //variable pour contenir la ligne l2
 		while(true){
 			while((l1 = fichierReference.readLine()) != null) {
+				l1 = l1.trim();
 				if(l1.length() > 0 && l1.charAt(0) != ';') {
-					l1 = l1.trim();
 					break;
 				}
 			}
 			while((l2 = fichierCompilation.readLine()) != null) {
+				l2 = l2.trim();
 				if(l2.length() > 0 && l2.charAt(0) != ';') {
-					l2 = l2.trim();
 					break;
 				}
 			}

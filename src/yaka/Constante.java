@@ -1,6 +1,9 @@
 package yaka;
 
-import type.*;
+import type.Type;
+import type.TypeBooleen;
+import type.TypeEntier;
+import type.TypeErreur;
 
 public class Constante {
 	/*

@@ -1,12 +1,12 @@
 package concept.ident;
 
-import generation.YVM;
+import java.util.ArrayList;
+
 import type.Type;
 
 public abstract class Ident {
 	protected String nom;
 	public Type type;
-	public int valeur;
 
 	public Ident(String nom) {
 		this.nom = nom;
@@ -21,12 +21,6 @@ public abstract class Ident {
 		this.type = type;
 	}
 
-	public Ident(String nom, Type type, int valeur) {
-		this.nom = nom;
-		this.type = type;
-		this.valeur = valeur;
-	}
-
 	public Type getType() {
 		return type;
 	}
@@ -38,32 +32,33 @@ public abstract class Ident {
 	public String getNom() {
 		return nom;
 	}
-
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
 	/**
-	 * Getter pour l'attribut valeur
+	 * Donne le nom du type d'Ident
 	 * 
-	 * @return valeur de l'identificateur courant
+	 * @return le nom du type d'Ident (fonction, variable, constante)
 	 */
-	public int getValeur() {
-		return this.valeur;
-	}
-
-	public void setValeur(int valeur) {
-		this.valeur = valeur;
-	}
-
-	public void setValeur(boolean valeur) {
-		this.valeur = (valeur) ? -1 : 0;
-	}
+	abstract public String getTypeIdent();
 	
 	abstract public boolean isVar();
 	
 	/**
-	 * A partir d'une instance de YVM, appelle la bonne opération (iconst, iload)
-	 * 
-	 * @param yvm
-	 * 			L'instance de la YVM sur laquelle appeler l'opération
-	 * 
+	 * Appelle la bonne opération pour charger une valeur (iconst, iload)
 	 */
-	abstract public void visiteYVM(YVM yvm);
+	abstract public void chargeValeur();
+	
+	/**
+	 * Appelle la bonne opération pour affecter dans une Ident (istore), ou signale une erreur
+	 */
+	abstract public void affectation(Ident partieDroite);
+
+	abstract public Ident dupliqueConstante();
+	
+	abstract public void lireEntier();
+
+	abstract public ArrayList<IdVar> getParams();
 }

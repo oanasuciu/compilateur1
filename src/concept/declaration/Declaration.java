@@ -1,18 +1,26 @@
 package concept.declaration;
 
-import concept.ident.IdVar;
-import concept.ident.Ident;
-import concept.ident.IdConst;
 import type.Type;
 import yaka.Constante;
 import yaka.Yaka;
+import concept.ident.IdConst;
+import concept.ident.IdFonction;
+import concept.ident.IdVar;
+import concept.ident.Ident;
 
 public class Declaration {
 	/**
 	 * Le dernier type lu dans la grammaire
 	 */
 	private Type typeCourant;
-	private Ident identCourante;
+	/**
+	 * Le dernier identificateur lu dans la grammaire
+	 */
+	private String identCourant;
+	/**
+	 * La fonction dans laquelle on se trouve
+	 */
+	private IdFonction fonctionCourante;
 
 	/**
 	 * Déclaration d'une nouvelle variable
@@ -24,65 +32,87 @@ public class Declaration {
 		Ident id = new IdVar(nom, this.typeCourant);
 		Yaka.tabIdent.rangeIdent(nom, id);
 	}
-
-	/**
-	 * 
-	 * @param nom
-	 * @param valeur
-	 */
-	public void nouvelleConstante(String nom) {
-		Ident id = new IdConst(nom);
-		Yaka.tabIdent.rangeIdent(nom, id);
-		this.identCourante = id;
-	}
-
-	/**
-	 * Met à jour le dernier type lu dans la grammaire
-	 * 
-	 * @param type
-	 *            Une constante représentant le type (entier ou booléen)
-	 */
-	public void majType(Type type) {
-		this.typeCourant = type;
-	}
-
-	/**
-	 * Met à jour la valeur de l'Ident courante
-	 * 
-	 * @param valeur la nouvelle valeur
-	 */
-	public void majValeur(int valeur) {
-		this.identCourante.setType(Constante.ENTIER);
-		this.identCourante.setValeur(valeur);
-	}
 	
-	/**
-	 * Met à jour la valeur de l'Ident courante
-	 * 
-	 * @param valeur la nouvelle valeur
-	 */
-	public void majValeur(boolean valeur) {
-		this.identCourante.setType(Constante.BOOLEEN);
-		this.identCourante.setValeur(valeur);
-	}
-	
-	/**
-	 * Met à jour la valeur de l'Ident courante
-	 * 
-	 * @param ident l'identificateur de l'ident dont il faut prendre la valeur
-	 */
-	public void majValeur(String ident) {
+	public void nouvelleConstante(String ident) {
 		Ident id = Yaka.tabIdent.chercheIdent(ident);
 		if(id == null) {
 			Yaka.em.identificateurInexistant(ident);
-			this.identCourante.setType(Constante.ERREUR);
+			Yaka.tabIdent.rangeIdent(this.identCourant, new IdConst(this.identCourant, Constante.ERREUR));
 			return;
 		}
-		this.identCourante.setType(id.type);
-		this.identCourante.setValeur(id.valeur);
+		Ident nouvelId = id.dupliqueConstante();
+		if(nouvelId == null) {
+			Yaka.em.affectationMauvaisIdentificateurDansConstante(this.identCourant, id);
+			Yaka.tabIdent.rangeIdent(this.identCourant, new IdConst(this.identCourant, Constante.ERREUR));
+			return;
+		}
+		nouvelId.setNom(this.identCourant);
+		Yaka.tabIdent.rangeIdent(this.identCourant, nouvelId);
+	}
+	
+	public void nouvelleConstante(int v) {
+		IdConst id = new IdConst(identCourant, Constante.ENTIER);
+		id.setValeur(v);
+		Yaka.tabIdent.rangeIdent(this.identCourant, id);
+	}
+	
+	public void nouvelleConstante(boolean b) {
+		IdConst id = new IdConst(identCourant, Constante.BOOLEEN);
+		id.setValeur(b);
+		Yaka.tabIdent.rangeIdent(this.identCourant, id);
+	}
+	
+	/*
+	 * Déclaration de fonctions
+	 */
+
+	public void blocFonctionDebut() {
+		Yaka.tabIdent.ouvreBloc();
+	}
+	
+	public void fonctionPrincipaleDebut() {
+		Yaka.tabIdent.nettoieLocaux();
+		this.fonctionCourante = null;
+		Yaka.yvm.ouvrePrinc();
+	}
+	
+	public void enteteFonctionDebut(String nom) {
+		Yaka.tabIdent.nettoieLocaux();
+		IdFonction id = new IdFonction(nom, this.getTypeCourant());
+		this.fonctionCourante = id;
+		Yaka.yvm.etiquette(nom);
+	}
+	
+	public void enteteFonctionParam(String nom) {
+		this.fonctionCourante.ajouterParam(nom, this.getTypeCourant());
+	}
+	
+	public void enteteFonctionParamFin() {
+		this.fonctionCourante.setParamsOffset();
+		Yaka.tabIdent.rangeFonction(this.fonctionCourante.getNom(), this.fonctionCourante);
+	}
+	
+	public void declFonctionFin() {
+		Yaka.tabIdent.fermeBloc();
+	}
+	
+	/*
+	 * Getters & Setters
+	 */
+	
+	public IdFonction getFonctionCourante() {
+		return fonctionCourante;
 	}
 	
 	public Type getTypeCourant() {
 		return this.typeCourant;
+	}
+
+	public void setTypeCourant(Type typeCourant) {
+		this.typeCourant = typeCourant;
+	}
+
+	public void setIdentCourant(String identCourant) {
+		this.identCourant = identCourant;
 	}
 }

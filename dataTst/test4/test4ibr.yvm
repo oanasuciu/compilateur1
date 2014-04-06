@@ -1,6 +1,6 @@
 entete
 main:
-ouvbloc 8
+ouvreBloc 8
 iconst 0
 istore -4
 iconst 0

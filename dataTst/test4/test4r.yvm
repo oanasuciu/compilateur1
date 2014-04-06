@@ -1,6 +1,6 @@
 entete
 main:
-ouvbloc 4
+ouvreBloc 4
 ecrireChaine "n="
 iconst 1
 istore -4

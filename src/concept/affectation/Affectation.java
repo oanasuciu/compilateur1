@@ -2,8 +2,8 @@ package concept.affectation;
 
 import yaka.Constante;
 import yaka.Yaka;
+import concept.ident.IdVar;
 import concept.ident.Ident;
-import concept.ident.IdConst;
 
 public class Affectation {
 	private Ident affecterDans;
@@ -13,7 +13,7 @@ public class Affectation {
 		if(id == null) {
 			// identificateur inexistant : gestion de l'erreur
 			Yaka.em.identificateurInexistant(ident);
-			id = new IdConst(Constante.ERREUR);
+			id = new IdVar(Constante.ERREUR);
 		}
 		this.affecterDans = id;
 	}
@@ -24,16 +24,6 @@ public class Affectation {
 			Yaka.em.aucuneValeurAAffecter();
 			return;
 		}
-		// on regarde si les types sont compatibles :
-		if(id.getType() != Constante.ERREUR && this.affecterDans.getType() != Constante.ERREUR && id.getType() != this.affecterDans.getType()) {
-			Yaka.em.mauvaisTypeAffectation(this.affecterDans, id);
-			return;
-		}
-		// on regarde si l'Identificateur auquel on veut affecter la valeur est bien une variable
-		if(this.affecterDans.getType() != Constante.ERREUR && !this.affecterDans.isVar()) {
-			Yaka.em.affectationDansConstante(this.affecterDans);
-			return;
-		}
-		Yaka.yvm.istore(affecterDans.getValeur());
+		this.affecterDans.affectation(id);
 	}
 }

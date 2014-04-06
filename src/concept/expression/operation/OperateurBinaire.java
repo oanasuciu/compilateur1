@@ -1,12 +1,11 @@
 package concept.expression.operation;
 
-import concept.ident.IdConst;
-
 import java.util.Stack;
 
-import concept.ident.Ident;
 import yaka.Constante;
 import yaka.Yaka;
+import concept.ident.IdConst;
+import concept.ident.Ident;
 
 public abstract class OperateurBinaire extends Operateur {
 

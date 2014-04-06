@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import yaka.*;
+import yaka.Yaka;
 
 public class TestsExpressions {
 

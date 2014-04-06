@@ -1,8 +1,8 @@
 ﻿package tests;
-import java.io.*;
+import java.io.IOException;
 
 import org.junit.Test;
-  
+
 import yaka.Yaka;
 
 public class TestsDeclarations {

@@ -10,7 +10,7 @@ import concept.ident.IdVar;
 import concept.ident.TabIdent;
 import concept.affectation.Affectation;
 import concept.declaration.Declaration;
-import concept.fonction.FonctionManager;
+import concept.fonction.Fonction;
 import concept.controle.iteration.Iteration;
 import concept.controle.conditionnelle.Conditionnelle;
 import utils.FilenameUtils;
@@ -35,7 +35,7 @@ public class Yaka implements YakaConstants {
 
   public static Conditionnelle conditionnelle;
 
-  public static FonctionManager fonction;
+  public static Fonction fonction;
 
   public static YVM yvm;
 
@@ -51,7 +51,7 @@ public class Yaka implements YakaConstants {
     Yaka.tabIdent = new TabIdent();
     Yaka.iteration = new Iteration();
     Yaka.conditionnelle = new Conditionnelle();
-    Yaka.fonction = new FonctionManager();
+    Yaka.fonction = new Fonction();
     java.io.InputStream input;
     if (args.length == 1 || args.length == 2)
     {
@@ -150,6 +150,7 @@ public class Yaka implements YakaConstants {
       declFonction();
     }
     jj_consume_token(PRINCIPAL);
+      Yaka.declaration.fonctionPrincipaleDebut();
     bloc();
     jj_consume_token(FPRINCIPAL);
     jj_consume_token(FPROGRAMME);
@@ -160,11 +161,11 @@ public class Yaka implements YakaConstants {
     type();
     jj_consume_token(FONCTION);
     jj_consume_token(ident);
-      Yaka.fonction.declareFonctionIdent(YakaTokenManager.identLu);
+      Yaka.declaration.enteteFonctionDebut(YakaTokenManager.identLu);
     paramForms();
     bloc();
     jj_consume_token(FFONCTION);
-                Yaka.fonction.declareFonctionFin();
+      Yaka.declaration.declFonctionFin();
   }
 
   static final public void paramForms() throws ParseException {
@@ -191,14 +192,14 @@ public class Yaka implements YakaConstants {
       jj_la1[2] = jj_gen;
       ;
     }
-    Yaka.fonction.declareFonctionParamFin();
+    Yaka.declaration.enteteFonctionParamFin();
     jj_consume_token(42);
   }
 
   static final public void paramForm() throws ParseException {
     type();
     jj_consume_token(ident);
-      Yaka.fonction.declareFonctionParam(YakaTokenManager.identLu);
+      Yaka.declaration.enteteFonctionParam(YakaTokenManager.identLu);
   }
 
   static final public void bloc() throws ParseException {
@@ -226,7 +227,7 @@ public class Yaka implements YakaConstants {
       }
       declVar();
     }
-    Yaka.tabIdent.ouvrePrinc();
+    Yaka.declaration.blocFonctionDebut();
     suiteInstr();
   }
 
@@ -251,7 +252,7 @@ public class Yaka implements YakaConstants {
 
   static final public void defConst() throws ParseException {
     jj_consume_token(ident);
-      Yaka.declaration.nouvelleConstante(YakaTokenManager.identLu);
+      Yaka.declaration.setIdentCourant(YakaTokenManager.identLu);
     jj_consume_token(44);
     valConst();
   }
@@ -260,19 +261,19 @@ public class Yaka implements YakaConstants {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case entier:
       jj_consume_token(entier);
-      Yaka.declaration.majValeur(YakaTokenManager.entierLu);
+      Yaka.declaration.nouvelleConstante(YakaTokenManager.entierLu);
       break;
     case ident:
       jj_consume_token(ident);
-      Yaka.declaration.majValeur(YakaTokenManager.identLu);
+      Yaka.declaration.nouvelleConstante(YakaTokenManager.identLu);
       break;
     case VRAI:
       jj_consume_token(VRAI);
-      Yaka.declaration.majValeur(true);
+      Yaka.declaration.nouvelleConstante(true);
       break;
     case FAUX:
       jj_consume_token(FAUX);
-      Yaka.declaration.majValeur(false);
+      Yaka.declaration.nouvelleConstante(false);
       break;
     default:
       jj_la1[6] = jj_gen;
@@ -307,11 +308,11 @@ public class Yaka implements YakaConstants {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ENTIER:
       jj_consume_token(ENTIER);
-      Yaka.declaration.majType(Constante.ENTIER);
+      Yaka.declaration.setTypeCourant(Constante.ENTIER);
       break;
     case BOOLEEN:
       jj_consume_token(BOOLEEN);
-      Yaka.declaration.majType(Constante.BOOLEEN);
+      Yaka.declaration.setTypeCourant(Constante.BOOLEEN);
       break;
     default:
       jj_la1[8] = jj_gen;
@@ -584,16 +585,17 @@ public class Yaka implements YakaConstants {
       break;
     case ident:
       jj_consume_token(ident);
-        Yaka.fonction.appelleFonctionDebut(YakaTokenManager.identLu);
+        Yaka.expression.ajouteValeur(YakaTokenManager.identLu);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case 40:
+        Yaka.expression.appelleFonctionDebut();
         argumentsFonction();
+        Yaka.expression.appelleFonctionFin();
         break;
       default:
         jj_la1[20] = jj_gen;
         ;
       }
-      Yaka.fonction.appelleFonctionFin();
       break;
     case VRAI:
       jj_consume_token(VRAI);
@@ -621,7 +623,7 @@ public class Yaka implements YakaConstants {
     case 40:
     case 51:
       expression();
-        Yaka.fonction.appelleFonctionParam();
+        Yaka.expression.appelleFonctionParam();
       label_10:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -634,7 +636,7 @@ public class Yaka implements YakaConstants {
         }
         jj_consume_token(41);
         expression();
-          Yaka.fonction.appelleFonctionParam();
+          Yaka.expression.appelleFonctionParam();
       }
       break;
     default:

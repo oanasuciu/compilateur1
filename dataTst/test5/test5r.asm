@@ -10,7 +10,7 @@ STARTUPCODE
 
 main :
 
-; ouvbloc 2
+; ouvreBloc 2
 enter 2,0
 
 ; iconst 4

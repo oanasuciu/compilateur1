@@ -1,8 +1,8 @@
 package concept.expression.operation;
 
-import generation.YVM;
 import type.Type;
 import yaka.Constante;
+import yaka.Yaka;
 
 public class Mul extends OperateurBinaire {
 
@@ -22,8 +22,8 @@ public class Mul extends OperateurBinaire {
 	}
 
 	@Override
-	public void visiteYVM(YVM yvm) {
-		yvm.imul();
+	public void faitOperation() {
+		Yaka.yvm.imul();
 	}
 
 }

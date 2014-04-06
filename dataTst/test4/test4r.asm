@@ -10,7 +10,7 @@ STARTUPCODE
 
 main: 
 
-; ouvbloc 4
+; ouvreBloc 4
 enter 4,0
 
 ; ecrireChaine "n="

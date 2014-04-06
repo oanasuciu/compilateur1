@@ -1,11 +1,9 @@
 package concept.expression.operation;
 
-import generation.YVM;
-
 import java.util.Stack;
 
-import concept.ident.Ident;
 import type.Type;
+import concept.ident.Ident;
 
 public abstract class Operateur {
 	
@@ -45,5 +43,5 @@ public abstract class Operateur {
 	 * @param yvm
 	 * 			L'instance de la YVM sur laquelle appeler l'opération
 	 */
-	abstract public void visiteYVM(YVM yvm);
+	abstract public void faitOperation();
 }

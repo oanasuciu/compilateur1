@@ -1,9 +1,9 @@
 package concept.controle.iteration;
 
-import concept.controle.StructureControle;
-import concept.ident.Ident;
 import yaka.Constante;
 import yaka.Yaka;
+import concept.controle.StructureControle;
+import concept.ident.Ident;
 
 
 public class Iteration extends StructureControle {

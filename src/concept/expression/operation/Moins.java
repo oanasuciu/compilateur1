@@ -1,8 +1,8 @@
 package concept.expression.operation;
 
-import generation.YVM;
 import type.Type;
 import yaka.Constante;
+import yaka.Yaka;
 
 public class Moins extends OperateurUnaire {
 
@@ -22,8 +22,8 @@ public class Moins extends OperateurUnaire {
 	}
 
 	@Override
-	public void visiteYVM(YVM yvm) {
-		yvm.ineg();
+	public void faitOperation() {
+		Yaka.yvm.ineg();
 	}
 
 }

@@ -3,36 +3,32 @@ package concept.ident;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import concept.fonction.Fonction;
 import yaka.Yaka;
 
 public class TabIdent {
 	private HashMap<String, Ident> locaux;
-	private HashMap<String, Fonction> globaux; 
+	private HashMap<String, Ident> globaux; 
 	
 	public TabIdent() {
 		this.locaux = new HashMap<String, Ident>();
-		this.globaux = new HashMap<String, Fonction>();
+		this.globaux = new HashMap<String, Ident>();
 	}
 
 	public Ident chercheIdent(String clef) {
-		return locaux.get(clef);
-	}
-
-	public Fonction chercheFonction(String clef) {
-		return globaux.get(clef);
+		Ident idLocaux = locaux.get(clef);
+		if(idLocaux != null)
+			return idLocaux;
+		else {
+			return globaux.get(clef);
+		}
 	}
 	
 	public boolean existeIdent(String clef) {
-		return locaux.containsKey(clef);
-	}
-	
-	public boolean existeFonction(String clef) {
-		return globaux.containsKey(clef);
+		return locaux.containsKey(clef) || globaux.containsKey(clef);
 	}
 
 	public void rangeIdent(String clef, Ident id) {
-		Ident oldIdent = locaux.put(clef, id);
+		Ident oldIdent = this.locaux.put(clef, id);
 		// oldIdent contient l'ancienne valeur qui était dans le HashMap à cette clef
 		// si elle n'est pas nulle, c'est qu'on écrase une Ident !
 		if(oldIdent != null) {
@@ -40,12 +36,12 @@ public class TabIdent {
 		}
 	}
 	
-	public void rangeFonction(Fonction f) {
-		Fonction oldFonction = this.globaux.put(f.getNom(), f);
+	public void rangeFonction(String clef, Ident id) {
+		Ident oldIdent = this.globaux.put(clef, id);
 		// oldIdent contient l'ancienne valeur qui était dans le HashMap à cette clef
 		// si elle n'est pas nulle, c'est qu'on écrase une Ident !
-		if(oldFonction != null) {
-			Yaka.em.ecraseFonction(f.getNom());
+		if(oldIdent != null) {
+			Yaka.em.ecraseIdentificateur(clef);
 		}
 	}
 	
@@ -61,17 +57,25 @@ public class TabIdent {
 		return cpt;
 	}
 	
-	public void ouvrePrinc() {
-		Yaka.yvm.ouvrePrinc(Yaka.tabIdent.nbVar() * 2);
+	public void nettoieLocaux() {
+		this.locaux.clear();
+	}
+	
+	public void ouvreBloc() {
+		IdFonction fonc = Yaka.declaration.getFonctionCourante();
+		if(fonc != null)
+			Yaka.yvm.ouvreBloc((this.nbVar()-fonc.getParams().size()) * 2);
+		else
+			Yaka.yvm.ouvreBloc(this.nbVar() * 2);
+	}
+	
+	public void fermeBloc() {
+		Yaka.yvm.fermeBloc(Yaka.declaration.getFonctionCourante().getParams().size() * 2);
 	}
 
 	@Override
 	public String toString() {
 		return "TabIdent [table=" + locaux + "]";
-	}
-	
-	public void ouvertureFonction(){
-		this.locaux = new HashMap<String, Ident>();
 	}
 	
 	public void reInit() {

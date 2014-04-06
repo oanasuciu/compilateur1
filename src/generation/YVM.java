@@ -3,10 +3,10 @@ package generation;
 import java.io.File;
 import java.io.OutputStream;
 
-import concept.expression.operation.Operateur;
-import concept.ident.Ident;
 import utils.Ecriture;
 import yaka.Yaka;
+import concept.expression.operation.Operateur;
+import concept.ident.Ident;
 
 public class YVM {
 	protected String nomFichier;
@@ -29,11 +29,11 @@ public class YVM {
 	 */
 
 	public void operation(Operateur op) {
-		op.visiteYVM(this);
+		op.faitOperation();
 	}
 
 	public void ident(Ident id) {
-		id.visiteYVM(this);
+		id.chargeValeur();
 	}
 
 	/*
@@ -61,8 +61,28 @@ public class YVM {
 	 * Les instructions pour les fonctions
 	 */
 
-	public void ouvrePrinc(int nbVar) {
-		Ecriture.ecrireStringln(ficYVM, "ouvrePrinc " + nbVar);
+	public void ouvrePrinc() {
+		Ecriture.ecrireStringln(ficYVM, "main:");
+	}
+	
+	public void ouvreBloc(int val) {
+		Ecriture.ecrireStringln(ficYVM, "ouvreBloc "+val);
+	}
+	
+	public void fermeBloc(int val) {
+		Ecriture.ecrireStringln(ficYVM, "fermeBloc "+val);
+	}
+	
+	public void ireturn(int val) {
+		Ecriture.ecrireStringln(ficYVM, "ireturn "+val);
+	}
+	
+	public void reserveRetour() {
+		Ecriture.ecrireStringln(ficYVM, "reserveRetour");
+	}
+	
+	public void call(String nomFonction) {
+		Ecriture.ecrireStringln(ficYVM, "call "+nomFonction);
 	}
 
 	/*
@@ -175,25 +195,5 @@ public class YVM {
 
 	public void etiquette(String etiquette) {
 		Ecriture.ecrireStringln(ficYVM, etiquette+":");
-	}
-	
-	public void ouvbloc(int val) {
-		Ecriture.ecrireStringln(ficYVM, "ouvbloc "+val);
-	}
-	
-	public void fermebloc(int val) {
-		Ecriture.ecrireStringln(ficYVM, "fermebloc "+val);
-	}
-	
-	public void ireturn(int val) {
-		Ecriture.ecrireStringln(ficYVM, "ireturn "+val);
-	}
-	
-	public void reserveRetour() {
-		Ecriture.ecrireStringln(ficYVM, "reserveRetour");
-	}
-	
-	public void call(String nomFonction) {
-		Ecriture.ecrireStringln(ficYVM, "call "+nomFonction);
 	}
 }

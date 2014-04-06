@@ -1,6 +1,6 @@
 entete
 main :
-ouvbloc 2
+ouvreBloc 2
 ecrireChaine " x= "
 iconst 2
 ecrireEnt

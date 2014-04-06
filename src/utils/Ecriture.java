@@ -1,6 +1,9 @@
 package utils;
 
-import java.io.*;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 //quelques primitives d'�criture � l'ecran  ou dans un fichier
 

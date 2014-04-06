@@ -1,8 +1,8 @@
 package concept.expression.operation;
 
-import generation.YVM;
 import type.Type;
 import yaka.Constante;
+import yaka.Yaka;
 
 public class Diff extends OperateurBinaire {
 	
@@ -22,7 +22,7 @@ public class Diff extends OperateurBinaire {
 	}
 
 	@Override
-	public void visiteYVM(YVM yvm) {
-		yvm.idiff();
+	public void faitOperation() {
+		Yaka.yvm.idiff();
 	}
 }

@@ -2,6 +2,7 @@ package generation;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Formatter;
 
 import utils.Ecriture;
 import utils.FilenameUtils;
@@ -9,8 +10,7 @@ import yaka.Yaka;
 
 public class YVMasm extends YVM {
 	/**
-	 * Variable contenant l'indice du prochain message à écrire Utilisé lors de
-	 * l'écriture de chaînes (mess0, mess1, etc.)
+	 * Variable contenant l'indice du prochain message à écrire Utilisé lors de l'écriture de chaînes (mess0, mess1, etc.)
 	 */
 	private int numMsg;
 
@@ -21,6 +21,13 @@ public class YVMasm extends YVM {
 
 	public String getExtension() {
 		return ".asm";
+	}
+
+	public String nombreAvecSigne(int nb) {
+		Formatter fmt = new Formatter();
+		String toRet = fmt.format("%+d", nb).toString();
+		fmt.close();
+		return toRet;
 	}
 
 	public String getCheminAbsolu() {
@@ -37,28 +44,20 @@ public class YVMasm extends YVM {
 	public void compile() {
 		String path;
 		if (System.getProperty("os.name").startsWith("Windows")) {
-	        path = "C:\\TASM";
-	    } else {
-	    	path = "/usr/tasm/";
-	    }
-	    String cheminNormalise = FilenameUtils.separatorsToWindows(nomFichier);
-	    System.out.println(FilenameUtils.normalize(this.getCheminAbsolu()));
+			path = "C:\\TASM";
+		} else {
+			path = "/usr/tasm/";
+		}
+		String cheminNormalise = FilenameUtils.separatorsToWindows(nomFichier);
+		System.out.println(FilenameUtils.normalize(this.getCheminAbsolu()));
 		String[] commandes = {
-				"dosbox",
-				"-c",
-				"mount C "+path+"",// monte le dossier C:\TASM dans le disque C:
-				"-c",
-				"mount H " + FilenameUtils.normalize(this.getCheminAbsolu())+"",// monte le dossier contenant le fichier .asm
-				"-c",
-				"C:\\tasm H:\\" + cheminNormalise + this.getExtension() + " H:\\" + cheminNormalise + ".obj",// on compile le fichier
-				"-c",
-				"C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
-				"-c",
-				"H:\\" + cheminNormalise + ".exe"+((!this.interactif) ? ">H:\\" + cheminNormalise + ".out" : ""), // on éxécute le fichier fraichement compilé
-				"-c",
-				((!this.interactif) ? "exit" : ""),
-				"-noconsole",
-				"-noautoexec"
+				"dosbox", // appelle DOSBox
+				"-c", "mount C " + path + "",// monte le dossier C:\TASM dans le disque C:
+				"-c", "mount H " + FilenameUtils.normalize(this.getCheminAbsolu()) + "",// monte le dossier contenant le fichier .asm
+				"-c", "C:\\tasm H:\\" + cheminNormalise + this.getExtension() + " H:\\" + cheminNormalise + ".obj",// on compile le fichier
+				"-c", "C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
+				"-c", "H:\\" + cheminNormalise + ".exe" + ((!this.interactif) ? ">H:\\" + cheminNormalise + ".out" : ""), // on éxécute le fichier fraichement compilé
+				"-c", ((!this.interactif) ? "exit" : ""), "-noconsole", "-noautoexec"
 		};
 		try {
 			// on lance dosbox et la liste des commandes pour compiler
@@ -86,8 +85,6 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(ficYVM, ".586");
 		Ecriture.ecrireStringln(ficYVM, "");
 		Ecriture.ecrireStringln(ficYVM, ".CODE");
-		Ecriture.ecrireStringln(ficYVM, "debut:");
-		Ecriture.ecrireStringln(ficYVM, "STARTUPCODE");
 	}
 
 	public void queue() {
@@ -112,11 +109,44 @@ public class YVMasm extends YVM {
 	 * Les instructions pour les fonctions
 	 */
 
-	public void ouvrePrinc(int nbVar) {
+	public void ouvrePrinc() {
 		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; ouvrePrinc " + nbVar);
-		Ecriture.ecrireStringln(ficYVM, "mov bp,sp");
-		Ecriture.ecrireStringln(ficYVM, "sub sp," + nbVar);
+		Ecriture.ecrireStringln(ficYVM, "debut:");
+		Ecriture.ecrireStringln(ficYVM, "STARTUPCODE");
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "main:");
+	}
+
+	public void ouvreBloc(int val) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; ouvreBloc " + val);
+		Ecriture.ecrireStringln(ficYVM, "enter " + val + ",0");
+	}
+
+	public void fermeBloc(int val) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; fermeBloc " + val);
+		Ecriture.ecrireStringln(ficYVM, "leave");
+		Ecriture.ecrireStringln(ficYVM, "ret " + val);
+	}
+
+	public void ireturn(int val) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; ireturn " + val);
+		Ecriture.ecrireStringln(ficYVM, "pop ax");
+		Ecriture.ecrireStringln(ficYVM, "mov [bp" + this.nombreAvecSigne(val) + "],ax");
+	}
+
+	public void reserveRetour() {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; reserveRetour ");
+		Ecriture.ecrireStringln(ficYVM, "sub sp,2");
+	}
+
+	public void call(String nomFonction) {
+		Ecriture.ecrireStringln(ficYVM, "");
+		Ecriture.ecrireStringln(ficYVM, "; call " + nomFonction);
+		Ecriture.ecrireStringln(ficYVM, "call " + nomFonction);
 	}
 
 	/*
@@ -126,7 +156,7 @@ public class YVMasm extends YVM {
 	public void lireEnt(int offset) {
 		Ecriture.ecrireStringln(ficYVM, "");
 		Ecriture.ecrireStringln(ficYVM, "; lireEnt " + offset);
-		Ecriture.ecrireStringln(ficYVM, "lea dx,[bp" + offset + "]");
+		Ecriture.ecrireStringln(ficYVM, "lea dx,[bp" + this.nombreAvecSigne(offset) + "]");
 		Ecriture.ecrireStringln(ficYVM, "push dx");
 		Ecriture.ecrireStringln(ficYVM, "call lirent");
 	}
@@ -140,12 +170,12 @@ public class YVMasm extends YVM {
 	public void ecrireChaine(String str) {
 		// la chaîne reçue peut être délimitée par des doubles ou simple quotes
 		// on enregistre le séparateur utilisé, puis on insère un "$" avant la fin de la chaîne (avant le sep final)
-		String sep = str.substring(str.length()-1);
-		str = str.substring(0, str.length()-1);
+		String sep = str.substring(str.length() - 1);
+		str = str.substring(0, str.length() - 1);
 		Ecriture.ecrireStringln(ficYVM, "");
 		Ecriture.ecrireStringln(ficYVM, "; ecrireChaine " + str + "");
 		Ecriture.ecrireStringln(ficYVM, ".DATA");
-		Ecriture.ecrireStringln(ficYVM, "mess" + this.numMsg + " DB " + str + "$"+sep);
+		Ecriture.ecrireStringln(ficYVM, "mess" + this.numMsg + " DB " + str + "$" + sep);
 		Ecriture.ecrireStringln(ficYVM, ".CODE");
 		Ecriture.ecrireStringln(ficYVM, "lea dx,mess" + this.numMsg++);
 		Ecriture.ecrireStringln(ficYVM, "push dx");
@@ -177,7 +207,7 @@ public class YVMasm extends YVM {
 	public void iload(int val) {
 		Ecriture.ecrireStringln(ficYVM, "");
 		Ecriture.ecrireStringln(ficYVM, "; iload " + val);
-		Ecriture.ecrireStringln(ficYVM, "push word ptr [bp" + val + "]");
+		Ecriture.ecrireStringln(ficYVM, "push word ptr [bp" + this.nombreAvecSigne(val) + "]");
 
 	}
 
@@ -185,7 +215,7 @@ public class YVMasm extends YVM {
 		Ecriture.ecrireStringln(ficYVM, "");
 		Ecriture.ecrireStringln(ficYVM, "; istore " + val);
 		Ecriture.ecrireStringln(ficYVM, "pop ax");
-		Ecriture.ecrireStringln(ficYVM, "mov word ptr [bp" + val + "],ax");
+		Ecriture.ecrireStringln(ficYVM, "mov word ptr [bp" + this.nombreAvecSigne(val) + "],ax");
 	}
 
 	/*
@@ -338,52 +368,20 @@ public class YVMasm extends YVM {
 
 	public void goTo(String etiquette) {
 		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; goto "+etiquette);
-		Ecriture.ecrireStringln(ficYVM, "jmp "+etiquette);
+		Ecriture.ecrireStringln(ficYVM, "; goto " + etiquette);
+		Ecriture.ecrireStringln(ficYVM, "jmp " + etiquette);
 	}
 
 	public void etiquette(String etiquette) {
 		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, etiquette+":");
+		Ecriture.ecrireStringln(ficYVM, etiquette + ":");
 	}
-	
+
 	public void iffaux(String etiquette) {
 		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; iffaux "+etiquette);
+		Ecriture.ecrireStringln(ficYVM, "; iffaux " + etiquette);
 		Ecriture.ecrireStringln(ficYVM, "pop ax");
 		Ecriture.ecrireStringln(ficYVM, "cmp ax,0");
-		Ecriture.ecrireStringln(ficYVM, "je "+etiquette);
-	}
-	
-	public void ouvbloc(int val) {
-		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; ouvbloc "+val);
-		Ecriture.ecrireStringln(ficYVM, "enter "+val+",0");
-	}
-	
-	public void fermebloc(int val) {
-		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; fermebloc "+val);
-		Ecriture.ecrireStringln(ficYVM, "leave");
-		Ecriture.ecrireStringln(ficYVM, "ret "+val);
-	}
-	
-	public void ireturn(int val) {
-		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; ireturn "+val);
-		Ecriture.ecrireStringln(ficYVM, "pop ax");
-		Ecriture.ecrireStringln(ficYVM, "mov [bp+"+val+"],ax");
-	}
-	
-	public void reserveRetour() {
-		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; reserveRetour ");
-		Ecriture.ecrireStringln(ficYVM, "sub sp,2");
-	}
-	
-	public void call(String nomFonction) {
-		Ecriture.ecrireStringln(ficYVM, "");
-		Ecriture.ecrireStringln(ficYVM, "; call "+nomFonction);
-		Ecriture.ecrireStringln(ficYVM, "call "+nomFonction);
+		Ecriture.ecrireStringln(ficYVM, "je " + etiquette);
 	}
 }

@@ -2,7 +2,10 @@ package utils;
 
 //package utilitaires;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 //quelques primitives de lecture au clavier ou dans un fichier 
 

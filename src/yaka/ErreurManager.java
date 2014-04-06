@@ -2,11 +2,8 @@
 
 import java.io.OutputStream;
 
-import type.Type;
 import utils.Ecriture;
-import concept.expression.Expression;
 import concept.expression.operation.Operateur;
-import concept.fonction.Fonction;
 import concept.ident.Ident;
 
 public class ErreurManager {
@@ -114,6 +111,12 @@ public class ErreurManager {
 		System.out.println("Tentative d'affectation dans une constante (" + id.getNom() + ").");
 		Ecriture.ecrireStringln(this.fichierErreur, "Tentative d'affectation dans une constante (" + id.getNom() + ").");
 	}
+
+	public void affectationDansFonction(Ident id) {
+		this.ecritInfoBase(false);
+		System.out.println("Tentative d'affectation dans une fonction (" + id.getNom() + ").");
+		Ecriture.ecrireStringln(this.fichierErreur, "Tentative d'affectation dans une fonction (" + id.getNom() + ").");
+	}
 	
 	public void expressionNonBooleen(Ident id){
 		this.ecritInfoBase(false);
@@ -130,33 +133,67 @@ public class ErreurManager {
 		Ecriture.ecrireStringln(this.fichierErreur, "         Expression : "+expr+" de type " + id.getType().getNom());
 	}
 	
-	public void nbParamInvalide(Fonction fonc) {
-		this.ecritInfoBase(false);
-		System.out.println("Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
-		System.out.println("La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
-		Ecriture.ecrireStringln(this.fichierErreur, "La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");
-	}
-	
 	public void fonctionInexistante(String fonc) {
 		this.ecritInfoBase(false);
 		System.out.println("Fonction \"" + fonc + "\" inexistante.");
 		Ecriture.ecrireStringln(this.fichierErreur, "Fonction \"" + fonc + "\" inexistante.");
 	}
 	
-	public void typeParamInvalide(Fonction fonc, Ident id) {
-		this.ecritInfoBase(false);
+	public void typeParamInvalide(Ident identAttendue, Ident id) {
+		System.out.println("typeParamInvalide");
+		// TODO
+		/*this.ecritInfoBase(false);
 		System.out.println("La fonction doit recevoir des paramètre de type : ");
 		Ecriture.ecrireStringln(this.fichierErreur, "La fonction doit recevoir des paramètre de type : ");
-		for(Ident t : fonc.getParams()){System.out.println(t.getType() +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
+		for(Ident t : identAttendue.getParams()){System.out.println(t.getType() +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
 		System.out.println("Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");*/
 	}
 
 	public void ecraseFonction(String fonc) {
 		this.ecritInfoBase(true);
 		System.out.println("WARNING: La fonction \"" + fonc + "\" a été re-déclaré.");
 		Ecriture.ecrireStringln(this.fichierErreur, "WARNING: La fonciton \"" + fonc + "\" a été re-déclaré.");
+		
+	}
+
+	public void affectationMauvaisIdentificateurDansConstante(String partieGauche, Ident partieDroite) {
+		this.ecritInfoBase(false);
+		System.out.println("Seules les constantes peuvent être utilisées en partie droite lors de la déclaration de constante.");
+		System.out.println("         Affectation dans la constante : " + partieGauche);
+		System.out.println("         Depuis l'identificateur "+partieDroite.getNom()+" de type " + partieDroite.getTypeIdent());
+		Ecriture.ecrireStringln(this.fichierErreur, "Seules les constantes peuvent être utilisées en partie droite lors de la déclaration de constante.");
+		Ecriture.ecrireStringln(this.fichierErreur, "         Affectation dans la constante : " + partieGauche);
+		Ecriture.ecrireStringln(this.fichierErreur, "         Depuis l'identificateur "+partieDroite.getNom()+" de type " + partieDroite.getTypeIdent());
+	}
+
+	public void lireEntierSurNonEntier(Ident id) {
+		this.ecritInfoBase(false);
+		System.out.println("Appel de LIRE sur une variable de type différent d'entier.");
+		System.out.println("         Variable "+id.getNom()+" de type "+id.getType().getNom());
+		Ecriture.ecrireStringln(this.fichierErreur, "Appel de LIRE sur une variable de type différent d'entier.");
+		Ecriture.ecrireStringln(this.fichierErreur, "         Variable "+id.getNom()+" de type "+id.getType().getNom());
+	}
+
+	public void retourInvalide(Ident identAttendue, Ident identFournie) {
+		System.out.println("retourInvalide");
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void nbParamInvalide(int size, int paramVerifie) {
+		System.out.println("nbParamInvalide");
+		// TODO Auto-generated method stub
+		/*this.ecritInfoBase(false);
+		System.out.println("Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
+		System.out.println("La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");
+		Ecriture.ecrireStringln(this.fichierErreur, "Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
+		Ecriture.ecrireStringln(this.fichierErreur, "La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");*/
+	}
+
+	public void identEstPasUneFonction(Ident fonction) {
+		System.out.println("identEstPasUneFonction");
+		// TODO Auto-generated method stub
 		
 	}
 }

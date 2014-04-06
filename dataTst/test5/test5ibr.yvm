@@ -1,6 +1,6 @@
 entete
 main :
-ouvbloc 2
+ouvreBloc 2
 iconst 4
 istore -2
 iconst 2

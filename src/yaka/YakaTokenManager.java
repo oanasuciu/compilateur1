@@ -10,7 +10,7 @@ import concept.ident.IdVar;
 import concept.ident.TabIdent;
 import concept.affectation.Affectation;
 import concept.declaration.Declaration;
-import concept.fonction.FonctionManager;
+import concept.fonction.Fonction;
 import concept.controle.iteration.Iteration;
 import concept.controle.conditionnelle.Conditionnelle;
 import utils.FilenameUtils;

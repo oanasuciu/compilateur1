@@ -1,9 +1,7 @@
 package concept.es;
 
-import yaka.Constante;
 import yaka.Yaka;
 import concept.ident.Ident;
-import concept.ident.IdConst;
 
 public class Entree {
 	public void lireIdent(String ident) {
@@ -11,13 +9,8 @@ public class Entree {
 		if(id == null) {
 			// identificateur inexistant : gestion de l'erreur
 			Yaka.em.identificateurInexistant(ident);
-			id = new IdConst(Constante.ERREUR);
 			return;
 		}
-		if(id.getType() != Constante.ERREUR && !id.isVar()) {
-			Yaka.em.affectationDansConstante(id);
-			return;
-		}
-		Yaka.yvm.lireEnt(id.getValeur());
+		id.lireEntier();
 	}
 }
