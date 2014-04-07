@@ -17,7 +17,7 @@ public class ErreurDeclaration {
 		Ecriture.ecrireStringln(this.em.fichierErreur, "WARNING: La fonciton \"" + fonc + "\" a été re-déclaré.");
 	}
 
-	public void affectationMauvaisIdentificateurDansConstante(String partieGauche, Ident partieDroite) {
+	public void mauvaiseDeclarationConstante(String partieGauche, Ident partieDroite) {
 		this.em.ecritInfoBase(false);
 		System.out.println("Seules les constantes peuvent être utilisées en partie droite lors de la déclaration de constante.");
 		System.out.println("         Affectation dans la constante : " + partieGauche);

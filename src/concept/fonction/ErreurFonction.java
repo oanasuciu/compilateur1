@@ -17,37 +17,44 @@ public class ErreurFonction {
 		Ecriture.ecrireStringln(this.em.fichierErreur, "Fonction \"" + fonc + "\" inexistante.");
 	}
 	
-	public void typeParamInvalide(Ident identAttendue, Ident id) {
-		System.out.println("typeParamInvalide");
-		// TODO
-		/*this.ecritInfoBase(false);
-		System.out.println("La fonction doit recevoir des paramètre de type : ");
-		Ecriture.ecrireStringln(this.fichierErreur, "La fonction doit recevoir des paramètre de type : ");
-		for(Ident t : identAttendue.getParams()){System.out.println(t.getType() +" ");Ecriture.ecrireStringln(this.fichierErreur,t +" ");}
-		System.out.println("Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Le type de "+ id.getNom() + "("+ id.getType() + ") ne correspond pas.");*/
+	/*
+	 * Erreur appelée à chaque paramètre invalide lors de l'appelle d'une fonction
+	 * 
+	 */
+	public void typeParamInvalide(Ident identFonction, Ident paramAttendu, Ident paramFourni) {
+		this.em.ecritInfoBase(false);
+		System.out.println("Type de paramètre de fonction invalide.");
+		System.out.println("La fonction "+identFonction.getNom()+" doit recevoir un paramètre de type : "+paramAttendu.getType());
+		System.out.println("Le type de "+ paramFourni.getNom() + "(" + paramFourni.getType() + ") ne correspond pas.");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Type de paramètre de fonction invalide.");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "La fonction doit recevoir un paramètre de type : "+paramAttendu.getType());
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Le type de "+ paramFourni.getNom() + "(" + paramFourni.getType() + ") ne correspond pas.");
 	}
 
-	public void retourInvalide(Ident identAttendue, Ident identFournie) {
-		System.out.println("retourInvalide");
-		// TODO Auto-generated method stub
-		
+	public void retourInvalide(Ident identAttendu, Ident identFourni) {
+		this.em.ecritInfoBase(false);
+		System.out.println("Retour de fonction invalide \""+identAttendu.getNom()+"\".");
+		System.out.println("La retour de la fonction "+identAttendu.getNom()+" est de type "+identAttendu.getType()+".");
+		System.out.println("Un retour de type "+ identFourni.getType() +" a été reçu.");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Retour de fonction invalide");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "La retour de la fonction "+identAttendu.getNom()+" est de type "+identAttendu.getType()+".");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Un retour de type "+ identFourni.getType() +" a été reçu.");
 	}
 
-	public void nbParamInvalide(int size, int paramVerifie) {
-		System.out.println("nbParamInvalide");
-		// TODO Auto-generated method stub
-		/*this.ecritInfoBase(false);
-		System.out.println("Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
-		System.out.println("La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");
-		Ecriture.ecrireStringln(this.fichierErreur, "Nombre de paramètres invalide pour la fonction " + fonc.getNom() + ".");
-		Ecriture.ecrireStringln(this.fichierErreur, "La fonction " + fonc.getNom() + " a besoin de " + fonc.getParams().size() + "paramètres.");*/
+	public void nbParamInvalide(Ident identFonction, int paramVerifie) {
+		this.em.ecritInfoBase(false);
+		System.out.println("Nombre de paramètres de fonction invalide pour la fonction \"" + identFonction.getNom() + "\".");
+		System.out.println("Nombre de paramètres attendus : " + identFonction.getParams().size() + ".");
+		System.out.println("Nombre de paramètres donnés : " + paramVerifie+".");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Nombre de paramètres de fonction invalide pour la fonction \"" + identFonction.getNom() + "\".");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Nombre de paramètres attendus : " + identFonction.getParams().size() + ".");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Nombre de paramètres donnés : " + paramVerifie+".");
 	}
 
-	public void identEstPasUneFonction(Ident fonction) {
-		System.out.println("identEstPasUneFonction");
-		// TODO Auto-generated method stub
-		
+	public void identEstPasUneFonction(Ident id) {
+		this.em.ecritInfoBase(false);
+		System.out.println("Utilisation de l'identificateur \"" + id.getNom() + "\" comme une fonction, alors que c'est une "+id.getTypeIdent()+".");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Utilisation de l'identificateur \"" + id.getNom() + "\" comme une fonction, alors que c'est une "+id.getTypeIdent()+".");
 	}
 
 }

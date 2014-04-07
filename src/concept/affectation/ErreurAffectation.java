@@ -33,15 +33,10 @@ public class ErreurAffectation {
 		Ecriture.ecrireStringln(this.em.fichierErreur, "         Depuis le type " + id2.getType().getNom());
 	}
 
-	public void affectationDansConstante(Ident id) {
+	public void affectationIllegale(Ident id) {
 		this.em.ecritInfoBase(false);
-		System.out.println("Tentative d'affectation dans une constante (" + id.getNom() + ").");
-		Ecriture.ecrireStringln(this.em.fichierErreur, "Tentative d'affectation dans une constante (" + id.getNom() + ").");
+		System.out.println("Tentative d'affectation dans une "+id.getTypeIdent()+" (" + id.getNom() + ").");
+		Ecriture.ecrireStringln(this.em.fichierErreur, "Tentative d'affectation dans une "+id.getTypeIdent()+" (" + id.getNom() + ").");
 	}
 
-	public void affectationDansFonction(Ident id) {
-		this.em.ecritInfoBase(false);
-		System.out.println("Tentative d'affectation dans une fonction (" + id.getNom() + ").");
-		Ecriture.ecrireStringln(this.em.fichierErreur, "Tentative d'affectation dans une fonction (" + id.getNom() + ").");
-	}
 }

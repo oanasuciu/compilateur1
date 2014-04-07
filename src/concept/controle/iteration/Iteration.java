@@ -18,7 +18,7 @@ public class Iteration extends StructureControle {
 		if (id.getType() == Constante.BOOLEEN) {
 			Yaka.yvm.iffaux("FAIT" + (this.stringNumerotation()));
 		} else {
-			Yaka.em.expressionNonBooleen(id);
+			Yaka.em.structureControle.expressionStructureControleNonBooleen(id);
 		}
 		
 	}

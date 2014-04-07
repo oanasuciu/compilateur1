@@ -8,7 +8,7 @@ public class Sortie {
 	public void ecrireTete() {
 		Ident id = Yaka.expression.recupereTete();
 		if(id == null) {
-			Yaka.em.aucuneValeurAEcrire();
+			Yaka.em.es.aucuneValeurAEcrire();
 			return;
 		}
 		id.getType().visiteEcriture(this);

@@ -42,7 +42,7 @@ public class Declaration {
 		}
 		Ident nouvelId = id.dupliqueConstante();
 		if(nouvelId == null) {
-			Yaka.em.declaration.affectationMauvaisIdentificateurDansConstante(this.identCourant, id);
+			Yaka.em.declaration.mauvaiseDeclarationConstante(this.identCourant, id);
 			Yaka.tabIdent.rangeIdent(this.identCourant, new IdConst(this.identCourant, Constante.ERREUR));
 			return;
 		}

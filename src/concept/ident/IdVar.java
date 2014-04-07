@@ -71,7 +71,7 @@ public class IdVar extends Ident {
 	@Override
 	public void lireEntier() {
 		if(this.getType() != Constante.ERREUR && this.getType() != Constante.ENTIER) {
-			Yaka.em.lireEntierSurNonEntier(this);
+			Yaka.em.es.lireEntierSurNonEntier(this);
 		}
 		Yaka.yvm.lireEnt(this.offset);
 	}

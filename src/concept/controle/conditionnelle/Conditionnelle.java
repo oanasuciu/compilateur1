@@ -13,7 +13,7 @@ public class Conditionnelle extends StructureControle {
 		if (id.getType() == Constante.BOOLEEN){
 			Yaka.yvm.iffaux("SINON"+(this.stringNumerotation()));
 		} else {
-			Yaka.em.expressionNonBooleen(id);
+			Yaka.em.structureControle.expressionStructureControleNonBooleen(id);
 		}
 	}
 

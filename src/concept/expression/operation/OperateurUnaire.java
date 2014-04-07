@@ -19,7 +19,7 @@ public abstract class OperateurUnaire extends Operateur {
 		}
 		else if(!this.accepteType(id.getType())) {
 			// c'est une nouvelle erreur de type
-			Yaka.em.mauvaisType(this, id);
+			Yaka.em.expression.mauvaisTypeUnaire(this, id);
 			pileValeur.add(new IdConst(Constante.ERREUR));
 		}
 		else {

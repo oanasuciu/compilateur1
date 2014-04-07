@@ -59,7 +59,7 @@ public class IdFonction extends Ident {
 
 	@Override
 	public void affectation(Ident partieDroite) {
-		Yaka.em.affectation.affectationDansFonction(this);
+		Yaka.em.affectation.affectationIllegale(this);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class IdFonction extends Ident {
 
 	@Override
 	public void lireEntier() {
-		Yaka.em.affectation.affectationDansFonction(this);
+		Yaka.em.affectation.affectationIllegale(this);
 	}
 
 	@Override

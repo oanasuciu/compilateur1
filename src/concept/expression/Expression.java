@@ -111,10 +111,10 @@ public class Expression {
 			this.pileNbParams.push(++paramIndex);
 			return;
 		}
-		Ident identFournie = Yaka.expression.recupereTete();
-		Ident identAttendue = params.get(paramIndex);
-		if(identFournie.getType() != Constante.ERREUR && identFournie.getType() != identAttendue.getType()) {
-			Yaka.em.fonction.typeParamInvalide(identAttendue, identFournie);
+		Ident identFourni = Yaka.expression.recupereTete();
+		Ident identAttendu = params.get(paramIndex);
+		if(identFourni.getType() != Constante.ERREUR && identFourni.getType() != identAttendu.getType()) {
+			Yaka.em.fonction.typeParamInvalide(this.pileValeur.peek(), identAttendu, identFourni);
 		}
 		this.pileNbParams.push(++paramIndex);
 	}
@@ -122,10 +122,10 @@ public class Expression {
 	public void appelleFonctionFin() {
 		int paramVerifie = this.pileNbParams.pop();
 		ArrayList<IdVar> params = this.pileParams.pop();
-		if(params.size() != paramVerifie) {
-			Yaka.em.fonction.nbParamInvalide(params.size(), paramVerifie);
-		}
 		Ident fonction = this.pileValeur.peek();
+		if(params.size() != paramVerifie) {
+			Yaka.em.fonction.nbParamInvalide(fonction, paramVerifie);
+		}
 		Yaka.yvm.call(fonction.getNom());
 	}
 	
