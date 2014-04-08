@@ -57,7 +57,7 @@ public class YVMasm extends YVM {
 				"-c", "C:\\tasm H:\\" + cheminNormalise + this.getExtension() + " H:\\" + cheminNormalise + ".obj",// on compile le fichier
 				"-c", "C:\\tlink H:\\" + cheminNormalise + ".obj H:\\biblio.obj, H:\\" + cheminNormalise + ".exe",// on link le fichier
 				"-c", "H:\\" + cheminNormalise + ".exe" + ((!this.interactif) ? ">H:\\" + cheminNormalise + ".out" : ""), // on éxécute le fichier fraichement compilé
-				"-c", ((!this.interactif) ? "exit" : ""), "-noconsole", "-noautoexec"
+				((!this.interactif) ? "-c" : ""), ((!this.interactif) ? "exit" : ""), "-noconsole", "-noautoexec"
 		};
 		try {
 			// on lance dosbox et la liste des commandes pour compiler

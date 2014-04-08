@@ -105,13 +105,13 @@ public class Expression {
 			return;
 		}
 		ArrayList<IdVar> params = this.pileParams.peek();
+		Ident identFourni = this.pileValeur.pop();
 		if(paramIndex >= params.size()) {
 			// on est dans le cas d'un surplus d'argument : on continue d'augmenter le nombre de paramètres vérifiés,
 			// afin de donner un compte précis d'arguments donnés vs attendus à la fin de l'appel
 			this.pileNbParams.push(++paramIndex);
 			return;
 		}
-		Ident identFourni = Yaka.expression.recupereTete();
 		Ident identAttendu = params.get(paramIndex);
 		if(identFourni.getType() != Constante.ERREUR && identFourni.getType() != identAttendu.getType()) {
 			Yaka.em.fonction.typeParamInvalide(this.pileValeur.peek(), identAttendu, identFourni);

@@ -72,6 +72,7 @@ public class Declaration {
 	
 	public void fonctionPrincipaleDebut() {
 		Yaka.tabIdent.nettoieLocaux();
+		IdVar.reInit();
 		this.fonctionCourante = null;
 		Yaka.yvm.ouvrePrinc();
 	}

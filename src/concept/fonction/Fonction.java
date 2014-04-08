@@ -8,6 +8,10 @@ public class Fonction {
 	public void retourne() {
 		Ident identAttendu = Yaka.declaration.getFonctionCourante();
 		Ident identFourni = Yaka.expression.recupereTete();
+		if(identAttendu == null){
+			Yaka.em.fonction.retourDansMain();
+			return;
+		}
 		if(identFourni.getType() != Constante.ERREUR && identFourni.getType() != identAttendu.getType()) {
 			Yaka.em.fonction.retourInvalide(identAttendu, identFourni);
 			return;
