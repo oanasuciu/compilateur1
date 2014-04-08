@@ -123,6 +123,9 @@ public class Expression {
 		int paramVerifie = this.pileNbParams.pop();
 		ArrayList<IdVar> params = this.pileParams.pop();
 		Ident fonction = this.pileValeur.peek();
+		if(paramVerifie == -1) {
+			return;
+		}
 		if(params.size() != paramVerifie) {
 			Yaka.em.fonction.nbParamInvalide(fonction, paramVerifie);
 		}

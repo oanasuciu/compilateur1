@@ -19,7 +19,8 @@ FFONCTION
 PRINCIPAL
 VAR ENTIER i, j, k;
 VAR BOOLEEN b;
-ECRIRE(i(a,k) ET b)
+	j = i(k);
+	ECRIRE(i(a,k) ET b);
 	i=5;j=5;ALALIGNE;
 	k=max (i,min(j,5))+2;
 	b=sup(1+max(i,j-5),min(i*2,j));
