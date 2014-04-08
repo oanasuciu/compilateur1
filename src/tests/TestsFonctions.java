@@ -20,10 +20,27 @@ public class TestsFonctions {
 	}
 	
 	@Test
-	public void test6Erreurs() throws IOException {
+	public void test6Erreurs() throws IOException {     //TODO
 		Yaka.main(new String[] {"dataTst\\test6\\test6es", "1"});
 		// comparaison fichiers erreurs
-		CompareUtils.compare("dataTst\\tes6\\test6er.err", "dataTst\\test6\\test6es.err");
-
+		CompareUtils.compare("dataTst\\test6\\test6er.err", "dataTst\\test6\\test6es.err");
 	}
+	
+	@Test
+	public void test7MauvaiseDeclarationConstantes() throws IOException {
+		Yaka.main(new String[] {"dataTst\\test7\\test7.1s", "1"});
+	}
+	
+	@Test
+	public void test7IterationNonBooleene() throws IOException {
+		Yaka.main(new String[] {"dataTst\\test7\\test7.2s", "1"});
+	}
+	
+	@Test
+	public void test7AffectationIllegaletmauvaisTypeAffectation() throws IOException {
+		Yaka.main(new String[] {"dataTst\\test7\\test7.3s", "1"});
+	}
+	
+	
+
 }
