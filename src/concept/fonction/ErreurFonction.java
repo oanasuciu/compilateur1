@@ -58,6 +58,7 @@ public class ErreurFonction {
 	}
 	
 	public void retourDansMain(){
+		this.em.ecritInfoBase(false);
 		System.out.println("Instruction RETOURNE dans le main interdite.");
 		Ecriture.ecrireStringln(this.em.fichierErreur, "Instruction RETOURNE dans le main interdite.");
 	}
